@@ -8,8 +8,8 @@ namespace CleanGuruApp.Models.DB
     public interface ICustomerRepository
     {
         IQueryable<Customers> Customers { get; }
-        void SaveClub(Club club);
+        void SaveCustomers(Customers customer);
 
-        Club DeleteClub(int clubId);
+        Customers DeleteCustomers(int idCustomer);
     }
 }

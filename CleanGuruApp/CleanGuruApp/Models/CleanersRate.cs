@@ -7,9 +7,9 @@ namespace CleanGuruApp.Models
 {
     public class CleanersRate
     {
-        public int idrate{ get; set };
-        public int idschedule{ get; set };
-        public int idcleaner{ get; set };
-        public string cleanerrate{ get; set };              //should it be double?
+        public int IdRate{ get; set; }
+        public int IdSchedule{ get; set; }
+        public int IdCleaner{ get; set; }
+        public string CleanerRate{ get; set; }              //should it be double?
     }
 }
