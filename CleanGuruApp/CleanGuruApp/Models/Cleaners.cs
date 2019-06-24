@@ -7,18 +7,18 @@ namespace CleanGuruApp.Models
 {
     public class Cleaners
     {
-        public int idcleaner{ get; set };
-        public string fcleanername{ get; set };
-        public string mcleanername{ get; set };
-        public string lcleanername{ get; set };
-        public string claddress{ get; set };
-        public string claddressunit{ get; set };
-        public string clpostalcode{ get; set };
-        public string clcity{ get; set };
-        public string clprovince{ get; set };
-        public string clphone1{ get; set };
-        public string clphone2{ get; set };
-        public string clsincnumber{ get; set };
-        public string username{ get; set };
+        public int IdCleaner{ get; set; }
+        public string FCleanerName{ get; set; }
+        public string MCleanerName{ get; set; }
+        public string LCleanerName{ get; set; }
+        public string ClAddress{ get; set; }
+        public string ClAddressUnit{ get; set; }
+        public string ClPostalCode{ get; set; }
+        public string ClCity{ get; set; }
+        public string ClProvince{ get; set; }
+        public string ClPhone1{ get; set; }
+        public string ClPhone2{ get; set; }
+        public string ClSincNumber{ get; set; }
+        public string UserName{ get; set; }
     }
 }
