@@ -7,5 +7,6 @@ namespace CleanGuruApp.Models.DB
 {
     public class EFCustomerRepository : ICustomerRepository
     {
+
     }
 }
