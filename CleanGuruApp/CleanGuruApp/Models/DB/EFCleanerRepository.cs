@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models.DB
 {
-    public class EFCleanerRepository: ICleanerRepository
+    public class EFCleanerRepository : ICleanerRepository
     {
         private ApplicationDBContext context;
 

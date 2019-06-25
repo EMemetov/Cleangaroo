@@ -32,6 +32,7 @@ namespace CleanGuruApp.Models.DB
             //INSERT CODE
 
             //return customerAddress;       //ERROR ????
+
             //Just to make it work
             CustomerAddress customerAddress = new CustomerAddress();
             return customerAddress;

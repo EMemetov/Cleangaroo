@@ -10,7 +10,6 @@ namespace CleanGuruApp.Models.DB
     {
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options) { }
         public DbSet<Cleaners> Cleaners { get; set; }
-        public DbSet<CleanersRate> CleanersRate { get; set; }
         public DbSet<CustomerAddress> CustomerAddress { get; set; }
         public DbSet<Customers> Customers { get; set; }
         public DbSet<CustomerSubscription> CustomerSubscription { get; set; }
