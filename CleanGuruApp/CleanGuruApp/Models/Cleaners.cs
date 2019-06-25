@@ -19,6 +19,6 @@ namespace CleanGuruApp.Models
         public string ClPhone1{ get; set; }
         public string ClPhone2{ get; set; }
         public string ClSincNumber{ get; set; }
-        public string UserName{ get; set; }
+        public string UserName{ get; set; } /*maria*/
     }
 }
