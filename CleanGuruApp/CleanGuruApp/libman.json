@@ -3,8 +3,6 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-
-
       "library": "tweeterbootstrap@4.2.1",
       "destination": "wwwroot/lib/bootstrap"
     }
