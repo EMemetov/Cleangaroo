@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models.DB
 {
-    public class EFCustomerRepository
+    public class EFCustomerRepository : ICustomerRepository
     {
     }
 }
