@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\css\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -14,7 +14,7 @@
     
     <!--Connection with DB - pg 209-->
     <!--<PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />-->     <!--ORIGINAL - Delete after connecting with our DB-->
-    <PackageReference Include="Microsoft.VisualStudio.Web.codeGeneration.Design" Version="2.1.2" PrivateAssets="All" />   <!--NEW -->
+    <PackageReference Include="Microsoft.VisualStudio.Web.codeGeneration.Design" Version="2.1.9" PrivateAssets="All" />   <!--NEW -->
   </ItemGroup>
 
 </Project>
