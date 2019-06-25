@@ -11,9 +11,16 @@ namespace CleanGuruApp.Controllers
     public class HomeController : Controller
     {
         // GET: /<controller>/
+        //public string Index()
+        //{
+        //    return "Hello";
+        //}
+
         public IActionResult Index()
         {
             return View();
         }
+
+        
     }
 }

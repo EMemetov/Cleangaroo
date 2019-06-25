@@ -26,11 +26,13 @@ namespace CleanGuruApp
                 app.UseDeveloperExceptionPage();
             }
             app.UseStatusCodePages();
+            
             app.UseStaticFiles();
-            app.UseMvc(routes =>
-            {
+            app.UseMvcWithDefaultRoute();
+            //app.UseMvc(routes =>
+            //{
 
-            });
+            //});
         }
     }
 }
