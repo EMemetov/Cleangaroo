@@ -5,36 +5,36 @@ using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models.DB
 {
-    public class EFSchedulePaymentRepository : ISchedulePaymentRepository
+    public class EFAppointmentPaymentRepository : IAppointmentPaymentRepository
     {
         private ApplicationDBContext context;
 
-        public EFSchedulePaymentRepository(ApplicationDBContext context)
+        public EFAppointmentPaymentRepository(ApplicationDBContext context)
         {
             this.context = context;
         }
 
-        //public IQueryable<SchedulePayment> SchedulePayment => context.SchedulePayment.Include(c => c.Players);     //DELETE after adjust below
+        //public IQueryable<AppointmentPayment> AppointmentPayment => context.AppointmentPayment.Include(c => c.Players);     //DELETE after adjust below
 
-        public IQueryable<SchedulePayment> SchedulePayments => throw new NotImplementedException();            //DELETE after adjust abouvepublic IQueryable<SchedulePayment> SchedulePayments => throw new NotImplementedException();
+        public IQueryable<AppointmentPayment> AppointmentPayments => throw new NotImplementedException();            //DELETE after adjust abouvepublic IQueryable<AppointmentPayment> AppointmentPayments => throw new NotImplementedException();
 
-        public void SaveSchedulePayment(SchedulePayment schedulePayments)
+        public void SaveAppointmentPayment(AppointmentPayment appointmentPayments)
         {
             //INSERT CODE
 
             context.SaveChanges();
         }
-        public SchedulePayment DeleteSchedulePayment(int idSchedulePayment)
+        public AppointmentPayment DeleteAppointmentPayment(int idAppointmentPayment)
         {
-            //SchedulePayment cleaner = SchedulePayment.FirstOrDefault(c => c.IdCleaner == idCleaner);
+            //AppointmentPayment cleaner = AppointmentPayment.FirstOrDefault(c => c.IdCleaner == idCleaner);
 
             ////INSERT CODE
 
             //return cleaner;
 
             //Just to make it work
-            SchedulePayment schedulePayment = new SchedulePayment();
-            return schedulePayment;
+            AppointmentPayment appointmentPayment = new AppointmentPayment();
+            return appointmentPayment;
 
 
         }

@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models
 {
-    public class SchedulePayment
+    public class AppointmentPayment
     {
-        public int IdSchedulePayment{ get; set ; }
-        public int IdSchedule{ get; set ; }
+        public int IdAppointmentPayment{ get; set ; }
+        public int IdAppointment{ get; set ; }
         public int IdCustomer{ get; set ;}
         public int CtHoursContracted{ get; set ;}
         public char PaidByCustomer{ get; set ;}

@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models
 {
-    public class Schedule
+    public class Appointment
     {
-        public int IdSchedule{ get; set ;}
+        public int IdAppointment{ get; set ;}
         public int IdServicePrice{ get; set ;}
         public int IdCustomer{ get; set ;}
         public DateTime CtDateRequestService{ get; set ;}

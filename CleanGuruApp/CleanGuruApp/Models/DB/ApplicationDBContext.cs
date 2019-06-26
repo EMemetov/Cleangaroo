@@ -13,8 +13,8 @@ namespace CleanGuruApp.Models.DB
         public DbSet<CustomerAddress> CustomerAddress { get; set; }
         public DbSet<Customers> Customers { get; set; }
         public DbSet<CustomerSubscription> CustomerSubscription { get; set; }
-        public DbSet<Schedule> Schedule { get; set; }
-        public DbSet<SchedulePayment> SchedulePayment { get; set; }
+        public DbSet<Appointment> Appointment { get; set; }
+        public DbSet<AppointmentPayment> AppointmentPayment { get; set; }
         public DbSet<ServicePrice> ServicePrice { get; set; }
         public DbSet<UserLogin> UserLogin { get; set; }
 

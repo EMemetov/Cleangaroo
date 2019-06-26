@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models.DB
 {
-    public interface ISchedulePaymentRepository
+    public interface IAppointmentPaymentRepository
     {
-        IQueryable<SchedulePayment> SchedulePayments { get; }
-        void SaveSchedulePayment(SchedulePayment schedulePayments);
+        IQueryable<AppointmentPayment> AppointmentPayments { get; }
+        void SaveAppointmentPayment(AppointmentPayment appointmentPayments);
 
-        SchedulePayment DeleteSchedulePayment(int idSchedulePayment);
+        AppointmentPayment DeleteAppointmentPayment(int idAppointmentPayment);
     }
 }
