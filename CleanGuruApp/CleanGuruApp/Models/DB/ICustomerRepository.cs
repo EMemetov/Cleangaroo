@@ -10,6 +10,6 @@ namespace CleanGuruApp.Models.DB
         IQueryable<Customers> Customers { get; }
         void SaveCustomers(Customers customer);
 
-        Customers DeleteCustomers(int idCustomer);
+        void DeleteCustomers(int idCustomer);
     }
 }

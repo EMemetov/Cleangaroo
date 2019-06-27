@@ -14,24 +14,40 @@ namespace CleanGuruApp.Models.DB
             this.context = context;
         }
 
-        //public IQueryable<Cleaners> Cleaners => context.Cleaners.Include(c => c.Players);     //DELETE after adjust below
-
-        public IQueryable<Customers> Customers => throw new NotImplementedException();            //DELETE after adjust abouve
+        public IQueryable<Customers> Customers => context.Customers;       
 
         public void SaveCustomers(Customers customer)
         {
-            //INSERT CODE
-
+            if (customer.IdCustomer == 0)
+            {
+                context.Customers.Add(customer);
+            }
+            else
+            {
+                Customers dbEntry = context.Customers
+                .FirstOrDefault(c => c.IdCustomer == customer.IdCustomer);
+                if (dbEntry != null)
+                {
+                    dbEntry.FCustomerName = customer.FCustomerName;
+                    dbEntry.MCustomerName = customer.MCustomerName;
+                    dbEntry.LCustomerName = customer.LCustomerName;
+                    dbEntry.CtPhone1 = customer.CtPhone1;
+                    dbEntry.CtPhone2 = customer.CtPhone2;
+                    dbEntry.UserName = customer.UserName;
+                }
+            }
             context.SaveChanges();
         }
 
-        public Customers DeleteCustomers(int idCustomer)
+        public void DeleteCustomers(int idCustomer)
         {
-            Customers customer = Customers.FirstOrDefault(c => c.IdCustomer == idCustomer);
-
-            //INSERT CODE
-
-            return customer;
+            Customers dbEntry = context.Customers
+                       .FirstOrDefault(c => c.IdCustomer == idCustomer);
+            if (dbEntry != null)
+            {
+                context.Customers.Remove(dbEntry);
+                context.SaveChanges();
+            }
         }
     }
 }
