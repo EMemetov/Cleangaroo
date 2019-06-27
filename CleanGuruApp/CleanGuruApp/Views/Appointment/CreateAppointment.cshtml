@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewData["Title"] = "CreateAppointment";
+}
+
+<h2>Customre Registration</h2>
+
+
+<div asp-validation-summary="All" class="validation-summary-errors"></div>
+<form asp-action="CreateAppontment" asp-controller="Appointment" method="post">
+    <div class="form-group">
+        <label>Date of Service</label>
+        <div>
+            <input class="form-control" type="date" id="example-date-input">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Start Time of Service</label>
+
+
+        <div>
+            <input class="form-control" type="time" id="example-time-input">
+        </div>
+
+
+    </div>
+
+    <div class="form-group">
+        <label>Amount of Hours</label>
+        <br />
+        <div class="btn-group">
+            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                1
+            </button>
+            <div class="dropdown-menu">
+               
+                <a class="dropdown-item" href="#">2</a>
+                <a class="dropdown-item" href="#">3</a>
+                <a class="dropdown-item" href="#">4</a>
+                <a class="dropdown-item" href="#">5</a>
+                <a class="dropdown-item" href="#">6</a>
+                <a class="dropdown-item" href="#">7</a>
+                <a class="dropdown-item" href="#">8</a>
+
+            </div>
+        </div>
+
+        
+    </div>
+
+    <div class="form-group">
+        <label>Address</label>
+
+        <input class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Subscription</label>
+
+        <input class="form-control" />
+    </div>
+
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Create Appointment</button>
+    <button class="btn btn-danger" type="reset">Cancel</button>
+</form>

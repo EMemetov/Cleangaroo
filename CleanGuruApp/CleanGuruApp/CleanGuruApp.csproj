@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Customer\" />
     <Folder Include="wwwroot\css\" />
   </ItemGroup>
 

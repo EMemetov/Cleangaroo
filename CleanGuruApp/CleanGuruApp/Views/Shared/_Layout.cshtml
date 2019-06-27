@@ -19,9 +19,9 @@
         <nav class="navbar navbar-light navbar-expand-lg " style="background-color: #e3f2fd; ">
 
             <a class="navbar-brand" href="#" style="margin:10px">CleanGuru</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
+            </button>*@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
@@ -43,13 +43,18 @@
                         </div>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link "  tabindex="-1" asp-controller="Appointment" asp-action="CreateAppointment"> Create Appointment</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link " href="#" tabindex="-1">Contact Us</a>
                     </li>
+
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
 
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" asp-action="Login" asp-controller="Home">Login</button>
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" asp-action="Register" asp-controller="Home">Register</button>
+                    <button class="btn btn-primary" type="submit" asp-action="Login" asp-controller="Home">Login</button>
+                    <button class="btn btn-light" type="submit" asp-action="Register" asp-controller="Home">Register</button>
                 </form>
 
             </div>
