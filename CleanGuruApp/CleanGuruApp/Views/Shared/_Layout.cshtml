@@ -2,26 +2,26 @@
 
 <html>
 <head>
-    
+
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet"
-          asp-href-include="/lib/bootstrap/dist/**/*.min.css"
-          asp-href-exclude="**/*-reboot*,**/*-grid*" />
-    <title>@ViewBag.Title</title>
-    <link rel="stylesheet" href="~/css/Styles.css" type="text/css">
+    @*<link rel="stylesheet"
+              asp-href-include="/lib/bootstrap/dist/**/*.min.css"
+              asp-href-exclude="**/*-reboot*,**/*-grid*" />
+        <title>@ViewBag.Title</title>
+        <link rel="stylesheet" href="~/css/Styles.css" type="text/css">*@
 
-</head>
-<body>
+
     <div class="alpageMargin">
         <nav class="navbar navbar-light navbar-expand-lg " style="background-color: #e3f2fd; ">
+
             <a class="navbar-brand" href="#" style="margin:10px">CleanGuru</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
+            </button>*@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
@@ -43,28 +43,34 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#" tabindex="-1">Contact</a>
+                        <a class="nav-link "  tabindex="-1" asp-controller="Appointment" asp-action="CreateAppointment"> Create Appointment</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link " href="#" tabindex="-1">Contact Us</a>
+                    </li>
+
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
 
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+                    <button class="btn btn-primary" type="submit" asp-action="Login" asp-controller="Home">Login</button>
+                    <button class="btn btn-light" type="submit" asp-action="Register" asp-controller="Home">Register</button>
                 </form>
-                <
+
             </div>
         </nav>
         <div id="header">
 
         </div>
 
+</head>
 
 
-        <div id="container" style="margin: 60px;">
-            <div id="text-block">
-                @RenderBody()
-            </div>
-        </div>
-    </div>
+
+<body>
+
+    @RenderBody()
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
