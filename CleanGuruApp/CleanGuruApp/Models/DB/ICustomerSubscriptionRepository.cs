@@ -10,6 +10,6 @@ namespace CleanGuruApp.Models.DB
         IQueryable<CustomerSubscription> CustomerSubscriptions { get; }
         void SaveCustomerSubscription(CustomerSubscription customerSubscription);
 
-        CustomerSubscription DeleteCustomerSubscription(int idSubscription);
+        void DeleteCustomerSubscription(int idSubscription);
     }
 }
