@@ -14,8 +14,6 @@ namespace CleanGuruApp.Models.DB
             this.context = context;
         }
 
-        //public IQueryable<AppointmentPayment> AppointmentPayment => context.AppointmentPayment.Include(c => c.Players);     //DELETE after adjust below
-
         public IQueryable<AppointmentPayment> AppointmentPayments => throw new NotImplementedException();            //DELETE after adjust abouvepublic IQueryable<AppointmentPayment> AppointmentPayments => throw new NotImplementedException();
 
         public void SaveAppointmentPayment(AppointmentPayment appointmentPayments)
@@ -24,7 +22,7 @@ namespace CleanGuruApp.Models.DB
 
             context.SaveChanges();
         }
-        public AppointmentPayment DeleteAppointmentPayment(int idAppointmentPayment)
+        public void DeleteAppointmentPayment(int idAppointmentPayment)
         {
             //AppointmentPayment cleaner = AppointmentPayment.FirstOrDefault(c => c.IdCleaner == idCleaner);
 
@@ -33,8 +31,6 @@ namespace CleanGuruApp.Models.DB
             //return cleaner;
 
             //Just to make it work
-            AppointmentPayment appointmentPayment = new AppointmentPayment();
-            return appointmentPayment;
 
 
         }

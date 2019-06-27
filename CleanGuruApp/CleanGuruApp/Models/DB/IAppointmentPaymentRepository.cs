@@ -10,6 +10,6 @@ namespace CleanGuruApp.Models.DB
         IQueryable<AppointmentPayment> AppointmentPayments { get; }
         void SaveAppointmentPayment(AppointmentPayment appointmentPayments);
 
-        AppointmentPayment DeleteAppointmentPayment(int idAppointmentPayment);
+        void DeleteAppointmentPayment(int idAppointmentPayment);
     }
 }
