@@ -16,6 +16,7 @@ namespace CleanGuruApp.Models
         public string Address { get; set; }
         public string AddressUnit { get; set; }
         [Required(ErrorMessage = "The postal code should be not blank")]
+        [StringLength(6)]
         public string PostalCode { get; set; }
         [Required(ErrorMessage = "The customer city should be not blank")]
         public string City { get; set; }
