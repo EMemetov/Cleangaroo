@@ -10,15 +10,25 @@ namespace CleanGuruApp.Models
     {
         [Key]
         public int IdAppointmentPayment{ get; set ; }
-        [Required(ErrorMessage ="The worked hours should be not blank")]
+
+        [Required(ErrorMessage ="The appointment should not be blank")]
         public int IdAppointment{ get; set ; }
-        public int IdCustomer{ get; set ;}
-        public int CtHoursContracted{ get; set ;}
-        public char PaidByCustomer{ get; set ;}
+
+        [Range(0, 12)]
+        public int CtHoursContracted { get; set; }
+        
+        [Range(0, 12)]
+        public int ClHoursWorked { get; set; }
+    
+        public bool PaidByCustomer{ get; set ;}
+
+        public bool PaidToCleaner { get; set; }
+
+        [DataType(DataType.Currency)]
         public double AmountPaidByCustomer{ get; set ;}
-        public int IdCleaner{ get; set ;}
-        public char PaidToCleaner{ get; set ;}
-        public int ClHoursWorked{ get; set ;}
-        public double AmountPaidToCleaner{ get; set ;}
+
+        [DataType(DataType.Currency)]
+        public double AmountPaidToCleaner { get; set; }
+        
     }
 }

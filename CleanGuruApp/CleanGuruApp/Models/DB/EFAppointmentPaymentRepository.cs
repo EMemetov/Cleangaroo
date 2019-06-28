@@ -7,6 +7,7 @@ namespace CleanGuruApp.Models.DB
 {
     public class EFAppointmentPaymentRepository : IAppointmentPaymentRepository
     {
+
         private ApplicationDBContext context;
 
         public EFAppointmentPaymentRepository(ApplicationDBContext context)
@@ -14,27 +15,40 @@ namespace CleanGuruApp.Models.DB
             this.context = context;
         }
 
-        public IQueryable<AppointmentPayment> AppointmentPayments => throw new NotImplementedException();            //DELETE after adjust abouvepublic IQueryable<AppointmentPayment> AppointmentPayments => throw new NotImplementedException();
+        public IQueryable<AppointmentPayment> AppointmentPayments => context.AppointmentPayment;
 
-        public void SaveAppointmentPayment(AppointmentPayment appointmentPayments)
+        public void SaveAppointmentPayment(AppointmentPayment appointmentPayment)
         {
-            //INSERT CODE
-
+            if (appointmentPayment.IdAppointmentPayment == 0)
+            {
+                context.AppointmentPayment.Add(appointmentPayment);
+            }
+            else
+            {
+                AppointmentPayment dbEntry = context.AppointmentPayment.
+                    FirstOrDefault(a => a.IdAppointmentPayment == appointmentPayment.IdAppointmentPayment);
+                if (dbEntry != null)
+                {
+                    dbEntry.IdAppointment = appointmentPayment.IdAppointment;
+                    dbEntry.CtHoursContracted = appointmentPayment.CtHoursContracted;
+                    dbEntry.ClHoursWorked = appointmentPayment.ClHoursWorked;
+                    dbEntry.PaidByCustomer = appointmentPayment.PaidByCustomer;
+                    dbEntry.PaidToCleaner = appointmentPayment.PaidToCleaner;
+                    dbEntry.AmountPaidByCustomer = appointmentPayment.AmountPaidByCustomer;
+                    dbEntry.AmountPaidToCleaner = appointmentPayment.AmountPaidToCleaner; 
+                }
+            }
             context.SaveChanges();
         }
         public void DeleteAppointmentPayment(int idAppointmentPayment)
         {
-            //AppointmentPayment cleaner = AppointmentPayment.FirstOrDefault(c => c.IdCleaner == idCleaner);
-
-            ////INSERT CODE
-
-            //return cleaner;
-
-            //Just to make it work
-
-
+            AppointmentPayment dbEntry = context.AppointmentPayment.
+                FirstOrDefault(a => a.IdAppointmentPayment == idAppointmentPayment);
+            if (dbEntry != null)
+            {
+                context.AppointmentPayment.Remove(dbEntry);
+                context.SaveChanges();
+            }
         }
-
-
     }
 }
