@@ -11,7 +11,7 @@ namespace CleanGuruApp.Models
         [Key]
         public int IdAppointmentPayment{ get; set ; }
 
-        [Required(ErrorMessage ="The appointment should not be blank")]
+        [Required(ErrorMessage ="The appointment shouldn't be blank")]
         public int IdAppointment{ get; set ; }
 
         [Range(0, 12)]
