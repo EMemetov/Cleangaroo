@@ -10,17 +10,18 @@ namespace CleanGuruApp.Models
     {
         [Key]
         public int IdCustAddress { get; set; }
-        [Required(ErrorMessage = "The customer should be not blank")]
-        public int idCustomer { get; set; }
-        [Required(ErrorMessage = "The customer address should be not blank")]
+        [Required(ErrorMessage = "The system did not inform the customer's ID.")]
+        public int IdCustomer { get; set; }
+        [Required(ErrorMessage = "Please enter a valid address.")]
         public string Address { get; set; }
+        [Required(ErrorMessage = "Please enter a valid Unit.")]
         public string AddressUnit { get; set; }
-        [Required(ErrorMessage = "The postal code should be not blank")]
+        [Required(ErrorMessage = "Please enter a valid postal code.")]
         [StringLength(6)]
         public string PostalCode { get; set; }
-        [Required(ErrorMessage = "The customer city should be not blank")]
+        [Required(ErrorMessage = "Please enter a valid city.")]
         public string City { get; set; }
-        [Required(ErrorMessage = "The customer province should be not blank")]
+        [Required(ErrorMessage = "Please enter a valid province.")]
         public string Province { get; set; }
     }
 }

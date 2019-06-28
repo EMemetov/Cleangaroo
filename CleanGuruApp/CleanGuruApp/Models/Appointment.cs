@@ -14,7 +14,7 @@ namespace CleanGuruApp.Models
         public int IdServicePrice{ get; set ;}
         [Required(ErrorMessage = "The ID customer needs to be chosen")]
         public int IdCustomer{ get; set ;}
-        [Required(ErrorMessage = "The date of requested service should be not blank")]
+        //[Required(ErrorMessage = "The date of requested service should be not blank")]
         public DateTime CtDateRequestService{ get; set ;}
         [Required(ErrorMessage = "The requested hours should be between 1-8")]
         [Range(0,8)]

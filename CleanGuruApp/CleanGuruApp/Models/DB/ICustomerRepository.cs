@@ -7,8 +7,8 @@ namespace CleanGuruApp.Models.DB
 {
     public interface ICustomerRepository
     {
-        IQueryable<Customers> Customers { get; }
-        void SaveCustomers(Customers customer);
+        IQueryable<Customer> Customers { get; }
+        void SaveCustomers(Customer customer);
 
         void DeleteCustomers(int idCustomer);
     }

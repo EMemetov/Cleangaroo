@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,5 +10,29 @@ namespace CleanGuruApp.Models.DB
 {
     public class SeedData
     {
+        public static void EnsurePopulated(IApplicationBuilder app)
+        {
+            ApplicationDBContext context = app.ApplicationServices.GetRequiredService<ApplicationDBContext>();
+
+            context.Database.Migrate();
+
+            if (!context.Appointment.Any())
+            {
+                //context.Appointment.AddRange(
+                //    new Appointment { IdAppointment = 1, IdServicePrice = 1, IdCustomer = 1, CtHoursRequested = 6 },
+                //    new Appointment { IdAppointment = 2, IdServicePrice = 2, IdCustomer = 2, CtHoursRequested = 4 }
+                //    );
+                //context.SaveChanges();
+            }
+
+            if (!context.ServicePrice.Any())
+            {
+                //context.ServicePrice.AddRange(
+                //    new ServicePrice { IdServicePrice = 1, CtAmountHour = 10.1, ClAmountHour = 20.2, ServicePriceStatus = false },
+                //    new ServicePrice { IdServicePrice = 2, CtAmountHour = 30.3, ClAmountHour = 50.5, ServicePriceStatus = true }
+                //    );
+                //context.SaveChanges();
+            }
+        }
     }
 }

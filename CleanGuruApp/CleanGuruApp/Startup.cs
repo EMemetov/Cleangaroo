@@ -27,7 +27,8 @@ namespace CleanGuruApp
             services.AddDbContext<ApplicationDBContext>(options => 
                 options.UseSqlServer(Configuration["Data:CleanGuruDB:ConnectionString"]));
             services.AddTransient<IAppointmentRepository, EFAppointmentRepository>();
-                                            //NEED TO ADD "AddTransient" TO ALL OTHER TABLES ????????
+            services.AddTransient<IServicePriceRepository, EFServicePriceRepository>();
+            //????????? NEED TO ADD "AddTransient" TO ALL OTHER TABLES ????????
 
             //MVC Configuration
             services.AddMvc();
@@ -48,6 +49,7 @@ namespace CleanGuruApp
             //{
 
             //});
+            SeedData.EnsurePopulated(app);
         }
     }
 }

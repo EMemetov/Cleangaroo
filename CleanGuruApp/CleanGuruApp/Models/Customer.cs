@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models
 {
-    public class Customers
+    public class Customer
     {
         [Key]
         public int IdCustomer { get; set; }
-        [Required(ErrorMessage ="The customer first name should be not blank")]
+        [Required(ErrorMessage = "Please enter a valid first name.")]
         public string FCustomerName { get; set; }
         public string MCustomerName { get; set; }
-        [Required(ErrorMessage = "The customer last name should be not blank")]
+        [Required(ErrorMessage = "Please enter a valid family name.")]
         public string LCustomerName { get; set; }
+        [Required(ErrorMessage = "Please enter a valid phone.")]
         public string CtPhone1 { get; set; }
         public string CtPhone2 { get; set; }
-        [Required(ErrorMessage = "The user name should be not blank")]
+        [Range(3, 40, ErrorMessage = "Can not be empty. Please enter your user name.")]
         public string UserName { get; set; }
     }
 }

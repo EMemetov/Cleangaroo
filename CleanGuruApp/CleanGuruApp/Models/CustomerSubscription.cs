@@ -10,13 +10,13 @@ namespace CleanGuruApp.Models
     {
         [Key]
         public int IdSubscription{ get; set ;}
-        [Required(ErrorMessage ="The ID customer needs to be chosen")]
+        [Required(ErrorMessage = "The system did not inform the customer's ID.")]
         public int IdCustomer{ get; set ;}
-        [Required(ErrorMessage = "The subscription needs to be chosen")]
+        //[Required(ErrorMessage = "The subscription needs to be chosen")]
         public char Subscription{ get; set ;}
-        [Required(ErrorMessage = "The periodicity should be not blank")]
+        //[Required(ErrorMessage = "The periodicity should be not blank")]
         public string Periodicity{ get; set ;}
-        [Required(ErrorMessage = "The end date should be not blank")]
+        //[Required(ErrorMessage = "The end date should be not blank")]
         public DateTime FinishDate{ get; set ;}
     }
 }

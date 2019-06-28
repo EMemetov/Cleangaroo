@@ -10,13 +10,11 @@ namespace CleanGuruApp.Models
     {
         [Key]
         public int IdServicePrice { get; set; }
-        [Required(ErrorMessage ="The customer amount should be not blank")]
-        [DataType(DataType.Currency)]
+        [Required(ErrorMessage ="Please define the customer's service cost/hr.")]
         public double CtAmountHour { get; set; }
-        [Required(ErrorMessage = "The cleaner amount should be not blank")]
-        [DataType(DataType.Currency)]
+        [Required(ErrorMessage = "Please define the cleaner's service cost/hr.")]
         public double ClAmountHour { get; set; }
-        [Required(ErrorMessage = "The status needs to be chosen")]
+        [Required(ErrorMessage = "Please identify if this is a new price to be updated.")]
         public bool ServicePriceStatus { get; set; }
     }
 }
