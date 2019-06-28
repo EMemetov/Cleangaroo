@@ -20,8 +20,8 @@ namespace CleanGuruApp.Models
         [Range(0,8)]
         public int CtHoursRequested{ get; set ;}
         public int IdCleaner{ get; set ;}
-        public DateTime ClockIn{ get; set ;}
-        public DateTime ClockOut{ get; set ;}
+        public DateTime? ClockIn{ get; set ;}
+        public DateTime? ClockOut{ get; set ;}
         public string CleanerRate{ get; set ;}
     }
 }
