@@ -1,4 +1,7 @@
-﻿
+﻿@*CONSIDER: Could be using a Partial view for the for letting just the buttons here. The Partial view (List) could be used to create a new or editing*@
+
+
+
 @{
     ViewData["Title"] = "CreateAppointment";
 }
@@ -7,7 +10,9 @@
 
 
 <div asp-validation-summary="All" class="validation-summary-errors"></div>
-<form asp-action="CreateAppontment" asp-controller="Appointment" method="post">
+<form asp-controller="Appointment" asp-action="SaveAppointment" method="post">
+
+    @* <form asp-controller="Appointment" asp-action="CreateAppontment" method="post">    Original !!!!!!!!!!!!!!*@
     <div class="form-group">
         <label>Date of Service</label>
         <div>
@@ -34,7 +39,7 @@
                 1
             </button>
             <div class="dropdown-menu">
-               
+
                 <a class="dropdown-item" href="#">2</a>
                 <a class="dropdown-item" href="#">3</a>
                 <a class="dropdown-item" href="#">4</a>
@@ -46,7 +51,7 @@
             </div>
         </div>
 
-        
+
     </div>
 
     <div class="form-group">
@@ -62,5 +67,7 @@
     </div>
 
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Create Appointment</button>
-    <button class="btn btn-danger" type="reset">Cancel</button>
+
+    @*<button class="btn btn-outline-success my-2 my-sm-0" type="submit" asp-controller="Appointment" asp-action="SaveAppontment">Create Appointment</button>*@
+    <button class="btn btn-danger" asp-controller="Home" asp-action="Index">Cancel</button>
 </form>

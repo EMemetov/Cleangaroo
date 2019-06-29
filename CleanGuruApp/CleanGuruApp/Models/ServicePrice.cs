@@ -15,6 +15,6 @@ namespace CleanGuruApp.Models
         [Required(ErrorMessage = "Please define the cleaner's service cost/hr.")]
         public double ClAmountHour { get; set; }
         [Required(ErrorMessage = "Please identify if this is a new price to be updated.")]
-        public bool ServicePriceStatus { get; set; }
+        public char ServicePriceStatus { get; set; }
     }
 }

@@ -28,8 +28,8 @@ namespace CleanGuruApp.Models.DB
             if (!context.ServicePrice.Any())
             {
                 //context.ServicePrice.AddRange(
-                //    new ServicePrice { IdServicePrice = 1, CtAmountHour = 10.1, ClAmountHour = 20.2, ServicePriceStatus = false },
-                //    new ServicePrice { IdServicePrice = 2, CtAmountHour = 30.3, ClAmountHour = 50.5, ServicePriceStatus = true }
+                //    new ServicePrice { CtAmountHour = 10.1, ClAmountHour = 20.2, ServicePriceStatus = 'A' },
+                //    new ServicePrice { CtAmountHour = 30.3, ClAmountHour = 50.5, ServicePriceStatus = 'A' }
                 //    );
                 //context.SaveChanges();
             }
