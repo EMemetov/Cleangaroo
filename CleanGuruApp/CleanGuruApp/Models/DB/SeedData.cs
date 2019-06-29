@@ -16,6 +16,30 @@ namespace CleanGuruApp.Models.DB
 
             context.Database.Migrate();
 
+            if (!context.UserLogin.Any())
+            {
+                context.UserLogin.AddRange(
+                    new UserLogin
+                    {
+                        UserName = "JOHN",
+                        Pin = "1234",
+                        Role = "CLEANER"
+                    },
+                    new UserLogin
+                    {
+                        UserName = "Fred",
+                        Pin = "1020",
+                        Role = "MANAGER"
+                    },
+                    new UserLogin
+                    {
+                        UserName = "Rattan",
+                        Pin = "1245",
+                        Role = "CLEANER"
+                    }
+                    );
+                context.SaveChanges();
+            }
             if (!context.Appointment.Any())
             {
                 //context.Appointment.AddRange(
