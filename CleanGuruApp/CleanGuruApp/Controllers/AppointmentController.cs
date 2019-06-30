@@ -34,7 +34,7 @@ namespace CleanGuruApp.Controllers
         }
 
         ////WORKING
-        //public String SaveAppointment()                // = Edit in C229_GS2G3
+        //public String EditAppointment()                // = Edit in C229_GS2G3
         //{
         //    if (ModelState.IsValid)
         //    {
@@ -46,21 +46,33 @@ namespace CleanGuruApp.Controllers
         //    }
         //}
 
-        //[HttpPost]
-        public IActionResult SaveAppointment(Appointment appointment)
+        public ViewResult EditAppointment()                // = Edit in C229_GS2G3
         {
             if (ModelState.IsValid)
             {
-                //repository.SaveAppointment(appointment);
-                TempData["message"] = "Appointment has been saved.";
-                //return RedirectToAction("Index");
-                return View("../Home/Index");
+                return View("CreateUser");
             }
             else
             {
-                return View("CreateAppointment");           //Change view's name to Appointment, this way can be to create or edit
+                return View();
             }
         }
+
+        ////[HttpPost]
+        //public IActionResult EditAppointment(Appointment appointment)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        //repository.SaveAppointment(appointment);
+        //        TempData["message"] = "Appointment has been saved.";
+        //        //return RedirectToAction("Index");
+        //        return View("../Home/Index");
+        //    }
+        //    else
+        //    {
+        //        return View("CreateAppointment");           //Change view's name to Appointment, this way can be to create or edit
+        //    }
+        //}
 
 
 

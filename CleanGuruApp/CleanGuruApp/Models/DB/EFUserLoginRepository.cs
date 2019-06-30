@@ -18,36 +18,34 @@ namespace CleanGuruApp.Models.DB
 
         public void SaveUserLogin(UserLogin userLogin)
         {
-            //I'm not sure if we can use null or ""
-            if (userLogin.UserName.Equals(null))
-            //if (userLogin.UserName.Equals(""))
+            UserLogin dbEntry = context.UserLogin.FirstOrDefault(u => u.UserName == userLogin.UserName);
+            if (dbEntry == null)
             {
                 context.UserLogin.Add(userLogin);
             }
-            else
-            {
-                UserLogin dbEntry = context.UserLogin
-                  .FirstOrDefault(u => u.UserName == userLogin.UserName);
-                if (dbEntry != null)
-                {
-                    dbEntry.Pin = userLogin.Pin;
-                    dbEntry.Role = userLogin.Role;
-                }
+                        context.SaveChanges();
+        }
+
+        public void AlterUserLogin(UserLogin userLogin)
+        {
+            UserLogin dbEntry = context.UserLogin.FirstOrDefault(u => u.UserName == userLogin.UserName);
+            if (dbEntry != null)
+            { 
+                dbEntry.Pin = userLogin.Pin;
+                dbEntry.Role = userLogin.Role;
             }
             context.SaveChanges();
         }
 
+        //public void DeleteUserLogin(string userName)
+        //{
+        //    //UserLogin dbEntry = context.UserLogin.FirstOrDefault(u => u.UserName == userName);
+        //    //if (dbEntry != null)
+        //    //{
+        //    //    context.UserLogin.Remove(dbEntry);
+        //    //    context.SaveChanges();
+        //    //}
 
-        public void DeleteUserLogin(string userName)
-        {
-            UserLogin dbEntry = context.UserLogin
-           .FirstOrDefault(u => u.UserName == userName);
-            if (dbEntry != null)
-            {
-                context.UserLogin.Remove(dbEntry);
-                context.SaveChanges();
-            }
-
-        }
+        //}
     }
 }

@@ -29,5 +29,10 @@ namespace CleanGuruApp.Controllers
             return View();
         }
 
+        public ViewResult CreateUser()
+        {
+            return View();
+        }
+
     }
 }

@@ -23,5 +23,7 @@ namespace CleanGuruApp.Models
         public DateTime? ClockIn{ get; set ;}
         public DateTime? ClockOut{ get; set ;}
         public string CleanerRate{ get; set ;}
+
+
     }
 }
