@@ -38,7 +38,7 @@ namespace CleanGuruApp.Models.DB
                     dbEntry.ClProvince = cleaner.ClProvince;
                     dbEntry.ClPhone1 = cleaner.ClPhone1;
                     dbEntry.ClPhone2 = cleaner.ClPhone2;
-                    dbEntry.ClSincNumber = cleaner.ClSincNumber;
+                    dbEntry.ClSinNumber = cleaner.ClSinNumber;
                     dbEntry.UserName = cleaner.UserName;
                 }
             }

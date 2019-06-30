@@ -29,7 +29,7 @@ namespace CleanGuruApp.Models
         [Required(ErrorMessage = "Please enter a valid phone.")]
         public string ClPhone1{ get; set; }
         public string ClPhone2{ get; set; }
-        public string ClSincNumber{ get; set; }                             //Sinc????
+        public string ClSinNumber{ get; set; }                             //Sinc????
         [Range(3, 40, ErrorMessage = "Can not be empty. Please enter your user name.")]
         public string UserName{ get; set; }
     }
