@@ -19,14 +19,14 @@ namespace CleanGuruApp.Models.DB
 
         public void SaveCustomerAddress(CustomerAddress customerAddress)
         {
-            if (customerAddress.IdCustAddress == 0)
+            if (customerAddress.idCustAddress == 0)
             {
                 context.CustomerAddress.Add(customerAddress);
             }
             else
             {
                 CustomerAddress dbEntry = context.CustomerAddress
-                .FirstOrDefault(c => c.IdCustAddress == customerAddress.IdCustAddress);
+                .FirstOrDefault(c => c.idCustAddress == customerAddress.idCustAddress);
                 if (dbEntry != null)
                 {
                     dbEntry.Address = customerAddress.Address;
@@ -43,7 +43,7 @@ namespace CleanGuruApp.Models.DB
         public void DeleteCustomerAddress(int idCustAddress)
         {
             CustomerAddress dbEntry = context.CustomerAddress
-                       .FirstOrDefault(c => c.IdCustAddress == idCustAddress);
+                       .FirstOrDefault(c => c.idCustAddress == idCustAddress);
             if (dbEntry != null)
             {
                 context.CustomerAddress.Remove(dbEntry);

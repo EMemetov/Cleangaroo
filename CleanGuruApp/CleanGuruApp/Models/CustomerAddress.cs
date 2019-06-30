@@ -9,7 +9,7 @@ namespace CleanGuruApp.Models
     public class CustomerAddress
     {
         [Key]
-        public int IdCustAddress { get; set; }
+        public int idCustAddress { get; set; }
         [Required(ErrorMessage = "The system did not inform the customer's ID.")]
         public int IdCustomer { get; set; }
         [Required(ErrorMessage = "Please enter a valid address.")]
