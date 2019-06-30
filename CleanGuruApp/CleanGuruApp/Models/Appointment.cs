@@ -10,11 +10,11 @@ namespace CleanGuruApp.Models
     {
         [Key]
         public int IdAppointment{ get; set ;}
-        //[Required(ErrorMessage ="The service price needs to be chosen")]
+        //[Required(ErrorMessage ="Please choose the service type.")]
         public int IdServicePrice{ get; set ;}
-        //[Required(ErrorMessage = "The ID customer needs to be chosen")]
+        //[Required(ErrorMessage = "The system did not inform the customer's ID.")]
         public int IdCustomer{ get; set ;}
-        ////[Required(ErrorMessage = "The date of requested service should be not blank")]
+        //[Required(ErrorMessage = "Enter a valid date")]
         public DateTime CtDateRequestService{ get; set ;}
         //[Required(ErrorMessage = "The requested hours should be between 1-8")]
         //[Range(0,8)]

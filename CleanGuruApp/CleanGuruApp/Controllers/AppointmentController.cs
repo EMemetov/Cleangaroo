@@ -36,26 +36,31 @@ namespace CleanGuruApp.Controllers
         ////WORKING
         //public String SaveAppointment()                // = Edit in C229_GS2G3
         //{
-        //    return "Hi";
+        //    if (ModelState.IsValid)
+        //    {
+        //        return "Valid Model";               //ALWAYS ????????
+        //    }
+        //    else
+        //    {
+        //        return "Invalid Model";
+        //    }
         //}
 
-        [HttpPost]
+        //[HttpPost]
         public IActionResult SaveAppointment(Appointment appointment)
         {
             if (ModelState.IsValid)
             {
-                repository.SaveAppointment(appointment);
+                //repository.SaveAppointment(appointment);
                 TempData["message"] = "Appointment has been saved.";
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
+                return View("../Home/Index");
             }
             else
             {
                 return View("CreateAppointment");           //Change view's name to Appointment, this way can be to create or edit
             }
         }
-
-
-
 
 
 

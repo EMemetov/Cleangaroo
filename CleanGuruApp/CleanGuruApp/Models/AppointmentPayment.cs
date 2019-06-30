@@ -22,12 +22,12 @@ namespace CleanGuruApp.Models
     
         public bool PaidByCustomer{ get; set ;}
 
-        public bool PaidToCleaner { get; set; }     //SHOULD NOT EXIST ???????
+        public bool PaidToCleaner { get; set; }
 
         [DataType(DataType.Currency)]
         public double AmountPaidByCustomer{ get; set ;}
 
         [DataType(DataType.Currency)]
-        public double AmountPaidToCleaner { get; set; }     //SHOULD NOT EXIST ???????
+        public double AmountPaidToCleaner { get; set; }
     }
 }
