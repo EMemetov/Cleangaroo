@@ -1,6 +1,7 @@
-﻿@*CONSIDER: Could be using a Partial view for the for letting just the buttons here. The Partial view (List) could be used to create a new or editing*@
+﻿
+@*CONSIDER: Could be using a Partial view for the for letting just the buttons here. The Partial view (List) could be used to create a new or editing*@
 
-
+@model Appointment
 
 @{
     ViewData["Title"] = "CreateAppointment";
@@ -10,20 +11,20 @@
 
 
 <div asp-validation-summary="All" class="validation-summary-errors"></div>
-<form asp-controller="Appointment" asp-action="SaveAppointment" method="post">
+
+<form asp-controller="Appointment" asp-action="EditAppointment" method="post">
+    @*<form asp-controller="Appointment" asp-action="SaveAppointment" method="post">    funcionando+- !!!!!!!!!!!!!!*@
 
     @* <form asp-controller="Appointment" asp-action="CreateAppontment" method="post">    Original !!!!!!!!!!!!!!*@
     <div class="form-group">
-        <label>Date of Service</label>
+        <label asp-for="CtDateRequestService">Date of Service</label>
         <div>
-            <input class="form-control" type="date" id="example-date-input">
+            <input class="form-control" type="date" id="example-date-input" asp-for="CtDateRequestService">
         </div>
     </div>
 
     <div class="form-group">
-        <label>Start Time of Service</label>
-
-
+        <label asp-for="CtDateRequestService">Start Time of Service</label>
         <div>
             <input class="form-control" type="time" id="example-time-input">
         </div>
@@ -60,10 +61,22 @@
         <input class="form-control" />
     </div>
 
-    <div class="form-group">
-        <label>Subscription</label>
+    @*ORIGINAL MARIIA
+            <div class="form-group">
+            <label>Subscription</label>
 
-        <input class="form-control" />
+            <input class="form-control" />
+        </div>*@
+
+    <div class="form-group">
+        <input type="checkbox" name="vehicle1" value="False">Subscription<br>
+    </div>
+
+    <div>
+        <select name="Periodicy">
+            <option value="15">15 days</option>
+            <option value="30">Monthly</option>
+        </select>
     </div>
 
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Create Appointment</button>

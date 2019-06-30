@@ -28,6 +28,7 @@ namespace CleanGuruApp
                 options.UseSqlServer(Configuration["Data:CleanGuruDB:ConnectionString"]));
             services.AddTransient<IAppointmentRepository, EFAppointmentRepository>();
             services.AddTransient<IServicePriceRepository, EFServicePriceRepository>();
+            services.AddTransient<IUserLoginRepository, EFUserLoginRepository>();
             //????????? NEED TO ADD "AddTransient" TO ALL OTHER TABLES ????????
 
             //MVC Configuration
