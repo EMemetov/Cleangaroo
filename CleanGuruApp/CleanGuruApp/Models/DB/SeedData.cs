@@ -26,6 +26,14 @@ namespace CleanGuruApp.Models.DB
                 context.SaveChanges();
             }
 
+            //if (!context.ServicePrice.Any())
+            //{
+            //    context.ServicePrice.AddRange(
+            //        new ServicePrice { CtAmountHour = 10.1, ClAmountHour = 20.2, ServicePriceStatus = 'A' },
+            //        new ServicePrice { CtAmountHour = 30.3, ClAmountHour = 50.5, ServicePriceStatus = 'I' }
+            //        );
+            //    context.SaveChanges();
+            //}
 
             //if (!context.Appointment.Any())
             //{
@@ -36,14 +44,7 @@ namespace CleanGuruApp.Models.DB
             //    //context.SaveChanges();
             //}
 
-            //if (!context.ServicePrice.Any())
-            //{
-            //    //context.ServicePrice.AddRange(
-            //    //    new ServicePrice { CtAmountHour = 10.1, ClAmountHour = 20.2, ServicePriceStatus = 'A' },
-            //    //    new ServicePrice { CtAmountHour = 30.3, ClAmountHour = 50.5, ServicePriceStatus = 'A' }
-            //    //    );
-            //    //context.SaveChanges();
-            //}
+
         }
     }
 }
