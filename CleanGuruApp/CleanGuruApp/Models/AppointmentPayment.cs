@@ -11,7 +11,7 @@ namespace CleanGuruApp.Models
         [Key]
         public int IdAppointmentPayment{ get; set ; }
 
-        [Required(ErrorMessage = "The system did not inform the appointment's ID")]
+        [Required(ErrorMessage = "The system did not inform the appointment's ID.")]
         public int IdAppointment{ get; set ; }
 
         [Range(0, 8, ErrorMessage = "The system inform a wrong amout of contracted hrs.")]

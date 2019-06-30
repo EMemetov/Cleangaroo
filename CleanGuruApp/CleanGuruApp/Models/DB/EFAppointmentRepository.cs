@@ -18,33 +18,30 @@ namespace CleanGuruApp.Models.DB
 
         public void SaveAppointment(Appointment appointment)
         {
-            //if (appointment.IdAppointment == 0)
-            //{
-            //    context.Appointment.Add(appointment);
-            //}
-            //else
-            //{
-            //    Appointment dbEntry = context.Appointment.
-            //        FirstOrDefault(a => a.IdAppointment == appointment.IdAppointment);
-            //    if (dbEntry != null)
-            //    {
-            //        dbEntry.IdServicePrice = appointment.IdServicePrice;
-            //        dbEntry.IdCustomer = appointment.IdCustomer;
-            //        dbEntry.CtDateRequestService = appointment.CtDateRequestService;
-            //        dbEntry.CtHoursRequested = appointment.CtHoursRequested;
-
-            //        //if (appointment.ClockIn  < appointment.ClockOut)
-            //        //{
-            //        //    dbEntry.ClockIn = appointment.ClockIn;
-            //        //    dbEntry.ClockOut = appointment.ClockOut;
-            //        //} else{ //??????
-            //        //}                   
-            //        //dbEntry.CleanerRate = appointment.CleanerRate;
-            //    }
-            //}
-            //context.SaveChanges();
-
-            Console.WriteLine("HIIIIII");           //JUST TO TEST
+            if (appointment.IdAppointment == 0)
+            {
+                context.Appointment.Add(appointment);
+            }
+            else
+            {
+                Appointment dbEntry = context.Appointment.
+                    FirstOrDefault(a => a.IdAppointment == appointment.IdAppointment);
+                if (dbEntry != null)
+                {
+                    dbEntry.IdServicePrice = appointment.IdServicePrice;
+                    dbEntry.IdCustomer = appointment.IdCustomer;
+                    dbEntry.CtDateRequestService = appointment.CtDateRequestService;
+                    dbEntry.CtHoursRequested = appointment.CtHoursRequested;
+                    dbEntry.ClockIn = appointment.ClockIn;
+                    dbEntry.IdCleaner = appointment.IdCleaner;
+                    dbEntry.ClockOut = appointment.ClockOut;
+                    dbEntry.CleanerRate = appointment.CleanerRate;
+                    dbEntry.startTime = appointment.startTime;
+                    dbEntry.isSubscription = appointment.isSubscription;
+                    dbEntry.idSubscription = appointment.idSubscription;
+                }
+            }
+            context.SaveChanges();
         }
         public void DeleteAppointment(int idAppointment)
         {
