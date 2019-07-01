@@ -16,7 +16,7 @@ namespace CleanGuruApp.Models
         //Maid Serivces
         //Window Washing
         //Commercial Cleaning
-        //Move-In/Move-Out
+        //Move-In / Move-Out
         //Carpet Cleaning
         public double ServicePriceDescr { get; set; }
 
