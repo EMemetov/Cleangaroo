@@ -9,10 +9,13 @@ namespace CleanGuruApp.Models
     public class Appointment
     {
         [Key]
+        [Display(Name ="Appointment ID")]
         public int IdAppointment{ get; set ;}
         //[Required(ErrorMessage ="Please choose the service type.")]
         public int IdServicePrice{ get; set ;}
         //[Required(ErrorMessage = "The system did not inform the customer's ID.")]
+
+        [Display(Name = "Customert ID")]
         public int IdCustomer{ get; set ;}
         //[Required(ErrorMessage = "Enter a valid date")]
         public DateTime CtDateRequestService{ get; set ;}
