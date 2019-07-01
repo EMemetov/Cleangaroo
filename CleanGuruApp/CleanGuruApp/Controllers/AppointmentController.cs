@@ -36,6 +36,7 @@ namespace CleanGuruApp.Controllers
             Console.WriteLine("Usuario: " + appointment.CtHoursRequested);
             Console.WriteLine("Usuario: " + appointment.CtDateRequestService);
             Console.WriteLine("Usuario: " + appointment.CleanerRate);
+            Console.WriteLine("Usuario: " + appointment.IdCleaner);
             if (ModelState.IsValid)
             {
                 repository.SaveAppointment(appointment);
