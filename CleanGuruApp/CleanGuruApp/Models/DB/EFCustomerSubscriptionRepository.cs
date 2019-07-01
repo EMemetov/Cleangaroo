@@ -28,10 +28,9 @@ namespace CleanGuruApp.Models.DB
                     FirstOrDefault(c => c.IdSubscription == customerSubscription.IdSubscription);
                 if(dbEntry != null)
                 {
-                    dbEntry.Subscription = customerSubscription.Subscription;
                     dbEntry.Periodicity = customerSubscription.Periodicity;
                     dbEntry.FinishDate = customerSubscription.FinishDate;
-                    dbEntry.IdCustomer = customerSubscription.IdCustomer;
+                    dbEntry.IdAppointment = customerSubscription.IdAppointment;
                 }
             }
             context.SaveChanges();
