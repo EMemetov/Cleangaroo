@@ -42,7 +42,9 @@ namespace CleanGuruApp.Models.DB
             if (!context.Customer.Any())
             {
                 context.Customer.AddRange(
-                    new Customer { FCustomerName = "Aaron",
+                    new Customer
+                    {
+                        FCustomerName = "Aaron",
                         MCustomerName = "Brown",
                         LCustomerName = "Hank",
                         CtPhone1 = "666-222-1111",
