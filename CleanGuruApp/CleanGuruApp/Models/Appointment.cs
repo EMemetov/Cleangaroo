@@ -23,7 +23,8 @@ namespace CleanGuruApp.Models
         public DateTime? ClockIn{ get; set ;}
         public DateTime? ClockOut{ get; set ;}
         public string CleanerRate{ get; set ;}
-
+        public DateTime? StartTime { get; set; }           //Should not allow NULL - Adjust later
+        public byte IsSubscription { get; set; }
 
     }
 }

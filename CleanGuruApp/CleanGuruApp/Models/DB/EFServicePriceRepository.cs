@@ -36,16 +36,16 @@ namespace CleanGuruApp.Models.DB
         }
 
 
-        public void DeleteServicePrice(int idServicePrice)
-        {
-            ServicePrice dbEntry = context.ServicePrice.
-                FirstOrDefault(s => s.IdServicePrice == idServicePrice);
-            if(dbEntry != null)
-            {
-                context.ServicePrice.Remove(dbEntry);
-                context.SaveChanges();
-            }
-        }
+        //public void DeleteServicePrice(int idServicePrice)
+        //{
+        //    ServicePrice dbEntry = context.ServicePrice.
+        //        FirstOrDefault(s => s.IdServicePrice == idServicePrice);
+        //    if(dbEntry != null)
+        //    {
+        //        context.ServicePrice.Remove(dbEntry);
+        //        context.SaveChanges();
+        //    }
+        //}
 
     }
 }

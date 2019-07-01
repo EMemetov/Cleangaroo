@@ -18,32 +18,17 @@ namespace CleanGuruApp.Controllers
         }
 
         //Show list of UserLogin
-        public IActionResult List() => View(repository.UserLogins);                //OK
+        public IActionResult List() => View(repository.UserLogins);
 
         //public IActionResult Add() => View("Edit", new UserLogin());
 
         [HttpGet]
         public IActionResult Edit(string userName) => View(repository.UserLogins.FirstOrDefault(c => c.UserName == userName));
 
-        ////WORKING FOR TEST
-        //[HttpPost]
-        //public String Edit()                // = Edit in C229_GS2G3
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        return "Valid Model";               //ALWAYS ????????
-        //    }
-        //    else
-        //    {
-        //        return "Invalid Model";
-        //    }
-        //}
-
-        //Ailton
         [HttpPost]
         public IActionResult Edit(UserLogin userLogin)
         {
-            //Console.WriteLine("Usuario: " + userLogin.UserName);      //Resolvido
+            //Console.WriteLine("Usuario: " + userLogin.UserName);      //Solved   - DELETE!!!!!!!!!!!!!!!!
             //Console.WriteLine("Usuario: " + userLogin.Role);
             //Console.WriteLine("Usuario: " + userLogin.Pin);
             if (ModelState.IsValid)
@@ -54,19 +39,8 @@ namespace CleanGuruApp.Controllers
             }
             else
             {
-                return View("../Home/Index");     //ALWAYS ????????  
+                return View("../Home/Index");
             }
         }
-
-        //public ViewResult Edit(UserLogin userLogin)
-        //{
-        //    repository.Add
-        //}
-
-
-
-
-
-
     }
 }

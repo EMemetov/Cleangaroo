@@ -10,6 +10,6 @@ namespace CleanGuruApp.Models.DB
         IQueryable<Cleaner> Cleaners { get; }
         void SaveCleaner(Cleaner cleaner);
 
-        void DeleteCleaner(int idCleaner);
+        //void DeleteCleaner(int idCleaner);
     }
 }

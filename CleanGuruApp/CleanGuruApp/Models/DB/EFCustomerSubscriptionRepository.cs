@@ -36,15 +36,15 @@ namespace CleanGuruApp.Models.DB
             }
             context.SaveChanges();
         }
-        public void DeleteCustomerSubscription(int idSubscription)
-        {
-            CustomerSubscription dbEntry = context.CustomerSubscription.
-                FirstOrDefault(c=>c.IdSubscription==idSubscription);
-            if(dbEntry != null)
-            {
-                context.CustomerSubscription.Remove(dbEntry);
-                context.SaveChanges();
-            }
-        }
+        //public void DeleteCustomerSubscription(int idSubscription)
+        //{
+        //    CustomerSubscription dbEntry = context.CustomerSubscription.
+        //        FirstOrDefault(c=>c.IdSubscription==idSubscription);
+        //    if(dbEntry != null)
+        //    {
+        //        context.CustomerSubscription.Remove(dbEntry);
+        //        context.SaveChanges();
+        //    }
+        //}
     }
 }

@@ -10,11 +10,10 @@ namespace CleanGuruApp.Models
     {
         [Key]
         [Required(ErrorMessage = "Can not be empty. Please enter your user name.")]
-        //[Range(3, 40, ErrorMessage = "Can not be empty. Please enter your user name.")]
         public string UserName { get; set; }
-        //[Range(3, 8, ErrorMessage = "Please enter a password between 3 and 8 digits.")]
+        [Required(ErrorMessage = "Can not be empty. Please enter your password.")]
         public string Pin { get; set; }
-        [Required(ErrorMessage = "Please choose one of the choices!")]
+        [Required(ErrorMessage = "Please choose one.")]
         public string Role { get; set; }
     }
 }

@@ -18,43 +18,25 @@ namespace CleanGuruApp.Models.DB
 
         public void SaveAppointment(Appointment appointment)
         {
-            //if (appointment.IdAppointment == 0)
-            //{
-            //    context.Appointment.Add(appointment);
-            //}
-            //else
-            //{
-            //    Appointment dbEntry = context.Appointment.
-            //        FirstOrDefault(a => a.IdAppointment == appointment.IdAppointment);
-            //    if (dbEntry != null)
-            //    {
-            //        dbEntry.IdServicePrice = appointment.IdServicePrice;
-            //        dbEntry.IdCustomer = appointment.IdCustomer;
-            //        dbEntry.CtDateRequestService = appointment.CtDateRequestService;
-            //        dbEntry.CtHoursRequested = appointment.CtHoursRequested;
+            Appointment dbEntry = context.Appointment.FirstOrDefault(u => u.IdAppointment == appointment.IdAppointment);
+            if (dbEntry == null)
+            {
+                context.Appointment.Add(appointment);
+            }
+            else
+            {
+                dbEntry.CtDateRequestService = appointment.CtDateRequestService;
+                dbEntry.CtHoursRequested = appointment.CtHoursRequested;
+                dbEntry.StartTime = appointment.StartTime;
+                dbEntry.IsSubscription = appointment.IsSubscription;
+                dbEntry.CleanerRate = appointment.CleanerRate;
 
-            //        //if (appointment.ClockIn  < appointment.ClockOut)
-            //        //{
-            //        //    dbEntry.ClockIn = appointment.ClockIn;
-            //        //    dbEntry.ClockOut = appointment.ClockOut;
-            //        //} else{ //??????
-            //        //}                   
-            //        //dbEntry.CleanerRate = appointment.CleanerRate;
-            //    }
-            //}
-            //context.SaveChanges();
-
-            Console.WriteLine("HIIIIII");           //JUST TO TEST
-        }
-        public void DeleteAppointment(int idAppointment)
-        {
-            //Appointment dbEntry = context.Appointment.
-            //    FirstOrDefault(a => a.IdAppointment == idAppointment);
-            //if (dbEntry != null)
-            //{
-            //    context.Appointment.Remove(dbEntry);
-            //    context.SaveChanges();
-            //}
+                //Hardcode for now due to Foreign Key
+                dbEntry.IdCleaner = 4;
+                dbEntry.IdCustomer = 4;
+                dbEntry.IdServicePrice = 4;
+            }
+            context.SaveChanges();
         }
     }
 }

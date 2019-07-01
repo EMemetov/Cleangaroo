@@ -14,17 +14,17 @@ namespace CleanGuruApp.Models.DB
             this.context = context;
         }
 
-        public IQueryable<Cleaner> Cleaners => context.Cleaners;
+        public IQueryable<Cleaner> Cleaners => context.Cleaner;
 
         public void SaveCleaner(Cleaner cleaner)
         {
             if (cleaner.IdCleaner == 0)
             {
-                context.Cleaners.Add(cleaner);
+                context.Cleaner.Add(cleaner);
             }
             else
             {
-                Cleaner dbEntry = context.Cleaners.
+                Cleaner dbEntry = context.Cleaner.
                     FirstOrDefault(c=>c.IdCleaner==cleaner.IdCleaner);
                 if(dbEntry != null)
                 {
@@ -45,15 +45,15 @@ namespace CleanGuruApp.Models.DB
             context.SaveChanges();
         }
 
-        public void DeleteCleaner(int idCleaner)
-        {
-            Cleaner dbEntry = context.Cleaners.
-                FirstOrDefault(c => c.IdCleaner == idCleaner);
-            if(dbEntry != null)
-            {
-                context.Cleaners.Remove(dbEntry);
-                context.SaveChanges();
-            }
-        }        
+        //public void DeleteCleaner(int idCleaner)
+        //{
+        //    Cleaner dbEntry = context.Cleaner.
+        //        FirstOrDefault(c => c.IdCleaner == idCleaner);
+        //    if(dbEntry != null)
+        //    {
+        //        context.Cleaner.Remove(dbEntry);
+        //        context.SaveChanges();
+        //    }
+        //}        
     }
 }

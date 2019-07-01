@@ -23,14 +23,8 @@ namespace CleanGuruApp.Models.DB
             {
                 context.UserLogin.Add(userLogin);
             }
-                        context.SaveChanges();
-        }
-
-        public void AlterUserLogin(UserLogin userLogin)
-        {
-            UserLogin dbEntry = context.UserLogin.FirstOrDefault(u => u.UserName == userLogin.UserName);
-            if (dbEntry != null)
-            { 
+            else
+            {
                 dbEntry.Pin = userLogin.Pin;
                 dbEntry.Role = userLogin.Role;
             }
