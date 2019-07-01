@@ -156,6 +156,7 @@ ALTER TABLE ScheduleCleaner ADD constraint schedulecleaner_pk PRIMARY KEY CLUSTE
 
 CREATE TABLE ServicePrice 
     ( idServicePrice INTEGER NOT NULL IDENTITY NOT FOR REPLICATION , 
+      servicePriceDescr VARCHAR(20) NOT NULL,
      ctAmountHour NUMERIC (8,2) NOT NULL , 
      clAmountHour NUMERIC (8,2) NOT NULL , 
      servicePriceStatus CHAR (1) NOT NULL DEFAULT 'A' 

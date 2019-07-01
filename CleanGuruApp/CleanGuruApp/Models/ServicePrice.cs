@@ -10,10 +10,22 @@ namespace CleanGuruApp.Models
     {
         [Key]
         public int IdServicePrice { get; set; }
+
         [Required(ErrorMessage ="Please define the customer's service cost/hr.")]
+        //Home Cleaning
+        //Maid Serivces
+        //Window Washing
+        //CommercialCleaning
+        //Move-In/Move-Out
+        //Carpet Cleaning
+        public double ServicePriceDescr { get; set; }
+
+        [Required(ErrorMessage = "Please define the service description.")]
         public double CtAmountHour { get; set; }
+
         [Required(ErrorMessage = "Please define the cleaner's service cost/hr.")]
         public double ClAmountHour { get; set; }
+
         [Required(ErrorMessage = "Please identify if this is a new price to be updated.")]
         public char ServicePriceStatus { get; set; }
     }
