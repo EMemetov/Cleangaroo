@@ -134,24 +134,45 @@ namespace CleanGuruApp.Models.DB
             }
 
 
-            /*            if (!context.CustomerSubscription.Any())
-                        {
-                            context.CustomerSubscription.AddRange(
-                                new CustomerSubscription { Periodicity = "Weekly", FinishDate = Convert.ToDateTime("09/30/2019"), IdCustomer = 1 },
-                                new CustomerSubscription { Periodicity = "Biweekly", FinishDate = Convert.ToDateTime("12/30/2019"), IdCustomer = 2 }
-                                );
-                            context.SaveChanges();
-                        }*/
-
             if (!context.Appointment.Any())
             {
-                //context.Appointment.AddRange(
-                //    new Appointment { IdAppointment = 1, IdServicePrice = 1, IdCustomer = 1, CtHoursRequested = 6 },
-                //    new Appointment { IdAppointment = 2, IdServicePrice = 2, IdCustomer = 2, CtHoursRequested = 4 }
-                //    );
-                //context.SaveChanges();
+                context.Appointment.AddRange(
+                    new Appointment
+                    {
+                        IdServicePrice = 1,
+                        IdCustomer = 1,
+                        CtDateRequestService = Convert.ToDateTime("06/30/2019"),
+                        CtHoursRequested = 6,
+                        IdCleaner = 1,
+                        startTime = Convert.ToDateTime("09:00AM"),
+                        isSubscription = 0
+                    },
+                    new Appointment
+                    {
+                        IdServicePrice = 2,
+                        IdCustomer = 2,
+                        CtDateRequestService = Convert.ToDateTime("07/03/2019"),
+                        CtHoursRequested = 5,
+                        IdCleaner = 2,
+                        startTime = Convert.ToDateTime("10:00AM"),
+                        isSubscription = 1
+                    }
+                    );
+                context.SaveChanges();
             }
 
+            if (!context.CustomerSubscription.Any())
+            {
+                context.CustomerSubscription.AddRange(
+                    new CustomerSubscription
+                    {
+                        Periodicity = 7,
+                        FinishDate = Convert.ToDateTime("08/30/2019"),
+                        IdAppointment = 2
+                    }
+                    );
+                context.SaveChanges();
+            }
 
         }
     }
