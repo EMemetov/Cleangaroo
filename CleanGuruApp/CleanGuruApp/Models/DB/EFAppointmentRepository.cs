@@ -38,7 +38,6 @@ namespace CleanGuruApp.Models.DB
                     dbEntry.CleanerRate = appointment.CleanerRate;
                     dbEntry.startTime = appointment.startTime;
                     dbEntry.isSubscription = appointment.isSubscription;
-                    dbEntry.idSubscription = appointment.idSubscription;
                 }
             }
             context.SaveChanges();

@@ -24,7 +24,6 @@ namespace CleanGuruApp.Models
         public DateTime? ClockOut{ get; set ;}
         public string CleanerRate { get; set; }
         public DateTime? startTime { get; set; }
-        public Boolean isSubscription { get; set; }
-        public int? idSubscription { get; set; }
+        public int isSubscription { get; set; }
     }
 }
