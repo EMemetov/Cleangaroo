@@ -8,6 +8,8 @@ namespace CleanGuruApp.Models
 {
     public class CustomerSubscription
     {
+        //There is a trigger AFTER INSERT in this table, linked to
+        //Appointment table
         [Key]
         public int IdSubscription{ get; set ;}
         [Required(ErrorMessage = "The periodicity should be not blank")]

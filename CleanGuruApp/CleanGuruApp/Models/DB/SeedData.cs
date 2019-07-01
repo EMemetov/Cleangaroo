@@ -115,7 +115,7 @@ namespace CleanGuruApp.Models.DB
                         ClProvince = "ON",
                         ClPhone1 = "222-111-4444",
                         ClPhone2 = "111-111-4444",
-                        ClSinNumber="123456789",
+                        ClSinNumber = "123456789",
                         UserName = "Rubens"
                     },
                     new Cleaner
@@ -130,6 +130,62 @@ namespace CleanGuruApp.Models.DB
                         ClPhone1 = "111-888-9999",
                         ClSinNumber = "000111222",
                         UserName = "Rattan"
+                    }
+                    );
+                context.SaveChanges();
+            }
+
+            if (!context.ScheduleCleaner.Any())
+            {
+                context.ScheduleCleaner.AddRange(
+                    new ScheduleCleaner
+                    {
+                        DayWeek = "Monday",
+                        InitialTime = Convert.ToDateTime("07:00 AM"),
+                        FinishTime = Convert.ToDateTime("18:00 PM"),
+                        IdCleaner = 1
+                    },
+                    new ScheduleCleaner
+                    {
+                        DayWeek = "Tuesday",
+                        InitialTime = Convert.ToDateTime("07:00 AM"),
+                        FinishTime = Convert.ToDateTime("18:00 PM"),
+                        IdCleaner = 1
+                    },
+                    new ScheduleCleaner
+                    {
+                        DayWeek = "Wednesday",
+                        InitialTime = Convert.ToDateTime("07:00 AM"),
+                        FinishTime = Convert.ToDateTime("18:00 PM"),
+                        IdCleaner = 1
+                    },
+                    new ScheduleCleaner
+                    {
+                        DayWeek = "Thursday",
+                        InitialTime = Convert.ToDateTime("07:00 AM"),
+                        FinishTime = Convert.ToDateTime("18:00 PM"),
+                        IdCleaner = 1
+                    },
+                    new ScheduleCleaner
+                    {
+                        DayWeek = "Friday",
+                        InitialTime = Convert.ToDateTime("07:00 AM"),
+                        FinishTime = Convert.ToDateTime("18:00 PM"),
+                        IdCleaner = 1
+                    },
+                    new ScheduleCleaner
+                    {
+                        DayWeek = "Saturday",
+                        InitialTime = Convert.ToDateTime("08:00 AM"),
+                        FinishTime = Convert.ToDateTime("14:00 PM"),
+                        IdCleaner = 2
+                    },
+                    new ScheduleCleaner
+                    {
+                        DayWeek = "Sunday",
+                        InitialTime = Convert.ToDateTime("08:00 AM"),
+                        FinishTime = Convert.ToDateTime("14:00 PM"),
+                        IdCleaner = 2
                     }
                     );
                 context.SaveChanges();

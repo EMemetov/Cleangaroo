@@ -17,6 +17,7 @@ namespace CleanGuruApp.Models.DB
         public DbSet<AppointmentPayment> AppointmentPayment { get; set; }
         public DbSet<ServicePrice> ServicePrice { get; set; }
         public DbSet<UserLogin> UserLogin { get; set; }
+        public DbSet<ScheduleCleaner> ScheduleCleaner { get; set; }
 
 
         ////Should we have???
