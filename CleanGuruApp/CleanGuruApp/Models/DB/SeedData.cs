@@ -166,18 +166,18 @@ namespace CleanGuruApp.Models.DB
                 context.SaveChanges();
             }
 
-            if (!context.CustomerSubscription.Any())
-            {
-                context.CustomerSubscription.AddRange(
-                    new CustomerSubscription
-                    {
-                        Periodicity = 7,
-                        FinishDate = Convert.ToDateTime("08/30/2019"),
-                        IdAppointment = 2
-                    }
-                    );
-                context.SaveChanges();
-            }
+            //if (!context.CustomerSubscription.Any())
+            //{
+            //    context.CustomerSubscription.AddRange(
+            //        new CustomerSubscription
+            //        {
+            //            Periodicity = 7,
+            //            FinishDate = Convert.ToDateTime("08/30/2019"),
+            //            IdAppointment = 2
+            //        }
+            //        );
+            //    context.SaveChanges();
+            //}
         }
     }
 }
