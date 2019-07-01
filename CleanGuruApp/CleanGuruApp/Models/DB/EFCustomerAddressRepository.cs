@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,28 +15,40 @@ namespace CleanGuruApp.Models.DB
             this.context = context;
         }
 
-        //public IQueryable<Cleaners> Cleaners => context.Cleaners.Include(c => c.Players);     //DELETE after adjust below
-
-        public IQueryable<CustomerAddress> CustomerAddresss => throw new NotImplementedException();            //DELETE after adjust abouve
+        public IQueryable<CustomerAddress> CustomerAddresss => context.CustomerAddress;
 
         public void SaveCustomerAddress(CustomerAddress customerAddress)
         {
-            //INSERT CODE
-
+            if (customerAddress.idCustAddress == 0)
+            {
+                context.CustomerAddress.Add(customerAddress);
+            }
+            else
+            {
+                CustomerAddress dbEntry = context.CustomerAddress
+                .FirstOrDefault(c => c.idCustAddress == customerAddress.idCustAddress);
+                if (dbEntry != null)
+                {
+                    dbEntry.Address = customerAddress.Address;
+                    dbEntry.AddressUnit = customerAddress.AddressUnit;
+                    dbEntry.PostalCode = customerAddress.PostalCode;
+                    dbEntry.PostalCode = customerAddress.PostalCode;
+                    dbEntry.City = customerAddress.City;
+                    dbEntry.Province = customerAddress.Province;
+                }
+            }
             context.SaveChanges();
         }
 
-        public CustomerAddress DeleteCustomerAddress(int idCustAddress)
-        {
-            //CustomerAddress customerAddress = CustomerAddress.FirstOrDefault(c => c.IdCustAddress == idCustAddress);  //ERROR ??????
-
-            //INSERT CODE
-
-            //return customerAddress;       //ERROR ????
-
-            //Just to make it work
-            CustomerAddress customerAddress = new CustomerAddress();
-            return customerAddress;
-        }
+        //public void DeleteCustomerAddress(int idCustAddress)
+        //{
+        //    CustomerAddress dbEntry = context.CustomerAddress
+        //               .FirstOrDefault(c => c.IdCustAddress == idCustAddress);
+        //    if (dbEntry != null)
+        //    {
+        //        context.CustomerAddress.Remove(dbEntry);
+        //        context.SaveChanges();
+        //    }
+        //}
     }
 }

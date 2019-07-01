@@ -18,14 +18,25 @@ namespace CleanGuruApp.Controllers
         {
             return View();
         }
-        public IActionResult Contact()
+
+        public ViewResult Register()
         {
             return View();
         }
-        public IActionResult AboutUs()
+
+        public ViewResult Login()
         {
             return View();
         }
-       
+
+        public ViewResult CreateAppointment()
+        {
+            return View("../Appointment/CreateAppointment");
+        }
+        public ViewResult CreateUser()
+        {
+            return View();
+        }
+
     }
 }

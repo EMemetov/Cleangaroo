@@ -7,9 +7,9 @@ namespace CleanGuruApp.Models.DB
 {
     public interface ICleanerRepository
     {
-        IQueryable<Cleaners> Cleaners { get; }
-        void SaveCleaner(Cleaners cleaner);
+        IQueryable<Cleaner> Cleaners { get; }
+        void SaveCleaner(Cleaner cleaner);
 
-        Cleaners DeleteCleaner(int idCleaner);
+        //void DeleteCleaner(int idCleaner);
     }
 }
