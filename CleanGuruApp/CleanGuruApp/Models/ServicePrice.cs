@@ -11,13 +11,13 @@ namespace CleanGuruApp.Models
         [Key]
         public int IdServicePrice { get; set; }
 
-        [Required(ErrorMessage = "Please define the service description.")]
         //Home Cleaning
-        //Maid Serivces
+        //Maid Services
         //Window Washing
         //Commercial Cleaning
         //Move-In / Move-Out
         //Carpet Cleaning
+        [Required(ErrorMessage = "Please define the service description.")]
         public double ServicePriceDescr { get; set; }
 
         [Required(ErrorMessage = "Please define the customer's service cost/hr.")]
