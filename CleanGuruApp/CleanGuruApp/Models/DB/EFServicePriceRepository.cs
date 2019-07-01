@@ -27,6 +27,7 @@ namespace CleanGuruApp.Models.DB
                     FirstOrDefault(s => s.IdServicePrice == servicePrice.IdServicePrice);
                 if (dbEntry != null)
                 {
+                    dbEntry.ServicePriceDescr = servicePrice.ServicePriceDescr;
                     dbEntry.CtAmountHour = servicePrice.CtAmountHour;
                     dbEntry.ClAmountHour = servicePrice.ClAmountHour;
                     dbEntry.ServicePriceStatus = servicePrice.ServicePriceStatus;
