@@ -115,7 +115,7 @@ namespace CleanGuruApp.Models.DB
                         ClProvince = "ON",
                         ClPhone1 = "222-111-4444",
                         ClPhone2 = "111-111-4444",
-                        ClSinNumber = "123456789",
+                        ClSinNumber="123456789",
                         UserName = "Rubens"
                     },
                     new Cleaner
@@ -148,7 +148,8 @@ namespace CleanGuruApp.Models.DB
                         IdCleaner = 1,
                         StartTime = Convert.ToDateTime("09:00AM"),
                         //IsSubscription = Convert.ToBoolean(0)
-                        //IsSubscription = 0
+                        IsSubscription = 0
+
                     },
                     new Appointment
                     {
@@ -159,7 +160,7 @@ namespace CleanGuruApp.Models.DB
                         IdCleaner = 2,
                         StartTime = Convert.ToDateTime("10:00AM"),
                         //IsSubscription = Convert.ToBoolean(1)
-                        //IsSubscription = 1
+                        IsSubscription = 1
                     }
                     );
                 context.SaveChanges();
@@ -177,7 +178,6 @@ namespace CleanGuruApp.Models.DB
             //        );
             //    context.SaveChanges();
             //}
-
         }
     }
 }

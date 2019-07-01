@@ -25,6 +25,5 @@ namespace CleanGuruApp.Models
         public string CleanerRate{ get; set ;}
         public DateTime? StartTime { get; set; }           //Should not allow NULL - Adjust later
         public byte IsSubscription { get; set; }
-
     }
 }
