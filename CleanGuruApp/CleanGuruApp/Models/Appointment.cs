@@ -22,8 +22,8 @@ namespace CleanGuruApp.Models
         public int IdCleaner{ get; set ;}
         public DateTime? ClockIn{ get; set ;}
         public DateTime? ClockOut{ get; set ;}
-        public string CleanerRate { get; set; }
-        public DateTime? startTime { get; set; }
-        public int isSubscription { get; set; }
+        public string CleanerRate{ get; set ;}
+        public DateTime? StartTime { get; set; }           //Should not allow NULL - Adjust later
+        public byte IsSubscription { get; set; }
     }
 }

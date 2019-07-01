@@ -45,15 +45,15 @@ namespace CleanGuruApp.Models.DB
             context.SaveChanges();
         }
 
-        public void DeleteCleaner(int idCleaner)
-        {
-            Cleaner dbEntry = context.Cleaner.
-                FirstOrDefault(c => c.IdCleaner == idCleaner);
-            if(dbEntry != null)
-            {
-                context.Cleaner.Remove(dbEntry);
-                context.SaveChanges();
-            }
-        }        
+        //public void DeleteCleaner(int idCleaner)
+        //{
+        //    Cleaner dbEntry = context.Cleaner.
+        //        FirstOrDefault(c => c.IdCleaner == idCleaner);
+        //    if(dbEntry != null)
+        //    {
+        //        context.Cleaner.Remove(dbEntry);
+        //        context.SaveChanges();
+        //    }
+        //}        
     }
 }

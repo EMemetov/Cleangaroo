@@ -1,5 +1,4 @@
-﻿
-@*CONSIDER: Could be using a Partial view for the for letting just the buttons here. The Partial view (List) could be used to create a new or editing*@
+﻿@*CONSIDER: Could be using a Partial view for the for letting just the buttons here. The Partial view (List) could be used to create a new or editing*@
 
 @model Appointment
 
@@ -12,10 +11,10 @@
 
 <div asp-validation-summary="All" class="validation-summary-errors"></div>
 
-<form asp-controller="Appointment" asp-action="EditAppointment" method="post">
-    @*<form asp-controller="Appointment" asp-action="SaveAppointment" method="post">    funcionando+- !!!!!!!!!!!!!!*@
-
-    @* <form asp-controller="Appointment" asp-action="CreateAppontment" method="post">    Original !!!!!!!!!!!!!!*@
+@*<form asp-controller="Appointment" asp-action="EditAppointment" method="post">
+    <form asp-controller="Appointment" asp-action="CreateAppontment" method="post">    funcionando+- !!!!!!!!!!!!!!*@
+<form asp-controller="Appointment" asp-action="Edit" method="post">
+    @* Original !!!!!!!!!!!!!!*@
     <div class="form-group">
         <label asp-for="CtDateRequestService">Date of Service</label>
         <div>
@@ -24,30 +23,30 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="CtDateRequestService">Start Time of Service</label>
+        <label asp-for="StartTime">Start Time of Service</label>
         <div>
-            <input class="form-control" type="time" id="example-time-input">
+            <input asp-for="StartTime" class="form-control" type="time" id="example-time-input">
         </div>
 
 
     </div>
 
     <div class="form-group">
-        <label>Amount of Hours</label>
+        <label asp-for="CtHoursRequested">Amount of Hours</label>
         <br />
         <div class="btn-group">
-            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button asp-for="CtHoursRequested" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 1
             </button>
             <div class="dropdown-menu">
 
-                <a class="dropdown-item" href="#">2</a>
-                <a class="dropdown-item" href="#">3</a>
-                <a class="dropdown-item" href="#">4</a>
-                <a class="dropdown-item" href="#">5</a>
-                <a class="dropdown-item" href="#">6</a>
-                <a class="dropdown-item" href="#">7</a>
-                <a class="dropdown-item" href="#">8</a>
+                <a asp-for="CtHoursRequested" class="dropdown-item" href="#">2</a>
+                <a asp-for="CtHoursRequested" class="dropdown-item" href="#">3</a>
+                <a asp-for="CtHoursRequested" class="dropdown-item" href="#">4</a>
+                <a asp-for="CtHoursRequested" class="dropdown-item" href="#">5</a>
+                <a asp-for="CtHoursRequested" class="dropdown-item" href="#">6</a>
+                <a asp-for="CtHoursRequested" class="dropdown-item" href="#">7</a>
+                <a asp-for="CtHoursRequested" class="dropdown-item" href="#">8</a>
 
             </div>
         </div>
@@ -68,16 +67,34 @@
             <input class="form-control" />
         </div>*@
 
+
+
     <div class="form-group">
-        <input type="checkbox" name="vehicle1" value="False">Subscription<br>
+        <input type="checkbox" name="subscription" value="0">Subscription<br>
     </div>
 
     <div>
         <select name="Periodicy">
-            <option value="15">15 days</option>
-            <option value="30">Monthly</option>
+            @*CAN NOT create a asp-for="" Different @model   ??????*@
+            <option value="15">15 days</option>             @*CAN NOT create a asp-for="" Different @model   ??????*@
+            <option value="30">Monthly</option>             @*CAN NOT create a asp-for="" Different @model   ??????*@
         </select>
     </div>
+
+
+
+
+
+
+
+
+    <div class="form-group">
+        <label asp-for="CleanerRate">Rate for test - Delete later</label>
+
+        <input asp-for="CleanerRate" class="form-control" />
+    </div>
+
+
 
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Create Appointment</button>
 

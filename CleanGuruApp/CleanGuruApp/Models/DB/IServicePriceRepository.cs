@@ -10,6 +10,6 @@ namespace CleanGuruApp.Models.DB
         IQueryable<ServicePrice> ServicePrices { get; }
         void SaveServicePrice(ServicePrice servicePrice);
 
-        void DeleteServicePrice(int idServicePrice);
+        //void DeleteServicePrice(int idServicePrice);
     }
 }

@@ -146,8 +146,10 @@ namespace CleanGuruApp.Models.DB
                         CtDateRequestService = Convert.ToDateTime("06/30/2019"),
                         CtHoursRequested = 6,
                         IdCleaner = 1,
-                        startTime = Convert.ToDateTime("09:00AM"),
-                        isSubscription = 0
+                        StartTime = Convert.ToDateTime("09:00AM"),
+                        //IsSubscription = Convert.ToBoolean(0)
+                        IsSubscription = 0
+
                     },
                     new Appointment
                     {
@@ -156,26 +158,26 @@ namespace CleanGuruApp.Models.DB
                         CtDateRequestService = Convert.ToDateTime("07/03/2019"),
                         CtHoursRequested = 5,
                         IdCleaner = 2,
-                        startTime = Convert.ToDateTime("10:00AM"),
-                        isSubscription = 1
+                        StartTime = Convert.ToDateTime("10:00AM"),
+                        //IsSubscription = Convert.ToBoolean(1)
+                        IsSubscription = 1
                     }
                     );
                 context.SaveChanges();
             }
 
-            if (!context.CustomerSubscription.Any())
-            {
-                context.CustomerSubscription.AddRange(
-                    new CustomerSubscription
-                    {
-                        Periodicity = 7,
-                        FinishDate = Convert.ToDateTime("08/30/2019"),
-                        IdAppointment = 2
-                    }
-                    );
-                context.SaveChanges();
-            }
-
+            //if (!context.CustomerSubscription.Any())
+            //{
+            //    context.CustomerSubscription.AddRange(
+            //        new CustomerSubscription
+            //        {
+            //            Periodicity = 7,
+            //            FinishDate = Convert.ToDateTime("08/30/2019"),
+            //            IdAppointment = 2
+            //        }
+            //        );
+            //    context.SaveChanges();
+            //}
         }
     }
 }

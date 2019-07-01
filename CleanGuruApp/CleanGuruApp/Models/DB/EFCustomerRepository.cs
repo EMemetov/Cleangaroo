@@ -16,7 +16,7 @@ namespace CleanGuruApp.Models.DB
 
         public IQueryable<Customer> Customers => context.Customer;       
 
-        public void SaveCustomers(Customer customer)
+        public void SaveCustomer(Customer customer)
         {
             if (customer.IdCustomer == 0)
             {
@@ -39,15 +39,16 @@ namespace CleanGuruApp.Models.DB
             context.SaveChanges();
         }
 
-        public void DeleteCustomers(int idCustomer)
-        {
-            Customer dbEntry = context.Customer
-                       .FirstOrDefault(c => c.IdCustomer == idCustomer);
-            if (dbEntry != null)
-            {
-                context.Customer.Remove(dbEntry);
-                context.SaveChanges();
-            }
-        }
+        //public void DeleteCustomers(int idCustomer)
+        //{
+        //    Customer dbEntry = context.Customer
+        //               .FirstOrDefault(c => c.IdCustomer == idCustomer);
+        //    if (dbEntry != null)
+        //    {
+        //        context.Customer.Remove(dbEntry);
+        //        context.SaveChanges();
+        //    }
+        //}
+
     }
 }
