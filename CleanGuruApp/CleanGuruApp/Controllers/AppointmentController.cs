@@ -39,11 +39,14 @@ namespace CleanGuruApp.Controllers
         [HttpPost]
         public IActionResult Edit(Appointment appointment)
         {
-            Console.WriteLine("Usuario: " + appointment.IdAppointment);
-            Console.WriteLine("Usuario: " + appointment.CtHoursRequested);
-            Console.WriteLine("Usuario: " + appointment.CtDateRequestService);
-            Console.WriteLine("Usuario: " + appointment.CleanerRate);
-            Console.WriteLine("Usuario: " + appointment.IdCleaner);
+            Console.WriteLine("IdAppointment: " + appointment.IdAppointment);
+            Console.WriteLine("IdCustomer: " + appointment.IdCustomer);
+            Console.WriteLine("IdCleaner: " + appointment.IdCleaner);
+            Console.WriteLine("IdCleaner: " + appointment.IdServicePrice);
+            Console.WriteLine("CtHoursRequested: " + appointment.CtHoursRequested);
+            Console.WriteLine("CtDateRequestService: " + appointment.CtDateRequestService);
+            Console.WriteLine("CleanerRate: " + appointment.CleanerRate);
+            
             if (ModelState.IsValid)
             {
                 repository.SaveAppointment(appointment);
