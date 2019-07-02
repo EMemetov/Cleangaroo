@@ -8,13 +8,31 @@
 
 <h2>Create Appointment</h2>
 
-
 <div asp-validation-summary="All" class="validation-summary-errors"></div>
 
 @*<form asp-controller="Appointment" asp-action="EditAppointment" method="post">
     <form asp-controller="Appointment" asp-action="CreateAppontment" method="post">    funcionando+- !!!!!!!!!!!!!!*@
 <form asp-controller="Appointment" asp-action="Edit" method="post">
-    @* Original !!!!!!!!!!!!!!*@
+
+    @*TEMPORARY TO CREATE AN APPOINTMENT*@
+    <div class="form-group">
+        <label asp-for="IdCustomer">Customer ID</label>
+
+        <input asp-for="IdCustomer" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="IdCleaner">Cleaner ID</label>
+
+        <input asp-for="IdCleaner" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="IdServicePrice">Service ID</label>
+
+        <input asp-for="IdServicePrice" class="form-control" />
+    </div>
+
+
+    @*FINAL*@
     <div class="form-group">
         <label asp-for="CtDateRequestService">Date of Service</label>
         <div>
@@ -34,23 +52,36 @@
     <div class="form-group">
         <label asp-for="CtHoursRequested">Amount of Hours</label>
         <br />
-        <div class="btn-group">
-            <button asp-for="CtHoursRequested" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                1
-            </button>
-            <div class="dropdown-menu">
+        @*ORIGINAL MARIIA - it is not working!!!!!!!
+                <div class="btn-group">
+                <button asp-for="CtHoursRequested" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    1
+                </button>
+                <div class="dropdown-menu">
 
-                <a asp-for="CtHoursRequested" class="dropdown-item" href="#">2</a>
-                <a asp-for="CtHoursRequested" class="dropdown-item" href="#">3</a>
-                <a asp-for="CtHoursRequested" class="dropdown-item" href="#">4</a>
-                <a asp-for="CtHoursRequested" class="dropdown-item" href="#">5</a>
-                <a asp-for="CtHoursRequested" class="dropdown-item" href="#">6</a>
-                <a asp-for="CtHoursRequested" class="dropdown-item" href="#">7</a>
-                <a asp-for="CtHoursRequested" class="dropdown-item" href="#">8</a>
+                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">2</a>
+                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">3</a>
+                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">4</a>
+                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">5</a>
+                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">6</a>
+                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">7</a>
+                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">8</a>
 
-            </div>
+                </div>
+            </div>*@
+
+        <div>
+            <select asp-for="CtHoursRequested" name="AmountHours">
+                <option asp-for="CtHoursRequested" value="1">1</option>
+                <option asp-for="CtHoursRequested" value="2">2</option>
+                <option asp-for="CtHoursRequested" value="3">3</option>
+                <option asp-for="CtHoursRequested" value="4">4</option>
+                <option asp-for="CtHoursRequested" value="5">5</option>
+                <option asp-for="CtHoursRequested" value="6">6</option>
+                <option asp-for="CtHoursRequested" value="7">7</option>
+                <option asp-for="CtHoursRequested" value="8">8</option>
+            </select>
         </div>
-
 
     </div>
 

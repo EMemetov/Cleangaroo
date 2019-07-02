@@ -21,9 +21,6 @@ namespace CleanGuruApp.Models.DB
 
             Appointment dbEntry = context.Appointment.FirstOrDefault(u => u.IdAppointment == appointment.IdAppointment);
             if (dbEntry == null)
-            //=======
-            //            if (appointment.IdAppointment == 0)
-            //>>>>>>> 83d7e62a8ef542be267b8eceb0eae245c31e8706
             {
                 context.Appointment.Add(appointment);
             }
