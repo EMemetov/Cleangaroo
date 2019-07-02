@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace CleanGuruApp.Models.DB
             else
             {
                 ScheduleCleaner dbEntry = context.ScheduleCleaner.
-                    FirstOrDefault(s=>s.IdScheduleCleaner == scheduleCleaner.IdScheduleCleaner);
+                    FirstOrDefault(s => s.IdScheduleCleaner == scheduleCleaner.IdScheduleCleaner);
                 if (dbEntry != null)
                 {
                     dbEntry.DayWeek = scheduleCleaner.DayWeek;
@@ -43,13 +44,21 @@ namespace CleanGuruApp.Models.DB
         public void DeleteScheduleCleaner(int idScheduleCleaner)
         {
             ScheduleCleaner dbEntry = context.ScheduleCleaner.
-                FirstOrDefault(s=>s.IdScheduleCleaner==idScheduleCleaner);
-            if(dbEntry != null)
+                FirstOrDefault(s => s.IdScheduleCleaner == idScheduleCleaner);
+            if (dbEntry != null)
             {
                 context.ScheduleCleaner.Remove(dbEntry);
                 context.SaveChanges();
             }
         }
 
+        public List<ScheduleCleaner> ListCleaners(String dayWeek, string initTime, string finTime)
+        {
+            List<ScheduleCleaner> list = new List<ScheduleCleaner>();
+            list = context.ScheduleCleaner.
+                FromSql($"SearchCustCleaner {dayWeek}, {initTime}, {finTime}").
+                ToList();
+            return list;
+        }
     }
 }

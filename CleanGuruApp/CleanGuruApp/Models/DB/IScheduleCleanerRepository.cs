@@ -10,5 +10,7 @@ namespace CleanGuruApp.Models.DB
         IQueryable<ScheduleCleaner> ScheduleCleaners { get; }
         void SaveScheduleCleaner(ScheduleCleaner scheduleCleaner);
         void DeleteScheduleCleaner(int idScheduleCleaner);
+        List<ScheduleCleaner> ListCleaners(String dayWeek, String initTime, 
+            String finTime);
     }
 }
