@@ -18,7 +18,7 @@ namespace CleanGuruApp.Models
         [Required(ErrorMessage = "Please enter a valid phone.")]
         public string CtPhone1 { get; set; }
         public string CtPhone2 { get; set; }
-        [Range(3, 40, ErrorMessage = "Can not be empty. Please enter your user name.")]
+        [Required(ErrorMessage = "Can not be empty. Please enter your user name.")]
         public string UserName { get; set; }
     }
 }
