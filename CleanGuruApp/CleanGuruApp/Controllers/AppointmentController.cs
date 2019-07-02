@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using CleanGuruApp.Models;
@@ -15,6 +16,12 @@ namespace CleanGuruApp.Controllers
         public AppointmentController(IAppointmentRepository repo)
         {
             repository = repo;
+        }
+
+        // GET: MemberInfoes
+        public async Task<IActionResult> Index()
+        {
+            return View(await repository.Appointments.ToListAsync());
         }
 
         //Show list of Appointments

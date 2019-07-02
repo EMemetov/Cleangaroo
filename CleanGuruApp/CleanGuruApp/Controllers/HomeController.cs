@@ -28,11 +28,23 @@ namespace CleanGuruApp.Controllers
         {
             return View();
         }
-
+        public ViewResult Schedule()
+        {
+            return View();
+        }
+        public ViewResult AboutUs()
+        {
+            return View();
+        }
+        public ViewResult Contact()
+        {
+            return View();
+        }
         public ViewResult CreateAppointment()
         {
             return View("../Appointment/CreateAppointment");
         }
+       
         public ViewResult CreateUser()
         {
             return View();

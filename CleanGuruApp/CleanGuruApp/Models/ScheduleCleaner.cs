@@ -13,8 +13,11 @@ namespace CleanGuruApp.Models
         [Required(ErrorMessage = "")]
         public string DayWeek { get; set; }
         [Required(ErrorMessage = "The initial time should be not blank")]
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
         public DateTime InitialTime { get; set; }
         [Required(ErrorMessage = "The finish time should be not blank")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
         public DateTime FinishTime { get; set; }
         [Required(ErrorMessage = "The cleaner ID should be not blank")]
         public int IdCleaner { get; set; }
