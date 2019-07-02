@@ -10,8 +10,12 @@ namespace CleanGuruApp.Models
     {
         [Key]
         public int IdScheduleCleaner { get; set; }
-        [Required(ErrorMessage = "")]
+
+
+        [Required(ErrorMessage = " ")]
         public string DayWeek { get; set; }
+
+
         [Required(ErrorMessage = "The initial time should be not blank")]
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]

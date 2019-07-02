@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Home\DefineCost.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Home\Cost.cshtml" />
+    <Content Remove="Views\Home\DefineCost.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Views\Customer\" />
     <Folder Include="wwwroot\css\" />
   </ItemGroup>
