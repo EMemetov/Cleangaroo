@@ -145,8 +145,8 @@ ALTER TABLE CustomerSubscription ADD constraint customersubscription_pk PRIMARY 
 CREATE TABLE ScheduleCleaner 
     ( idScheduleCleaner INTEGER NOT NULL IDENTITY NOT FOR REPLICATION , 
      dayWeek VARCHAR (10) NOT NULL , 
-     initialTime TIME NOT NULL , 
-     finishTime TIME NOT NULL , 
+     initialTime DATETIME  NOT NULL , 
+     finishTime DATETIME  NOT NULL , 
      idCleaner INTEGER NOT NULL ) 
 
 ALTER TABLE ScheduleCleaner ADD constraint schedulecleaner_pk PRIMARY KEY CLUSTERED (idScheduleCleaner)
