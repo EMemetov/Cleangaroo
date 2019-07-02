@@ -1,4 +1,4 @@
-﻿@*CONSIDER: Could be using a Partial view for the for letting just the buttons here. The Partial view (List) could be used to create a new or editing*@
+﻿ @*CONSIDER: Could be using a Partial view for the for letting just the buttons here. The Partial view (List) could be used to create a new or editing*@
 
 @model Appointment
 
@@ -33,7 +33,15 @@
 
 
     @*FINAL*@
+
     <div class="form-group">
+        <label asp-for="CtDateRequestService">Date & Time of Service</label>
+        <div>
+            <input class="form-control" type="datetime-local" id="example-date-input" asp-for="CtDateRequestService">
+        </div>
+    </div>
+
+    @*<div class="form-group">
         <label asp-for="CtDateRequestService">Date of Service</label>
         <div>
             <input class="form-control" type="date" id="example-date-input" asp-for="CtDateRequestService">
@@ -47,7 +55,7 @@
         </div>
 
 
-    </div>
+    </div>*@
 
     <div class="form-group">
         <label asp-for="CtHoursRequested">Amount of Hours</label>
@@ -98,18 +106,24 @@
             <input class="form-control" />
         </div>*@
 
-
-
     <div class="form-group">
         <input type="checkbox" name="subscription" value="0">Subscription<br>
     </div>
 
-    <div>
+
+    <div class="form-group">
         <select name="Periodicy">
             @*CAN NOT create a asp-for="" Different @model   ??????*@
-            <option value="15">15 days</option>             @*CAN NOT create a asp-for="" Different @model   ??????*@
+            <option value="7">Weekly</option>
+            <option value="14">Bi-Weekly</option>             @*CAN NOT create a asp-for="" Different @model   ??????*@
             <option value="30">Monthly</option>             @*CAN NOT create a asp-for="" Different @model   ??????*@
         </select>
+
+        
+            <label>End Date</label>
+
+            <input type="date" id="example-end_date-input">
+        
     </div>
 
 
