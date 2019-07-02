@@ -24,7 +24,8 @@
     
     <!--Connection with DB - pg 209-->
     <!--<PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />-->     <!--ORIGINAL - Delete after connecting with our DB-->
-    <PackageReference Include="Microsoft.VisualStudio.Web.codeGeneration.Design" Version="2.1.9" PrivateAssets="All" />   <!--NEW -->
+    <PackageReference Include="Microsoft.VisualStudio.Web.codeGeneration.Design" Version="2.1.9" PrivateAssets="All" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />   <!--NEW -->
   </ItemGroup>
 
 </Project>
