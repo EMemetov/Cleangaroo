@@ -53,7 +53,10 @@ namespace CleanGuruApp.Controllers
         {
             return View();
         }
-
+        public ViewResult Manager()
+        {
+            return View();
+        }
 
     }
 }

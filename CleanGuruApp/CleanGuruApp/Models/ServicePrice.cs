@@ -18,7 +18,7 @@ namespace CleanGuruApp.Models
         //Move-In / Move-Out
         //Carpet Cleaning
         [Required(ErrorMessage = "Please define the service description.")]
-      public double ServicePriceDescr { get; set; }
+      public string ServicePriceDescr { get; set; }
 
         [Required(ErrorMessage = "Please define the customer's service cost/hr.")]
         public double CtAmountHour { get; set; }
