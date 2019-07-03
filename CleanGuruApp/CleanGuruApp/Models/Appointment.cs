@@ -1,6 +1,7 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,5 +29,26 @@ namespace CleanGuruApp.Models
         public string CleanerRate{ get; set ;}
         public DateTime? StartTime { get; set; }           //Should not allow NULL - Adjust later
         public byte IsSubscription { get; set; }
+        [NotMapped]
+        public string IsSubscriptionCheck;
+        [NotMapped]
+        public string isSubscriptionCheck
+        {
+            get
+            {
+                return IsSubscriptionCheck;
+            }
+            set
+            {
+                if (value == "false")
+                {
+                    IsSubscription = 0;
+                }
+                else
+                    IsSubscription = 1;
+            }
+        }
+        public CustomerSubscription CustSub { get; set; } 
+        
     }
 }

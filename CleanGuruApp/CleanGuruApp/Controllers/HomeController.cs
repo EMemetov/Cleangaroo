@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using CleanGuruApp.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -42,6 +43,9 @@ namespace CleanGuruApp.Controllers
         }
         public ViewResult CreateAppointment()
         {
+            CustomerSubscription custSub = new CustomerSubscription();
+            ViewBag.period = custSub.Periodicity;
+            ViewBag.finDate = custSub.FinishDate;
             return View("../Appointment/CreateAppointment");
         }
        

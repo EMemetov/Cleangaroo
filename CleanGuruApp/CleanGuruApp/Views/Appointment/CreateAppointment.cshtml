@@ -1,4 +1,4 @@
-﻿ @*CONSIDER: Could be using a Partial view for the for letting just the buttons here. The Partial view (List) could be used to create a new or editing*@
+﻿@*CONSIDER: Could be using a Partial view for the for letting just the buttons here. The Partial view (List) could be used to create a new or editing*@
 
 @model Appointment
 
@@ -33,15 +33,7 @@
 
 
     @*FINAL*@
-
     <div class="form-group">
-        <label asp-for="CtDateRequestService">Date & Time of Service</label>
-        <div>
-            <input class="form-control" type="datetime-local" id="example-date-input" asp-for="CtDateRequestService">
-        </div>
-    </div>
-
-    @*<div class="form-group">
         <label asp-for="CtDateRequestService">Date of Service</label>
         <div>
             <input class="form-control" type="date" id="example-date-input" asp-for="CtDateRequestService">
@@ -55,7 +47,7 @@
         </div>
 
 
-    </div>*@
+    </div>
 
     <div class="form-group">
         <label asp-for="CtHoursRequested">Amount of Hours</label>
@@ -79,15 +71,15 @@
             </div>*@
 
         <div>
-            <select asp-for="CtHoursRequested" name="AmountHours">
-                <option asp-for="CtHoursRequested" value="1">1</option>
-                <option asp-for="CtHoursRequested" value="2">2</option>
-                <option asp-for="CtHoursRequested" value="3">3</option>
-                <option asp-for="CtHoursRequested" value="4">4</option>
-                <option asp-for="CtHoursRequested" value="5">5</option>
-                <option asp-for="CtHoursRequested" value="6">6</option>
-                <option asp-for="CtHoursRequested" value="7">7</option>
-                <option asp-for="CtHoursRequested" value="8">8</option>
+            <select asp-for="CtHoursRequested">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
             </select>
         </div>
 
@@ -106,42 +98,39 @@
             <input class="form-control" />
         </div>*@
 
+
+
     <div class="form-group">
-        <input type="checkbox" name="subscription" value="0">Subscription<br>
+        <input asp-for="IsSubscriptionCheck" name="IsSubscriptionCheck" 
+            type="checkbox">Subscription<br>
     </div>
 
-
-    <div class="form-group">
-        <select name="Periodicy">
+    <div>
+        <select asp-for="CustSub.Periodicity">
             @*CAN NOT create a asp-for="" Different @model   ??????*@
             <option value="7">Weekly</option>
             <option value="14">Bi-Weekly</option>             @*CAN NOT create a asp-for="" Different @model   ??????*@
             <option value="30">Monthly</option>             @*CAN NOT create a asp-for="" Different @model   ??????*@
         </select>
-
-        
-            <label>End Date</label>
-
-            <input type="date" id="example-end_date-input">
-        
     </div>
-
-
-
-
-
-
-
+    <div class="form-group">
+        <label asp-for="CustSub.FinishDate">End Date of Subscription</label>
+        <div>
+            <input asp-for="CustSub.FinishDate" class="form-control" type="date" id="example-date-input">
+        </div>
+    </div>
 
     <div class="form-group">
         <label asp-for="CleanerRate">Rate for test - Delete later</label>
-
         <input asp-for="CleanerRate" class="form-control" />
     </div>
 
 
 
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Create Appointment</button>
+    <button asp-controller="Appointment" asp-action="Edit"
+            class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        Create Appointment
+    </button>
 
     @*<button class="btn btn-outline-success my-2 my-sm-0" type="submit" asp-controller="Appointment" asp-action="SaveAppontment">Create Appointment</button>*@
     <button class="btn btn-danger" asp-controller="Home" asp-action="Index">Cancel</button>

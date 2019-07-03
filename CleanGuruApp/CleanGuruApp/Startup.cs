@@ -29,6 +29,7 @@ namespace CleanGuruApp
             services.AddTransient<IAppointmentRepository, EFAppointmentRepository>();
             services.AddTransient<IServicePriceRepository, EFServicePriceRepository>();
             services.AddTransient<IUserLoginRepository, EFUserLoginRepository>();
+            services.AddTransient<ICustomerSubscriptionRepository, EFCustomerSubscriptionRepository>();
             //????????? NEED TO ADD "AddTransient" TO ALL OTHER TABLES ????????
 
             //MVC Configuration

@@ -37,21 +37,37 @@ namespace CleanGuruApp.Controllers
         //public IActionResult CreateAppointment(int idAppointment) => View(repository.Appointments.FirstOrDefault(c => c.IdAppointment == idAppointment));
 
         [HttpPost]
-        public IActionResult Edit(Appointment appointment)
+        public IActionResult Edit(Appointment appointment, CustomerSubscription custmSubs)
         {
             Console.WriteLine("IdAppointment: " + appointment.IdAppointment);
             Console.WriteLine("IdCustomer: " + appointment.IdCustomer);
             Console.WriteLine("IdCleaner: " + appointment.IdCleaner);
-            Console.WriteLine("IdCleaner: " + appointment.IdServicePrice);
+            Console.WriteLine("IdServicePrice: " + appointment.IdServicePrice);
             Console.WriteLine("CtHoursRequested: " + appointment.CtHoursRequested);
             Console.WriteLine("CtDateRequestService: " + appointment.CtDateRequestService);
             Console.WriteLine("CleanerRate: " + appointment.CleanerRate);
-            
+            Console.WriteLine("IsSubscription: " + appointment.IsSubscription);
+            Console.WriteLine("IsSubscriptionCheck: " + appointment.IsSubscriptionCheck);
+            Console.WriteLine("Period: " + appointment.CustSub.Periodicity);
+            Console.WriteLine("Fin Date: " + appointment.CustSub.FinishDate);
+            Console.WriteLine("IdAppointment: " + appointment.CustSub.IdAppointment);
+//            repository.SaveAppointment(appointment);
             if (ModelState.IsValid)
             {
-                repository.SaveAppointment(appointment);
+                try
+                {
+                    Console.WriteLine("Entrou");
+                    repository.SaveAppointment(appointment);
+                    Console.WriteLine("Saiu");
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                
                 TempData["message"] = "Appointment has been saved.";
-                return RedirectToAction("List");
+                //return RedirectToAction("List");
+                return View("../Home/Index");
             }
             else
             {
