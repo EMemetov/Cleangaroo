@@ -37,8 +37,8 @@ CREATE TABLE AppointmentPayment
      ctHoursContracted NUMERIC (2) , 
      paidToCleaner CHAR (1) DEFAULT 'N' , 
      paidByCustomer CHAR (1) DEFAULT 'N' , 
-     amountPaidToCleaner NUMERIC (10,2) , 
-     amountPaidByCustomer NUMERIC (10,2) , 
+     amountPaidToCleaner FLOAT, 
+     amountPaidByCustomer FLOAT, 
      idAppointment INTEGER NOT NULL 
     )
 
@@ -157,8 +157,8 @@ ALTER TABLE ScheduleCleaner ADD constraint schedulecleaner_pk PRIMARY KEY CLUSTE
 CREATE TABLE ServicePrice 
     ( idServicePrice INTEGER NOT NULL IDENTITY NOT FOR REPLICATION , 
       servicePriceDescr VARCHAR(20) NOT NULL,
-     ctAmountHour NUMERIC (8,2) NOT NULL , 
-     clAmountHour NUMERIC (8,2) NOT NULL , 
+     ctAmountHour FLOAT NOT NULL , 
+     clAmountHour FLOAT NOT NULL , 
      servicePriceStatus CHAR (1) NOT NULL DEFAULT 'A' 
     )
  
