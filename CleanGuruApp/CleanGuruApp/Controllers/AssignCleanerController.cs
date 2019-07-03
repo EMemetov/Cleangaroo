@@ -30,7 +30,7 @@ namespace CleanGuruApp.Controllers
         {
             System.Threading.Thread.Sleep(1000);
             int distance = 0;
-            string key = "AIzaSyCtPma5TK5CqeDYOzYaCnWbDtLwvrTQfYA";
+            string key = "key";
 
             string url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination + "&key=" + key;
             url = url.Replace(" ", "+");
