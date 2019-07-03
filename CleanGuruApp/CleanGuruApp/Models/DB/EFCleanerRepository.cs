@@ -14,24 +14,46 @@ namespace CleanGuruApp.Models.DB
             this.context = context;
         }
 
-        //public IQueryable<Cleaners> Cleaners => context.Cleaners.Include(c => c.Players);     //DELETE after adjust below
+        public IQueryable<Cleaner> Cleaners => context.Cleaner;
 
-        public IQueryable<Cleaners> Cleaners => throw new NotImplementedException();            //DELETE after adjust abouve
-
-        public void SaveCleaner(Cleaners cleaner)
+        public void SaveCleaner(Cleaner cleaner)
         {
-            //INSERT CODE
-
+            if (cleaner.IdCleaner == 0)
+            {
+                context.Cleaner.Add(cleaner);
+            }
+            else
+            {
+                Cleaner dbEntry = context.Cleaner.
+                    FirstOrDefault(c=>c.IdCleaner==cleaner.IdCleaner);
+                if(dbEntry != null)
+                {
+                    dbEntry.FCleanerName = cleaner.FCleanerName;
+                    dbEntry.MCleanerName = cleaner.MCleanerName;
+                    dbEntry.LCleanerName = cleaner.LCleanerName;
+                    dbEntry.ClAddress = cleaner.ClAddress;
+                    dbEntry.ClAddressUnit = cleaner.ClAddressUnit;
+                    dbEntry.ClPostalCode = cleaner.ClPostalCode;
+                    dbEntry.ClCity = cleaner.ClCity;
+                    dbEntry.ClProvince = cleaner.ClProvince;
+                    dbEntry.ClPhone1 = cleaner.ClPhone1;
+                    dbEntry.ClPhone2 = cleaner.ClPhone2;
+                    dbEntry.ClSinNumber = cleaner.ClSinNumber;
+                    dbEntry.UserName = cleaner.UserName;
+                }
+            }
             context.SaveChanges();
         }
 
-        public Cleaners DeleteCleaner(int idCleaner)
-        {
-            Cleaners cleaner = Cleaners.FirstOrDefault(c => c.IdCleaner == idCleaner);
-
-            //INSERT CODE
-
-            return cleaner;
-        }        
+        //public void DeleteCleaner(int idCleaner)
+        //{
+        //    Cleaner dbEntry = context.Cleaner.
+        //        FirstOrDefault(c => c.IdCleaner == idCleaner);
+        //    if(dbEntry != null)
+        //    {
+        //        context.Cleaner.Remove(dbEntry);
+        //        context.SaveChanges();
+        //    }
+        //}        
     }
 }

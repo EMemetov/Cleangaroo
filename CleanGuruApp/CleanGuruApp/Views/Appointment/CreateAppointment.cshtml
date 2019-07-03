@@ -1,0 +1,148 @@
+﻿ @*CONSIDER: Could be using a Partial view for the for letting just the buttons here. The Partial view (List) could be used to create a new or editing*@
+
+@model Appointment
+
+@{
+    ViewData["Title"] = "CreateAppointment";
+}
+
+<h2>Create Appointment</h2>
+
+<div asp-validation-summary="All" class="validation-summary-errors"></div>
+
+@*<form asp-controller="Appointment" asp-action="EditAppointment" method="post">
+    <form asp-controller="Appointment" asp-action="CreateAppontment" method="post">    funcionando+- !!!!!!!!!!!!!!*@
+<form asp-controller="Appointment" asp-action="Edit" method="post">
+
+    @*TEMPORARY TO CREATE AN APPOINTMENT*@
+    <div class="form-group">
+        <label asp-for="IdCustomer">Customer ID</label>
+
+        <input asp-for="IdCustomer" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="IdCleaner">Cleaner ID</label>
+
+        <input asp-for="IdCleaner" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="IdServicePrice">Service ID</label>
+
+        <input asp-for="IdServicePrice" class="form-control" />
+    </div>
+
+
+    @*FINAL*@
+
+    <div class="form-group">
+        <label asp-for="CtDateRequestService">Date & Time of Service</label>
+        <div>
+            <input class="form-control" type="datetime-local" id="example-date-input" asp-for="CtDateRequestService">
+        </div>
+    </div>
+
+    @*<div class="form-group">
+        <label asp-for="CtDateRequestService">Date of Service</label>
+        <div>
+            <input class="form-control" type="date" id="example-date-input" asp-for="CtDateRequestService">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StartTime">Start Time of Service</label>
+        <div>
+            <input asp-for="StartTime" class="form-control" type="time" id="example-time-input">
+        </div>
+
+
+    </div>*@
+
+    <div class="form-group">
+        <label asp-for="CtHoursRequested">Amount of Hours</label>
+        <br />
+        @*ORIGINAL MARIIA - it is not working!!!!!!!
+                <div class="btn-group">
+                <button asp-for="CtHoursRequested" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    1
+                </button>
+                <div class="dropdown-menu">
+
+                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">2</a>
+                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">3</a>
+                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">4</a>
+                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">5</a>
+                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">6</a>
+                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">7</a>
+                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">8</a>
+
+                </div>
+            </div>*@
+
+        <div>
+            <select asp-for="CtHoursRequested" name="AmountHours">
+                <option asp-for="CtHoursRequested" value="1">1</option>
+                <option asp-for="CtHoursRequested" value="2">2</option>
+                <option asp-for="CtHoursRequested" value="3">3</option>
+                <option asp-for="CtHoursRequested" value="4">4</option>
+                <option asp-for="CtHoursRequested" value="5">5</option>
+                <option asp-for="CtHoursRequested" value="6">6</option>
+                <option asp-for="CtHoursRequested" value="7">7</option>
+                <option asp-for="CtHoursRequested" value="8">8</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label>Address</label>
+
+        <input class="form-control" />
+    </div>
+
+    @*ORIGINAL MARIIA
+            <div class="form-group">
+            <label>Subscription</label>
+
+            <input class="form-control" />
+        </div>*@
+
+    <div class="form-group">
+        <input type="checkbox" name="subscription" value="0">Subscription<br>
+    </div>
+
+
+    <div class="form-group">
+        <select name="Periodicy">
+            @*CAN NOT create a asp-for="" Different @model   ??????*@
+            <option value="7">Weekly</option>
+            <option value="14">Bi-Weekly</option>             @*CAN NOT create a asp-for="" Different @model   ??????*@
+            <option value="30">Monthly</option>             @*CAN NOT create a asp-for="" Different @model   ??????*@
+        </select>
+
+        
+            <label>End Date</label>
+
+            <input type="date" id="example-end_date-input">
+        
+    </div>
+
+
+
+
+
+
+
+
+    <div class="form-group">
+        <label asp-for="CleanerRate">Rate for test - Delete later</label>
+
+        <input asp-for="CleanerRate" class="form-control" />
+    </div>
+
+
+
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Create Appointment</button>
+
+    @*<button class="btn btn-outline-success my-2 my-sm-0" type="submit" asp-controller="Appointment" asp-action="SaveAppontment">Create Appointment</button>*@
+    <button class="btn btn-danger" asp-controller="Home" asp-action="Index">Cancel</button>
+</form>

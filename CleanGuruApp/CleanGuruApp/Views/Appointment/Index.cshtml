@@ -1,0 +1,87 @@
+﻿@model IEnumerable<CleanGuruApp.Models.Appointment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>View</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdServicePrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCustomer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CtDateRequestService)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CtHoursRequested)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCleaner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClockIn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClockOut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CleanerRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSubscription)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdServicePrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCustomer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CtDateRequestService)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CtHoursRequested)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCleaner)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClockIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClockOut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CleanerRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSubscription)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdAppointment">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdAppointment">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdAppointment">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

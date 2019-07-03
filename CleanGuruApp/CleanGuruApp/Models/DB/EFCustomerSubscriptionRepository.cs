@@ -14,30 +14,36 @@ namespace CleanGuruApp.Models.DB
             this.context = context;
         }
 
-        //public IQueryable<Cleaners> Cleaners => context.Cleaners.Include(c => c.Players);     //DELETE after adjust below
-
-        public IQueryable<CustomerSubscription> CustomerSubscriptions => throw new NotImplementedException();            //DELETE after adjust abouve
+        public IQueryable<CustomerSubscription> CustomerSubscriptions => context.CustomerSubscription; 
 
         public void SaveCustomerSubscription(CustomerSubscription customerSubscription)
         {
-            //INSERT CODE
-
+            if(customerSubscription.IdSubscription == 0)
+            {
+                context.CustomerSubscription.Add(customerSubscription);
+            }
+            else
+            {
+                CustomerSubscription dbEntry = context.CustomerSubscription.
+                    FirstOrDefault(c => c.IdSubscription == customerSubscription.IdSubscription);
+                if(dbEntry != null)
+                {
+                    dbEntry.Periodicity = customerSubscription.Periodicity;
+                    dbEntry.FinishDate = customerSubscription.FinishDate;
+                    dbEntry.IdAppointment = customerSubscription.IdAppointment;
+                }
+            }
             context.SaveChanges();
         }
-        public CustomerSubscription DeleteCustomerSubscription(int idSubscription)
-        {
-            //CustomerSubscription customerSubscription = CustomerSubscription.FirstOrDefault(c => c.IdSubscription == idSubscription);
-
-            ////INSERT CODE
-
-            //return customerSubscription;
-
-
-            //Just to make it work
-            CustomerSubscription customerSubscription = new CustomerSubscription();
-            return customerSubscription;
-        }
-
-
+        //public void DeleteCustomerSubscription(int idSubscription)
+        //{
+        //    CustomerSubscription dbEntry = context.CustomerSubscription.
+        //        FirstOrDefault(c=>c.IdSubscription==idSubscription);
+        //    if(dbEntry != null)
+        //    {
+        //        context.CustomerSubscription.Remove(dbEntry);
+        //        context.SaveChanges();
+        //    }
+        //}
     }
 }
