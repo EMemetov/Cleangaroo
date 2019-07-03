@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <Content Remove="Views\Home\Cost.cshtml" />
+    <Content Remove="Views\Home\CreateService.cshtml" />
     <Content Remove="Views\Home\DefineCost.cshtml" />
   </ItemGroup>
 
