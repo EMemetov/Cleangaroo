@@ -5,6 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Home\DefineCost.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Home\Cost.cshtml" />
+    <Content Remove="Views\Home\CreateService.cshtml" />
+    <Content Remove="Views\Home\DefineCost.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Views\Customer\" />
     <Folder Include="wwwroot\css\" />
   </ItemGroup>
@@ -13,10 +23,16 @@
     <PackageReference Include="bootstrap" Version="4.3.1" />
     <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    
+
     <!--Connection with DB - pg 209-->
-    <!--<PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />-->     <!--ORIGINAL - Delete after connecting with our DB-->
-    <PackageReference Include="Microsoft.VisualStudio.Web.codeGeneration.Design" Version="2.1.9" PrivateAssets="All" />   <!--NEW -->
+    <!--<PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />-->
+    <!--ORIGINAL - Delete after connecting with our DB-->
+
+    <PackageReference Include="Microsoft.VisualStudio.Web.codeGeneration.Design" Version="2.1.9" PrivateAssets="All" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <!--NEW -->
+    <PackageReference Include="Microsoft.VisualStudio.Web.codeGeneration.Design" Version="2.1.9" PrivateAssets="All" />
+    <!--NEW -->
   </ItemGroup>
 
 </Project>
