@@ -17,9 +17,11 @@ namespace CleanGuruApp.Models
         //Commercial Cleaning
         //Move-In / Move-Out
         //Carpet Cleaning
-        [Required(ErrorMessage = "Please define the service description.")]
-      public double ServicePriceDescr { get; set; }
 
+        [Required(ErrorMessage = "Please define the service description.")]
+        [Display(Name = "Service")]
+        public string ServicePriceDescr { get; set; }
+ 
         [Required(ErrorMessage = "Please define the customer's service cost/hr.")]
         public double CtAmountHour { get; set; }
 
@@ -28,5 +30,7 @@ namespace CleanGuruApp.Models
 
         [Required(ErrorMessage = "Please identify if this is a new price to be updated.")]
         public char ServicePriceStatus { get; set; }
+
+        public IEnumerable<Appointment> Appointments { get; set; }
     }
 }
