@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,14 +8,32 @@ namespace CleanGuruApp.Models.DB
 {
     public class EFCleanerRepository : ICleanerRepository
     {
-        private ApplicationDBContext context;
+
+        private readonly ApplicationDBContext context;
 
         public EFCleanerRepository(ApplicationDBContext context)
         {
             this.context = context;
         }
 
-        public IQueryable<Cleaner> Cleaners => context.Cleaner;
+        public IEnumerable<Cleaner> Cleaners
+        {
+            get
+            {
+                var cleaners = context.Cleaner.Include(c => c.Appointments).ToList();
+
+                return cleaners;
+            }
+        }
+
+        public Cleaner GetCleaner(int? idCleaner)
+        {
+            if (idCleaner == null) return null;
+
+            var cleaner = context.Cleaner.Include(c => c.Appointments).FirstOrDefault(c => c.IdCleaner == idCleaner);
+
+            return cleaner;
+        }
 
         public void SaveCleaner(Cleaner cleaner)
         {

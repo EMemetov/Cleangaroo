@@ -9,30 +9,28 @@
 <h2>Create Appointment</h2>
 
 <div asp-validation-summary="All" class="validation-summary-errors"></div>
-
-@*<form asp-controller="Appointment" asp-action="EditAppointment" method="post">
-    <form asp-controller="Appointment" asp-action="CreateAppontment" method="post">    funcionando+- !!!!!!!!!!!!!!*@
 <form asp-controller="Appointment" asp-action="Edit" method="post">
 
-    @*TEMPORARY TO CREATE AN APPOINTMENT*@
     <div class="form-group">
-        <label asp-for="IdCustomer">Customer ID</label>
-
-        <input asp-for="IdCustomer" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="IdCleaner">Cleaner ID</label>
-
-        <input asp-for="IdCleaner" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="IdServicePrice">Service ID</label>
-
-        <input asp-for="IdServicePrice" class="form-control" />
+        <label asp-for="Customer" class="control-label"></label>
+        @Html.DropDownList("IdCustomer", ViewBag.CustList as List<SelectListItem>, new { @class = "form-control" })
     </div>
 
+    <div class="form-group">
+        <label>Address</label>
+        <input class="form-control" />
+    </div>
 
-    @*FINAL*@
+    <div class="form-group">
+        <label asp-for="Cleaner" class="control-label"></label>
+        @Html.DropDownList("IdCleaner", ViewBag.CLeanList as List<SelectListItem>, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ServicePrice">Service</label>
+        @Html.DropDownList("IdServicePrice", ViewBag.ServiceList as List<SelectListItem>, new { @class = "form-control" })
+    </div>
+
     <div class="form-group">
         <label asp-for="CtDateRequestService">Date of Service</label>
         <div>
@@ -45,31 +43,11 @@
         <div>
             <input asp-for="StartTime" class="form-control" type="time" id="example-time-input">
         </div>
-
-
     </div>
 
     <div class="form-group">
         <label asp-for="CtHoursRequested">Amount of Hours</label>
         <br />
-        @*ORIGINAL MARIIA - it is not working!!!!!!!
-                <div class="btn-group">
-                <button asp-for="CtHoursRequested" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    1
-                </button>
-                <div class="dropdown-menu">
-
-                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">2</a>
-                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">3</a>
-                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">4</a>
-                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">5</a>
-                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">6</a>
-                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">7</a>
-                    <a asp-for="CtHoursRequested" class="dropdown-item" href="#">8</a>
-
-                </div>
-            </div>*@
-
         <div>
             <select asp-for="CtHoursRequested">
                 <option value="1">1</option>
@@ -82,27 +60,11 @@
                 <option value="8">8</option>
             </select>
         </div>
-
     </div>
 
     <div class="form-group">
-        <label>Address</label>
-
-        <input class="form-control" />
-    </div>
-
-    @*ORIGINAL MARIIA
-            <div class="form-group">
-            <label>Subscription</label>
-
-            <input class="form-control" />
-        </div>*@
-
-
-
-    <div class="form-group">
-        <input asp-for="IsSubscriptionCheck" name="IsSubscriptionCheck" 
-            type="checkbox">Subscription<br>
+        <input asp-for="IsSubscriptionCheck" name="IsSubscriptionCheck"
+               type="checkbox">Subscription<br>
     </div>
 
     <div>
@@ -125,13 +87,9 @@
         <input asp-for="CleanerRate" class="form-control" />
     </div>
 
-
-
-    <button asp-controller="Appointment" asp-action="Edit"
+    <button asp-controller="Appointment" asp-action="CreateAppointment"
             class="btn btn-outline-success my-2 my-sm-0" type="submit">
         Create Appointment
     </button>
-
-    @*<button class="btn btn-outline-success my-2 my-sm-0" type="submit" asp-controller="Appointment" asp-action="SaveAppontment">Create Appointment</button>*@
     <button class="btn btn-danger" asp-controller="Home" asp-action="Index">Cancel</button>
 </form>
