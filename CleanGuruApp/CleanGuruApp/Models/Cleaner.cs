@@ -32,5 +32,7 @@ namespace CleanGuruApp.Models
         public string ClSinNumber{ get; set; } 
         [Required(ErrorMessage = "Can not be empty. Please enter your user name.")]
         public string UserName{ get; set; }
+
+        public IEnumerable<Appointment> Appointments { get; set; }
     }
 }
