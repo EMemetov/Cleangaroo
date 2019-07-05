@@ -27,6 +27,8 @@ namespace CleanGuruApp
             services.AddDbContext<ApplicationDBContext>(options => 
                 options.UseSqlServer(Configuration["Data:CleanGuruDB:ConnectionString"]));
             services.AddTransient<IAppointmentRepository, EFAppointmentRepository>();
+            services.AddTransient<ICustomerRepository, EFCustomerRepository>();
+            services.AddTransient<ICleanerRepository, EFCleanerRepository>();
             services.AddTransient<IServicePriceRepository, EFServicePriceRepository>();
             services.AddTransient<IUserLoginRepository, EFUserLoginRepository>();
             services.AddTransient<ICustomerSubscriptionRepository, EFCustomerSubscriptionRepository>();
