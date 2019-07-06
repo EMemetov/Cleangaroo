@@ -16,15 +16,7 @@ namespace CleanGuruApp.Models.DB
             this.context = ctx;
         }
 
-        public IEnumerable<Appointment> Appointments
-        {
-            get
-            {
-                var appointments = context.Appointment.Include(c => c.Customer).ToList();
-
-                return appointments;
-            }
-        }
+        public IEnumerable<Appointment> Appointments => context.Appointment.Include(p => p.Customer).ToList();
 
         public void Add(Appointment appointment)
         {
@@ -62,7 +54,7 @@ namespace CleanGuruApp.Models.DB
                 dbEntry.StartTime = appointment.StartTime;
                 dbEntry.IsSubscription = appointment.IsSubscription;
 
-                if (dbEntry.IsSubscription == '1')  //No subscription requested
+                if (dbEntry.IsSubscription == true)  //No subscription requested
                 {
 
                     dbEntry.CustSub.Periodicity = appointment.CustSub.Periodicity;

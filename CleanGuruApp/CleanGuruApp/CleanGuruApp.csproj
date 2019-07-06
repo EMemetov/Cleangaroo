@@ -35,4 +35,13 @@
     <!--NEW -->
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Appointment\Details.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Appointment\FutureAppointment.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>

@@ -29,6 +29,25 @@ namespace CleanGuruApp.Controllers
             this.servicePriceRepository = servicePriceRepository;
         }
 
+        public IActionResult FutureAppointment()
+        {
+            var appointment = appointmentRepository.Appointments;
+
+            return View(appointment);
+        }
+        public IActionResult Details(int id)
+        {
+            var appointment = appointmentRepository.GetAppointment(id);
+
+            return View(appointment);
+        }
+        public IActionResult List()
+        {
+            var appointment = appointmentRepository.Appointments;
+
+            return View(appointment);
+        }
+
         private List<SelectListItem> getCustomersList()
         {
             List<SelectListItem> selectList = new List<SelectListItem>();

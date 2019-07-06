@@ -16,6 +16,8 @@ namespace CleanGuruApp.Models.DB
             context = ctx;
         }
 
+
+
         public IEnumerable<Customer> Customers
         {
             get

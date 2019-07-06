@@ -28,7 +28,7 @@ namespace CleanGuruApp.Models
         public DateTime? ClockOut{ get; set ;}
         public string CleanerRate{ get; set ;}
         public DateTime? StartTime { get; set; }           //Should not allow NULL - Adjust later
-        public byte IsSubscription { get; set; }
+        public bool IsSubscription { get; set; }
         [NotMapped]
         public string IsSubscriptionCheck;
         [NotMapped]
@@ -42,10 +42,10 @@ namespace CleanGuruApp.Models
             {
                 if (value == "false")
                 {
-                    IsSubscription = 0;
+                    IsSubscription = false;
                 }
                 else
-                    IsSubscription = 1;
+                    IsSubscription = true;
             }
         }
         public CustomerSubscription CustSub { get; set; }

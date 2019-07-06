@@ -204,7 +204,7 @@ namespace CleanGuruApp.Models.DB
                         IdCleaner = 1,
                         StartTime = Convert.ToDateTime("09:00AM"),
                         //IsSubscription = Convert.ToBoolean(0)
-                        IsSubscription = 0
+                        IsSubscription = false
 
                     },
                     new Appointment
@@ -216,7 +216,7 @@ namespace CleanGuruApp.Models.DB
                         IdCleaner = 2,
                         StartTime = Convert.ToDateTime("10:00AM"),
                         //IsSubscription = Convert.ToBoolean(1)
-                        IsSubscription = 1
+                        IsSubscription = true
                     }
                     );
                 context.SaveChanges();
