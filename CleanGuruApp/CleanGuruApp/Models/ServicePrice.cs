@@ -9,6 +9,7 @@ namespace CleanGuruApp.Models
     public class ServicePrice
     {
         [Key]
+        [Display(Name = "Service ID")]
         public int IdServicePrice { get; set; }
 
         //Home Cleaning
@@ -23,12 +24,15 @@ namespace CleanGuruApp.Models
         public string ServicePriceDescr { get; set; }
  
         [Required(ErrorMessage = "Please define the customer's service cost/hr.")]
+        [Display(Name = "Price(Customer)")]
         public double CtAmountHour { get; set; }
 
         [Required(ErrorMessage = "Please define the cleaner's service cost/hr.")]
+        [Display(Name = "Cost(Cleaner)")]
         public double ClAmountHour { get; set; }
 
         [Required(ErrorMessage = "Please identify if this is a new price to be updated.")]
+        [Display(Name = "Status")]
         public char ServicePriceStatus { get; set; }
 
         public IEnumerable<Appointment> Appointments { get; set; }

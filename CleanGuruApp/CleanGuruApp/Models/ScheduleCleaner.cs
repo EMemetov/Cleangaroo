@@ -9,17 +9,23 @@ namespace CleanGuruApp.Models
     public class ScheduleCleaner
     {
         [Key]
+     
         public int IdScheduleCleaner { get; set; }
+
         [Required(ErrorMessage = "")]
+        [Display(Name = "Days")]
         public string DayWeek { get; set; }
         [Required(ErrorMessage = "The initial time should be not blank")]
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
+        [Display(Name = "Begin")]
         public DateTime InitialTime { get; set; }
         [Required(ErrorMessage = "The finish time should be not blank")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
+        [Display(Name = "Finish")]
         public DateTime FinishTime { get; set; }
         [Required(ErrorMessage = "The cleaner ID should be not blank")]
+        [Display(Name = "Cleaner ID")]
         public int IdCleaner { get; set; }
     }
 }
