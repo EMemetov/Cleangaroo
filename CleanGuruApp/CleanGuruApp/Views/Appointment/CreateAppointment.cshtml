@@ -5,7 +5,7 @@
 @{
     ViewData["Title"] = "CreateAppointment";
 }
-
+<script src="~/javascript/Service.js"></script>
 <h2>Create Appointment</h2>
 
 <div asp-validation-summary="All" class="validation-summary-errors"></div>
@@ -68,7 +68,7 @@
     </div>
 
     <div>
-        <select asp-for="CustSub.Periodicity">
+        <select asp-for="CustSub.Periodicity"  id="Period">
             @*CAN NOT create a asp-for="" Different @model   ??????*@
             <option value="7">Weekly</option>
             <option value="14">Bi-Weekly</option>             @*CAN NOT create a asp-for="" Different @model   ??????*@
@@ -76,15 +76,15 @@
         </select>
     </div>
     <div class="form-group">
-        <label asp-for="CustSub.FinishDate">End Date of Subscription</label>
+        <label asp-for="CustSub.FinishDate" id="FinDateLab">End Date of Subscription</label>
         <div>
-            <input asp-for="CustSub.FinishDate" class="form-control" type="date" id="example-date-input">
+            <input asp-for="CustSub.FinishDate" class="form-control" type="date" id="FinDateInp">
         </div>
     </div>
 
     <div class="form-group">
-        <label asp-for="CleanerRate">Rate for test - Delete later</label>
-        <input asp-for="CleanerRate" class="form-control" />
+        <label asp-for="CleanerRate" id="RateLab">Rate for test - Delete later</label>
+        <input asp-for="CleanerRate" id="RateInp" class="form-control" />
     </div>
 
     <button asp-controller="Appointment" asp-action="CreateAppointment"
