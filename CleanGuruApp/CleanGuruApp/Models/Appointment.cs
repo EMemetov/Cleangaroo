@@ -21,14 +21,14 @@ namespace CleanGuruApp.Models
         [Required(ErrorMessage = "Enter a valid date")]
         public DateTime CtDateRequestService{ get; set ;}
         [Required(ErrorMessage = "The requested hours should be between 1-8")]
-        [Range(0,8)]
-        public int CtHoursRequested{ get; set ;}
+        [Range(0, 8)]
+        public int? CtHoursRequested{ get; set ;}
         public int IdCleaner{ get; set ;}
         public DateTime? ClockIn{ get; set ;}
         public DateTime? ClockOut{ get; set ;}
         public string CleanerRate{ get; set ;}
         public DateTime? StartTime { get; set; }           //Should not allow NULL - Adjust later
-        public byte IsSubscription { get; set; }
+        public bool IsSubscription { get; set; }
         [NotMapped]
         public string IsSubscriptionCheck;
         [NotMapped]
@@ -42,13 +42,20 @@ namespace CleanGuruApp.Models
             {
                 if (value == "false")
                 {
-                    IsSubscription = 0;
+                    IsSubscription = false;
                 }
                 else
-                    IsSubscription = 1;
+                    IsSubscription = true;
             }
         }
-        public CustomerSubscription CustSub { get; set; } 
-        
+        public CustomerSubscription CustSub { get; set; }
+
+        //[Required]
+        public Customer Customer { get; set; }
+
+        public Cleaner Cleaner { get; set; }
+
+        public ServicePrice ServicePrice { get; set; }
+
     }
 }

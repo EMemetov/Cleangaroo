@@ -7,9 +7,13 @@ namespace CleanGuruApp.Models.DB
 {
     public interface IAppointmentRepository
     {
-        IQueryable<Appointment> Appointments { get; }
-        void SaveAppointment(Appointment appointment);
+        //IQueryable<Appointment> Appointments { get; }
+        ////void DeleteAppointment(int idAppointment);
 
-        //void DeleteAppointment(int idAppointment);
+        IEnumerable<Appointment> Appointments { get; }
+        void Add(Appointment appointment);
+        void Save(Appointment appointment);
+        Appointment GetAppointment(int? idAppointment);
+
     }
 }

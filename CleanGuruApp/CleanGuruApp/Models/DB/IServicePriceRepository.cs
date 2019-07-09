@@ -7,9 +7,13 @@ namespace CleanGuruApp.Models.DB
 {
     public interface IServicePriceRepository
     {
-        IQueryable<ServicePrice> ServicePrices { get; }
-        void SaveServicePrice(ServicePrice servicePrice);
+        // IQueryable<ServicePrice> ServicePrices { get; }
+        // void DeleteServicePrice(int idServicePrice);
 
-        //void DeleteServicePrice(int idServicePrice);
+        IEnumerable<ServicePrice> ServicePrices { get; }
+        void SaveServicePrice(ServicePrice servicePrice);
+        ServicePrice GetServicePrice(int? idServicePrice);
+
+
     }
 }

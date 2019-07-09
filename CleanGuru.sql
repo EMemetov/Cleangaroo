@@ -10,7 +10,7 @@ CREATE TABLE Appointment
      idServicePrice INTEGER NOT NULL , 
      idCustomer INTEGER NOT NULL , 
      ctDateRequestService DATETIME , 
-     ctHoursRequested NUMERIC (3) , 
+     ctHoursRequested INTEGER, 
      clockIn DATETIME , 
      idCleaner INTEGER NOT NULL , 
      clockOut DATETIME , 

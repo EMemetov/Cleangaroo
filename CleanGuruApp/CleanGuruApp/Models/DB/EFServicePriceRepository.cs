@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,7 +14,27 @@ namespace CleanGuruApp.Models.DB
             this.context = context;
         }
 
-        public IQueryable<ServicePrice> ServicePrices => context.ServicePrice;
+        // public IQueryable<ServicePrice> ServicePrices => context.ServicePrice;
+
+        public IEnumerable<ServicePrice> ServicePrices
+        {
+            get
+            {
+                var servicePrices = context.ServicePrice.Include(c => c.Appointments).ToList();
+
+                return servicePrices;
+            }
+        }
+
+        public ServicePrice GetServicePrice(int? idServicePrice)
+        {
+            if (idServicePrice == null) return null;
+
+            var servicePrice = context.ServicePrice.Include(c => c.Appointments).FirstOrDefault(c => c.IdServicePrice == idServicePrice);
+
+            return servicePrice;
+        }
+
 
         public void SaveServicePrice(ServicePrice servicePrice)
         {

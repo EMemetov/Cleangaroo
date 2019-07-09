@@ -1,24 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models.DB
 {
+
     public class EFAppointmentRepository : IAppointmentRepository
     {
         private ApplicationDBContext context;
 
-        public EFAppointmentRepository(ApplicationDBContext context)
+        public EFAppointmentRepository(ApplicationDBContext ctx)
         {
-            this.context = context;
+            this.context = ctx;
         }
 
-        public IQueryable<Appointment> Appointments => context.Appointment;
+        public IEnumerable<Appointment> Appointments => context.Appointment.Include(p => p.Customer).ToList();
 
-        public void SaveAppointment(Appointment appointment)
+        public void Add(Appointment appointment)
         {
+            context.Appointment.Add(appointment);
+            context.SaveChanges();
+        }
 
+        public Appointment GetAppointment(int? appointmentId)
+        {
+            if (appointmentId == null) return null;
+
+            var appointment = context.Appointment.Include(p => p.Customer).Where(p => p.IdAppointment == appointmentId).FirstOrDefault();
+
+            return appointment;
+        }
+
+        public void Save(Appointment appointment)
+        {
             Appointment dbEntry = context.Appointment.FirstOrDefault(u => u.IdAppointment == appointment.IdAppointment);
             //ORIGINAL - working
             if (dbEntry == null)
@@ -38,7 +54,7 @@ namespace CleanGuruApp.Models.DB
                 dbEntry.StartTime = appointment.StartTime;
                 dbEntry.IsSubscription = appointment.IsSubscription;
 
-                if (dbEntry.IsSubscription == '1')  //No subscription requested
+                if (dbEntry.IsSubscription == true)  //No subscription requested
                 {
 
                     dbEntry.CustSub.Periodicity = appointment.CustSub.Periodicity;
@@ -50,18 +66,65 @@ namespace CleanGuruApp.Models.DB
             }
             context.SaveChanges();
         }
-
-
-        //        public void DeleteAppointment(int idAppointment)
-        //        {
-        //            //Appointment dbEntry = context.Appointment.
-        //            //    FirstOrDefault(a => a.IdAppointment == idAppointment);
-        //            //if (dbEntry != null)
-        //            //{
-        //            //    context.Appointment.Remove(dbEntry);
-        //            //    context.SaveChanges();
-        //            //}
-        //>>>>>>> 83d7e62a8ef542be267b8eceb0eae245c31e8706
-        //        }
     }
+
+    //public class EFAppointmentRepository : IAppointmentRepository
+    //{
+    //    private ApplicationDBContext context;
+
+    //    public EFAppointmentRepository(ApplicationDBContext context)
+    //    {
+    //        this.context = context;
+    //    }
+
+    //    public IQueryable<Appointment> Appointments => context.Appointment;
+
+    //    public void SaveAppointment(Appointment appointment)
+    //    {
+
+    //        Appointment dbEntry = context.Appointment.FirstOrDefault(u => u.IdAppointment == appointment.IdAppointment);
+    //        //ORIGINAL - working
+    //        if (dbEntry == null)
+    //        {
+    //            context.Appointment.Add(appointment);
+    //        }
+    //        else
+    //        {
+    //            dbEntry.IdServicePrice = appointment.IdServicePrice;
+    //            dbEntry.IdCustomer = appointment.IdCustomer;
+    //            dbEntry.CtDateRequestService = appointment.CtDateRequestService;
+    //            dbEntry.CtHoursRequested = appointment.CtHoursRequested;
+    //            dbEntry.ClockIn = appointment.ClockIn;
+    //            dbEntry.IdCleaner = appointment.IdCleaner;
+    //            dbEntry.ClockOut = appointment.ClockOut;
+    //            dbEntry.CleanerRate = appointment.CleanerRate;
+    //            dbEntry.StartTime = appointment.StartTime;
+    //            dbEntry.IsSubscription = appointment.IsSubscription;
+
+    //            if (dbEntry.IsSubscription == '1')  //No subscription requested
+    //            {
+
+    //                dbEntry.CustSub.Periodicity = appointment.CustSub.Periodicity;
+    //                dbEntry.CustSub.FinishDate = appointment.CustSub.FinishDate;
+    //                //dbEntry.CustSub.IdAppointment = appointment.IdAppointment;
+    //                //context.Appointment.Add(appointment);
+    //            }
+
+    //        }
+    //        context.SaveChanges();
+    //    }
+
+
+    //    //        public void DeleteAppointment(int idAppointment)
+    //    //        {
+    //    //            //Appointment dbEntry = context.Appointment.
+    //    //            //    FirstOrDefault(a => a.IdAppointment == idAppointment);
+    //    //            //if (dbEntry != null)
+    //    //            //{
+    //    //            //    context.Appointment.Remove(dbEntry);
+    //    //            //    context.SaveChanges();
+    //    //            //}
+    //    //>>>>>>> 83d7e62a8ef542be267b8eceb0eae245c31e8706
+    //    //        }
+    //}
 }

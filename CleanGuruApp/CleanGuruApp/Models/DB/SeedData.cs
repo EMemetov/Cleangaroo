@@ -32,8 +32,8 @@ namespace CleanGuruApp.Models.DB
             if (!context.ServicePrice.Any())
             {
                 context.ServicePrice.AddRange(
-                    new ServicePrice { CtAmountHour = 10.10, ClAmountHour = 20.20, ServicePriceStatus = 'A' },
-                    new ServicePrice { CtAmountHour = 30.30, ClAmountHour = 50.50, ServicePriceStatus = 'I' }
+                    new ServicePrice { ServicePriceDescr = "Home Cleaning", CtAmountHour = 10.10, ClAmountHour = 20.20, ServicePriceStatus = 'A' },
+                    new ServicePrice { ServicePriceDescr = "Commercial Cleaning", CtAmountHour = 30.30, ClAmountHour = 50.50, ServicePriceStatus = 'I' }
                     );
                 context.SaveChanges();
             }
@@ -204,7 +204,7 @@ namespace CleanGuruApp.Models.DB
                         IdCleaner = 1,
                         StartTime = Convert.ToDateTime("09:00AM"),
                         //IsSubscription = Convert.ToBoolean(0)
-                        IsSubscription = 0
+                        IsSubscription = false
 
                     },
                     new Appointment
@@ -216,7 +216,7 @@ namespace CleanGuruApp.Models.DB
                         IdCleaner = 2,
                         StartTime = Convert.ToDateTime("10:00AM"),
                         //IsSubscription = Convert.ToBoolean(1)
-                        IsSubscription = 1
+                        IsSubscription = true
                     }
                     );
                 context.SaveChanges();

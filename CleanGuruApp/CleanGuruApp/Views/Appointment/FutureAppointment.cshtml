@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Appointment>
+
+
+@{
+    ViewData["Title"] = "FutureAppointment";
+}
+
+<h2>Future Services</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CtDateRequestService)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cleaner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CtHoursRequested)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.IdServicePrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CtDateRequestService)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cleaner.FCleanerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CtHoursRequested)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdServicePrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.FCustomerName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdAppointment">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdAppointment">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdAppointment">Cancel</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
