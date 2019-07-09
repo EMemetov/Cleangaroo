@@ -66,6 +66,17 @@ namespace CleanGuruApp.Models.DB
             }
             context.SaveChanges();
         }
+        public void DeleteAppointment(int idAppointment)
+        {
+            Appointment dbEntry = context.Appointment.
+                FirstOrDefault(a => a.IdAppointment == idAppointment);
+            if (dbEntry != null)
+            {
+                context.Appointment.Remove(dbEntry);
+                context.SaveChanges();
+            }
+        }
+
     }
 
     //public class EFAppointmentRepository : IAppointmentRepository
@@ -124,7 +135,6 @@ namespace CleanGuruApp.Models.DB
     //    //            //    context.Appointment.Remove(dbEntry);
     //    //            //    context.SaveChanges();
     //    //            //}
-    //    //>>>>>>> 83d7e62a8ef542be267b8eceb0eae245c31e8706
     //    //        }
     //}
 }

@@ -13,19 +13,19 @@ namespace CleanGuruApp.Controllers
 {
     public class AppointmentController : Controller
     {
-        private readonly IAppointmentRepository  appointmentRepository;
-        private readonly ICustomerRepository     customerRepository;
-        private readonly  ICleanerRepository      cleanerRepository;
-        private readonly  IServicePriceRepository servicePriceRepository;
+        private readonly IAppointmentRepository appointmentRepository;
+        private readonly ICustomerRepository customerRepository;
+        private readonly ICleanerRepository cleanerRepository;
+        private readonly IServicePriceRepository servicePriceRepository;
 
-        public AppointmentController(IAppointmentRepository  appointmentRepository, 
-                                     ICustomerRepository     customerRepository, 
-                                     ICleanerRepository      cleanerRepository,
+        public AppointmentController(IAppointmentRepository appointmentRepository,
+                                     ICustomerRepository customerRepository,
+                                     ICleanerRepository cleanerRepository,
                                      IServicePriceRepository servicePriceRepository)
         {
-            this.appointmentRepository  = appointmentRepository;
-            this.customerRepository     = customerRepository;
-            this.cleanerRepository      = cleanerRepository;
+            this.appointmentRepository = appointmentRepository;
+            this.customerRepository = customerRepository;
+            this.cleanerRepository = cleanerRepository;
             this.servicePriceRepository = servicePriceRepository;
         }
 
@@ -56,7 +56,7 @@ namespace CleanGuruApp.Controllers
 
             foreach (var customer in customerRepository.Customers)
             {
-                item = new SelectListItem(customer.FCustomerName+" "+customer.MCustomerName+" "+customer.LCustomerName, customer.IdCustomer.ToString());
+                item = new SelectListItem(customer.FCustomerName + " " + customer.MCustomerName + " " + customer.LCustomerName, customer.IdCustomer.ToString());
                 selectList.Add(item);
             }
 
@@ -71,7 +71,7 @@ namespace CleanGuruApp.Controllers
 
             foreach (var cleaner in cleanerRepository.Cleaners)
             {
-                item = new SelectListItem(cleaner.FCleanerName+" "+ cleaner.MCleanerName + " " + cleaner.LCleanerName, cleaner.IdCleaner.ToString());
+                item = new SelectListItem(cleaner.FCleanerName + " " + cleaner.MCleanerName + " " + cleaner.LCleanerName, cleaner.IdCleaner.ToString());
                 selectList.Add(item);
             }
 
@@ -97,10 +97,10 @@ namespace CleanGuruApp.Controllers
         public ViewResult CreateAppointment()
         {
             CustomerSubscription custSub = new CustomerSubscription();
-            ViewBag.period      = custSub.Periodicity;
-            ViewBag.finDate     = custSub.FinishDate;
-            ViewBag.CustList    = getCustomersList();
-            ViewBag.CLeanList   = getCleanersList();
+            ViewBag.period = custSub.Periodicity;
+            ViewBag.finDate = custSub.FinishDate;
+            ViewBag.CustList = getCustomersList();
+            ViewBag.CLeanList = getCleanersList();
             ViewBag.ServiceList = getServiceList();
             return View("../Appointment/CreateAppointment");
         }
@@ -133,7 +133,7 @@ namespace CleanGuruApp.Controllers
             }
         }
     }
-
+}
 
 
     //    public class AppointmentController : Controller

@@ -61,13 +61,10 @@ namespace CleanGuruApp.Controllers
             return View();
         }
 
-
         public ViewResult CreateService()
         {
             return View();
         }
-
-
 
         //OTHERS
         public ViewResult CreateUser()

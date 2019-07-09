@@ -57,8 +57,12 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdAppointment">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdAppointment">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdAppointment">Cancel</a>
+        <a asp-action="Details" asp-route-id="@item.IdAppointment">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.IdAppointment">Cancel</a>
+
+                @*<a asp-controller="Appointment" asp-action="Edit" >Edit</a> |
+                <a asp-controller="Appointment" asp-action="Details">Details</a> |
+                <a asp-controller="Appointment" asp-action="Delete">Cancel</a>*@
             </td>
         </tr>
 }
