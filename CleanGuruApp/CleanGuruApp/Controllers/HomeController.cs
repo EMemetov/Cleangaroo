@@ -15,6 +15,8 @@ namespace CleanGuruApp.Controllers
         {
             return View();
         }
+
+        //MENU OPTIONS
         public IActionResult Service()
         {
             return View();
@@ -41,6 +43,9 @@ namespace CleanGuruApp.Controllers
         {
             return View();
         }
+
+
+        //SERVICES
         public ViewResult CreateAppointment()
         {
             CustomerSubscription custSub = new CustomerSubscription();
@@ -48,19 +53,23 @@ namespace CleanGuruApp.Controllers
             ViewBag.finDate = custSub.FinishDate;
             return View("../Appointment/CreateAppointment");
         }
-       
-        public ViewResult CreateUser()
-        {
-            return View();
-        }
+
         public ViewResult CreateService()
         {
             return View();
         }
-        public ViewResult Manager()
+
+
+
+        //OTHERS
+        public ViewResult CreateUser()
         {
             return View();
         }
 
+        public ViewResult Manager()
+        {
+            return View();
+        }
     }
 }
