@@ -59,12 +59,12 @@
                 @Html.DisplayFor(modelItem => item.IdServicePrice)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.FCustomerName)
+                @Html.DisplayFor(modelItem => item.IdCustomer)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdAppointment">Edit</a> |
+                <a asp-action="Edit" asp-controller="Appointment" asp-route-id="@item.IdAppointment">Edit</a> |
                 <a asp-action="Details" asp-controller="Appointment" asp-route-id="@item.IdAppointment">Details</a> |
-                <a asp-action="Delete" asp-controller="Appointment" asp-route-id="@item.IdAppointment">Cancel</a>
+                <a asp-action="Delete" asp-controller="Appointment" asp-route-id="@item.IdAppointment">Delete</a>
 
                 @*<a asp-controller="Appointment" asp-action="Edit" >Edit</a> |
             <a asp-controller="Appointment" asp-action="Details">Details</a> |

@@ -15,6 +15,7 @@ namespace CleanGuruApp.Models.DB
         void Save(Appointment appointment);
         void Remove(Appointment appointment);
         void Remove(int idAppointment);
+        void Update(Appointment appointment);
         Appointment GetAppointment(int? idAppointment);
 
     }

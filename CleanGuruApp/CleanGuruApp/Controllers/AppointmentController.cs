@@ -54,7 +54,7 @@ namespace CleanGuruApp.Controllers
         public IActionResult DeleteConfirmed(int id)
         {
             appointmentRepository.Remove(id);
-            TempData["message"] = "Appointment deleted.";
+            TempData["message"] = "[ID "+id+"] Appointment deleted.";
             return RedirectToAction(nameof(FutureAppointment));
         }
 
@@ -152,6 +152,53 @@ namespace CleanGuruApp.Controllers
                 return View("../Home/Index");
             }
         }
+
+        public IActionResult Edit(int id)
+        {
+            var appointment = appointmentRepository.GetAppointment(id);
+
+            ViewBag.CustList = getCustomersList();
+            ViewBag.CLeanList = getCleanersList();
+            ViewBag.ServiceList = getServiceList();
+            return View(appointment);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Appointment appointment)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    appointmentRepository.Update(appointment);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!AppointmentExists(appointment.IdAppointment))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(FutureAppointment));
+            }
+
+            ViewBag.CustList = getCustomersList();
+            ViewBag.CLeanList = getCleanersList();
+            ViewBag.ServiceList = getServiceList();
+            return View(appointment);
+        }
+
+        private bool AppointmentExists(int idAppointment)
+        {
+            return appointmentRepository.GetAppointment(idAppointment) != null;
+        }
+
+
+
     }
 }
 
