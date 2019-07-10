@@ -29,7 +29,7 @@ namespace CleanGuruApp.Controllers
             this.servicePriceRepository = servicePriceRepository;
         }
 
-        public IActionResult ServiceList()
+        public IActionResult FutureAppointment()
         {
             var appointment = appointmentRepository.Appointments;
 
@@ -54,7 +54,8 @@ namespace CleanGuruApp.Controllers
         public IActionResult DeleteConfirmed(int id)
         {
             appointmentRepository.Remove(id);
-            return RedirectToAction(nameof(ServiceList));
+            TempData["message"] = "Appointment deleted.";
+            return RedirectToAction(nameof(FutureAppointment));
         }
 
 
@@ -136,7 +137,6 @@ namespace CleanGuruApp.Controllers
                     ViewBag.CustList = getCustomersList();
                     ViewBag.CLeanList = getCleanersList();
                     ViewBag.ServiceList = getServiceList();
-                    TempData["message"] = "Appointment has been saved.";
                     return View("../Home/Index");
                 }
                 catch (Exception)
