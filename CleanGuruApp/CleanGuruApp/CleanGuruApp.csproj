@@ -39,7 +39,7 @@
     <Content Update="Views\Appointment\Details.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Appointment\FutureAppointment.cshtml">
+    <Content Update="Views\Appointment\ServiceList.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
   </ItemGroup>

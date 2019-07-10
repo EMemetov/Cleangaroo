@@ -29,7 +29,7 @@ namespace CleanGuruApp.Controllers
             this.servicePriceRepository = servicePriceRepository;
         }
 
-        public IActionResult FutureAppointment()
+        public IActionResult ServiceList()
         {
             var appointment = appointmentRepository.Appointments;
 
@@ -41,12 +41,32 @@ namespace CleanGuruApp.Controllers
 
             return View(appointment);
         }
+
+        public IActionResult Delete(int id)
+        {
+            var appointment = appointmentRepository.GetAppointment(id);
+
+            return View(appointment);
+        }
+
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            appointmentRepository.Remove(id);
+            return RedirectToAction(nameof(ServiceList));
+        }
+
+
+
         public IActionResult List()
         {
             var appointment = appointmentRepository.Appointments;
 
             return View(appointment);
         }
+
+
 
         private List<SelectListItem> getCustomersList()
         {
