@@ -24,13 +24,25 @@ namespace CleanGuruApp.Models.DB
             context.SaveChanges();
         }
 
-        public Appointment GetAppointment(int? appointmentId)
+        public Appointment GetAppointment(int? idAppointment)
         {
-            if (appointmentId == null) return null;
+            if (idAppointment == null) return null;
 
-            var appointment = context.Appointment.Include(p => p.Customer).Where(p => p.IdAppointment == appointmentId).FirstOrDefault();
+            var appointment = context.Appointment.Include(p => p.Customer).Where(p => p.IdAppointment == idAppointment).FirstOrDefault();
 
             return appointment;
+        }
+
+        public void Remove(Appointment appointment)
+        {
+            context.Appointment.Remove(appointment);
+            context.SaveChanges();
+
+        }
+
+        public void Remove(int id)
+        {
+            Remove(GetAppointment(id));
         }
 
         public void Save(Appointment appointment)
@@ -66,16 +78,17 @@ namespace CleanGuruApp.Models.DB
             }
             context.SaveChanges();
         }
-        public void DeleteAppointment(int idAppointment)
-        {
-            Appointment dbEntry = context.Appointment.
-                FirstOrDefault(a => a.IdAppointment == idAppointment);
-            if (dbEntry != null)
-            {
-                context.Appointment.Remove(dbEntry);
-                context.SaveChanges();
-            }
-        }
+
+        //public void DeleteAppointment(int idAppointment)
+        //{
+        //    Appointment dbEntry = context.Appointment.
+        //        FirstOrDefault(a => a.IdAppointment == idAppointment);
+        //    if (dbEntry != null)
+        //    {
+        //        context.Appointment.Remove(dbEntry);
+        //        context.SaveChanges();
+        //    }
+        //}
 
     }
 
