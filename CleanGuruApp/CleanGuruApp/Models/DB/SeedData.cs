@@ -32,8 +32,8 @@ namespace CleanGuruApp.Models.DB
             if (!context.ServicePrice.Any())
             {
                 context.ServicePrice.AddRange(
-                    new ServicePrice { ServicePriceDescr = "Home Cleaning", CtAmountHour = 10.10f, ClAmountHour = 5.20f, ServicePriceStatus = 'A' },
-                    new ServicePrice { ServicePriceDescr = "Commercial Cleaning", CtAmountHour = 30.30f, ClAmountHour = 10.50f, ServicePriceStatus = 'I' }
+                    new ServicePrice { ServicePriceDescr = "Home Cleaning", CtAmountHour = 10.10, ClAmountHour = 5.20, ServicePriceStatus = 'A' },
+                    new ServicePrice { ServicePriceDescr = "Commercial Cleaning", CtAmountHour = 30.30, ClAmountHour = 10.50, ServicePriceStatus = 'I' }
                     );
                 context.SaveChanges();
             }
