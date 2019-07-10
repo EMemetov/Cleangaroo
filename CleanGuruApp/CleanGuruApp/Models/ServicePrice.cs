@@ -25,11 +25,11 @@ namespace CleanGuruApp.Models
  
         [Required(ErrorMessage = "Please define the customer's service cost/hr.")]
         [Display(Name = "Price(Customer)")]
-        public float CtAmountHour { get; set; }
+        public double CtAmountHour { get; set; }
 
         [Required(ErrorMessage = "Please define the cleaner's service cost/hr.")]
         [Display(Name = "Cost(Cleaner)")]
-        public float ClAmountHour { get; set; }
+        public double ClAmountHour { get; set; }
 
         [Required(ErrorMessage = "Please identify if this is a new price to be updated.")]
         [Display(Name = "Status")]
