@@ -17,24 +17,22 @@ namespace CleanGuruApp.Controllers
         private readonly ICustomerRepository customerRepository;
         private readonly ICleanerRepository cleanerRepository;
         private readonly IServicePriceRepository servicePriceRepository;
+        private readonly ICustomerSubscriptionRepository customerSubscriptionRepository;
 
         public AppointmentController(IAppointmentRepository appointmentRepository,
                                      ICustomerRepository customerRepository,
                                      ICleanerRepository cleanerRepository,
-                                     IServicePriceRepository servicePriceRepository)
+                                     IServicePriceRepository servicePriceRepository,
+                                     ICustomerSubscriptionRepository customerSubscriptionRepository)
         {
             this.appointmentRepository = appointmentRepository;
             this.customerRepository = customerRepository;
             this.cleanerRepository = cleanerRepository;
             this.servicePriceRepository = servicePriceRepository;
+            this.customerSubscriptionRepository = customerSubscriptionRepository;
         }
 
-        public IActionResult FutureAppointment()
-        {
-            var appointment = appointmentRepository.Appointments;
-
-            return View(appointment);
-        }
+       
         public IActionResult Details(int id)
         {
             var appointment = appointmentRepository.GetAppointment(id);
@@ -53,6 +51,7 @@ namespace CleanGuruApp.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
+            customerSubscriptionRepository.DeleteCustomerSubscription(id);
             appointmentRepository.Remove(id);
             TempData["message"] = "[ID "+id+"] Appointment deleted.";
             return RedirectToAction(nameof(FutureAppointment));
@@ -60,12 +59,12 @@ namespace CleanGuruApp.Controllers
 
 
 
-        public IActionResult List()
-        {
-            var appointment = appointmentRepository.Appointments;
+        //public IActionResult List()
+        //{
+        //    var appointment = appointmentRepository.Appointments;
 
-            return View(appointment);
-        }
+        //    return View(appointment);
+        //}
 
 
 
@@ -114,7 +113,14 @@ namespace CleanGuruApp.Controllers
 
             return selectList;
         }
-
+        public IActionResult FutureAppointment()
+        {
+            var appointment = appointmentRepository.Appointments;
+            ViewBag.CustList = getCustomersList();
+            ViewBag.CLeanList = getCleanersList();
+            ViewBag.ServiceList = getServiceList();
+            return View(appointment);
+        }
         public ViewResult CreateAppointment()
         {
             CustomerSubscription custSub = new CustomerSubscription();
@@ -164,13 +170,17 @@ namespace CleanGuruApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Appointment appointment)
+        public IActionResult Edit( int id, Appointment appointment)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    appointmentRepository.Update(appointment);
+                    //  appointmentRepository.Update(appointment);
+                    customerSubscriptionRepository.DeleteCustomerSubscription(id);
+                    appointmentRepository.Remove(id);
+                    appointmentRepository.Add(appointment);
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -183,6 +193,7 @@ namespace CleanGuruApp.Controllers
                         throw;
                     }
                 }
+                TempData["message"] = "[ID " + id + "] Appointment was deleted. / "+"[ID " + appointment.IdAppointment + "] A new appointment was created.";
                 return RedirectToAction(nameof(FutureAppointment));
             }
 

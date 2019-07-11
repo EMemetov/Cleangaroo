@@ -55,6 +55,7 @@ namespace CleanGuruApp.Models.DB
         public void Save(Appointment appointment)
         {
             Appointment dbEntry = context.Appointment.FirstOrDefault(u => u.IdAppointment == appointment.IdAppointment);
+            
             //ORIGINAL - working
             if (dbEntry == null)
             {
@@ -80,6 +81,9 @@ namespace CleanGuruApp.Models.DB
                     dbEntry.CustSub.FinishDate = appointment.CustSub.FinishDate;
                     //dbEntry.CustSub.IdAppointment = appointment.IdAppointment;
                     //context.Appointment.Add(appointment);
+                //}else
+                //{
+                
                 }
 
             }

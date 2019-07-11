@@ -8,9 +8,67 @@
 <script src="~/javascript/Service.js"></script>
 
 <h2>Edit Appointment</h2>
+
 <div align="right">
     <a asp-action="FutureAppointment" asp-controller="Appointment" class="warning" a>Back to List</a>
 </div>
-<partial name="AppointmentCreateEdit" />
 
+<div asp-validation-summary="All" class="validation-summary-errors"></div>
+<form asp-controller="Appointment" asp-action="Edit" method="post">
+
+    <div class="form-group">
+        <label asp-for="Customer" class="control-label"></label>
+        @Html.DropDownList("IdCustomer", ViewBag.CustList as List<SelectListItem>, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Address</label>
+        <input class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Cleaner" class="control-label"></label>
+        @Html.DropDownList("IdCleaner", ViewBag.CLeanList as List<SelectListItem>, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ServicePrice">Service</label>
+        @Html.DropDownList("IdServicePrice", ViewBag.ServiceList as List<SelectListItem>, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CtDateRequestService">Date of Service</label>
+        <div>
+            <input class="form-control" type="date" id="example-date-input" asp-for="CtDateRequestService">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StartTime">Start Time of Service</label>
+        <div>
+            <input asp-for="StartTime" class="form-control" type="time" id="example-time-input">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CtHoursRequested">Amount of Hours</label>
+        <br />
+        <div>
+            <select asp-for="CtHoursRequested">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+        </div>
+    </div>   
+    <button asp-controller="Appointment" asp-action="Edit"
+            class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        Save
+    </button>
+</form>
 
