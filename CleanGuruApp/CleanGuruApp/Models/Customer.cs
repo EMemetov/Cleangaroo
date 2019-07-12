@@ -22,5 +22,6 @@ namespace CleanGuruApp.Models
         public string UserName { get; set; }
 
         public IEnumerable<Appointment> Appointments { get; set; }
+        public IEnumerable<CustomerAddress> CustomerAddresss { get; set; }
     }
 }

@@ -15,7 +15,9 @@ namespace CleanGuruApp.Models.DB
             this.context = context;
         }
 
-        public IQueryable<CustomerAddress> CustomerAddresss => context.CustomerAddress;
+       //public IQueryable<CustomerAddress> CustomerAddresss => context.CustomerAddress;
+
+        public IEnumerable<CustomerAddress> CustomerAddresss => context.CustomerAddress.Include(p => p.Customer).ToList();
 
         public void SaveCustomerAddress(CustomerAddress customerAddress)
         {

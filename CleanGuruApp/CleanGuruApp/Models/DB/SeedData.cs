@@ -222,7 +222,7 @@ namespace CleanGuruApp.Models.DB
                 context.SaveChanges();
             }
 
-            if (!context.CustomerSubscription.Any())
+            if (!context.CustomerSubscription.Any() && !context.Appointment.Any())
             {
                 context.CustomerSubscription.AddRange(
                     new CustomerSubscription

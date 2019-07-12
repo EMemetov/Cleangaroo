@@ -21,10 +21,10 @@
     </div>
 
     <div class="form-group">
-        <label>Address</label>
-        <input class="form-control" />
+        <label asp-for="Customer" class="control-label">Address</label>
+        @Html.DropDownList("IdCustomer", ViewBag.AddressList as List<SelectListItem>, new { @class = "form-control" })
     </div>
-
+    
     <div class="form-group">
         <label asp-for="Cleaner" class="control-label"></label>
         @Html.DropDownList("IdCleaner", ViewBag.CLeanList as List<SelectListItem>, new { @class = "form-control" })
@@ -38,14 +38,14 @@
     <div class="form-group">
         <label asp-for="CtDateRequestService">Date of Service</label>
         <div>
-            <input class="form-control" type="date" id="example-date-input" asp-for="CtDateRequestService">
+            <input class="form-control" type="date" id="example-date-input" asp-for="CtDateRequestService" value="@ViewBag.finDate">
         </div>
     </div>
 
     <div class="form-group">
         <label asp-for="StartTime">Start Time of Service</label>
         <div>
-            <input asp-for="StartTime" class="form-control" type="time" id="example-time-input">
+            <input asp-for="StartTime" class="form-control" type="time"  id="example-time-input">
         </div>
     </div>
 
@@ -81,7 +81,7 @@
     <div class="form-group">
         <label asp-for="CustSub.FinishDate" id="FinDateLab">End Date of Subscription</label>
         <div>
-            <input asp-for="CustSub.FinishDate" class="form-control" type="date" id="FinDateInp">
+            <input asp-for="CustSub.FinishDate" class="form-control" type="date" id="FinDateInp" value="@ViewBag.finDate">
         </div>
     </div>
 

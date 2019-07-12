@@ -18,18 +18,21 @@ namespace CleanGuruApp.Controllers
         private readonly ICleanerRepository cleanerRepository;
         private readonly IServicePriceRepository servicePriceRepository;
         private readonly ICustomerSubscriptionRepository customerSubscriptionRepository;
+        private readonly ICustomerAddressRepository customerAddressRepository;
 
         public AppointmentController(IAppointmentRepository appointmentRepository,
                                      ICustomerRepository customerRepository,
                                      ICleanerRepository cleanerRepository,
                                      IServicePriceRepository servicePriceRepository,
-                                     ICustomerSubscriptionRepository customerSubscriptionRepository)
+                                     ICustomerSubscriptionRepository customerSubscriptionRepository,
+                                     ICustomerAddressRepository customerAddressRepository)
         {
             this.appointmentRepository = appointmentRepository;
             this.customerRepository = customerRepository;
             this.cleanerRepository = cleanerRepository;
             this.servicePriceRepository = servicePriceRepository;
             this.customerSubscriptionRepository = customerSubscriptionRepository;
+            this.customerAddressRepository = customerAddressRepository;
         }
 
        
@@ -83,6 +86,22 @@ namespace CleanGuruApp.Controllers
             return selectList;
         }
 
+        private List<SelectListItem> getCustAddress()
+        {
+            List<SelectListItem> selectList = new List<SelectListItem>();
+            SelectListItem item = new SelectListItem("Please select the address", "");
+            selectList.Add(item);
+
+            // foreach (var customerAddress in customerAddressRepository.CustomerAddresss.Where(c => c.IdCustomer == idCustomer))
+            foreach (var customerAddress in customerAddressRepository.CustomerAddresss)
+            {
+                item = new SelectListItem(customerAddress.Address + "," + customerAddress.AddressUnit + " - " + customerAddress.PostalCode + " - " + customerAddress.City + " / " + customerAddress.Province, customerAddress.IdCustomer.ToString());
+                selectList.Add(item);
+            }
+
+            return selectList;
+        }
+
         private List<SelectListItem> getCleanersList()
         {
             List<SelectListItem> selectList = new List<SelectListItem>();
@@ -117,6 +136,7 @@ namespace CleanGuruApp.Controllers
         {
             var appointment = appointmentRepository.Appointments;
             ViewBag.CustList = getCustomersList();
+            ViewBag.AddressList = getCustAddress();
             ViewBag.CLeanList = getCleanersList();
             ViewBag.ServiceList = getServiceList();
             return View(appointment);
@@ -125,8 +145,9 @@ namespace CleanGuruApp.Controllers
         {
             CustomerSubscription custSub = new CustomerSubscription();
             ViewBag.period = custSub.Periodicity;
-            ViewBag.finDate = custSub.FinishDate;
+            ViewBag.finDate = DateTime.Now.ToString("yyyy-MM-dd");
             ViewBag.CustList = getCustomersList();
+            ViewBag.AddressList = getCustAddress();
             ViewBag.CLeanList = getCleanersList();
             ViewBag.ServiceList = getServiceList();
             return View("../Appointment/CreateAppointment");
@@ -141,6 +162,7 @@ namespace CleanGuruApp.Controllers
                 {
                     appointmentRepository.Add(appointment);
                     ViewBag.CustList = getCustomersList();
+                    ViewBag.AddressList = getCustAddress();
                     ViewBag.CLeanList = getCleanersList();
                     ViewBag.ServiceList = getServiceList();
                     return View("../Home/Index");
@@ -153,9 +175,11 @@ namespace CleanGuruApp.Controllers
             else
             {
                 ViewBag.CustList = getCustomersList();
+                ViewBag.AddressList = getCustAddress();
                 ViewBag.CLeanList = getCleanersList();
                 ViewBag.ServiceList = getServiceList();
-                return View("../Home/Index");
+                TempData["message"] = "Appointment not created.";
+                return View("CreateAppointment");
             }
         }
 
@@ -164,6 +188,7 @@ namespace CleanGuruApp.Controllers
             var appointment = appointmentRepository.GetAppointment(id);
 
             ViewBag.CustList = getCustomersList();
+            ViewBag.AddressList = getCustAddress();
             ViewBag.CLeanList = getCleanersList();
             ViewBag.ServiceList = getServiceList();
             return View(appointment);
@@ -178,9 +203,8 @@ namespace CleanGuruApp.Controllers
                 {
                     //  appointmentRepository.Update(appointment);
                     customerSubscriptionRepository.DeleteCustomerSubscription(id);
-                    appointmentRepository.Remove(id);
                     appointmentRepository.Add(appointment);
-
+                    appointmentRepository.Remove(id);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -198,6 +222,7 @@ namespace CleanGuruApp.Controllers
             }
 
             ViewBag.CustList = getCustomersList();
+            ViewBag.AddressList = getCustAddress();
             ViewBag.CLeanList = getCleanersList();
             ViewBag.ServiceList = getServiceList();
             return View(appointment);
@@ -207,8 +232,6 @@ namespace CleanGuruApp.Controllers
         {
             return appointmentRepository.GetAppointment(idAppointment) != null;
         }
-
-
 
     }
 }
