@@ -10,7 +10,7 @@ CREATE TABLE appointment
      idServicePrice INTEGER NOT NULL , 
      idCustomer INTEGER NOT NULL , 
      ctDateRequestService DATETIME , 
-     ctHoursRequested NUMERIC (3) , 
+     ctHoursRequested INTEGER , 
      clockIn DATETIME , 
      idCleaner INTEGER NOT NULL , 
      clockOut DATETIME , 
@@ -33,8 +33,8 @@ ALTER TABLE Appointment ADD constraint appointment_pk PRIMARY KEY CLUSTERED (idA
 
 CREATE TABLE appointmentpayment 
     ( idappointmentpayment INTEGER NOT NULL IDENTITY NOT FOR REPLICATION , 
-     clHoursWorked NUMERIC (2) , 
-     ctHoursContracted NUMERIC (2) , 
+     clHoursWorked INTEGER , 
+     ctHoursContracted INTEGER , 
      paidToCleaner CHAR (1) DEFAULT 'N' , 
      paidByCustomer CHAR (1) DEFAULT 'N' , 
      amountPaidToCleaner FLOAT , 
