@@ -14,8 +14,9 @@
             @Html.DisplayNameFor(model => model.IdCustomer)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.IdCustomer)
+            @Html.DisplayFor(model => model.Customer.LCustomerName),
             @Html.DisplayFor(model => model.Customer.FCustomerName)
+            @Html.DisplayFor(model => model.Customer.MCustomerName)
         <dt>
             @Html.DisplayNameFor(model => model.CtDateRequestService)
         </dt>
@@ -44,7 +45,8 @@
             @Html.DisplayNameFor(model => model.IdServicePrice)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.IdServicePrice)
+            @Html.DisplayFor(model => model.ServicePrice.ServicePriceDescr)
+            (@Html.DisplayFor(model => model.ServicePrice.CtAmountHour) per hour)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.IdCleaner)
