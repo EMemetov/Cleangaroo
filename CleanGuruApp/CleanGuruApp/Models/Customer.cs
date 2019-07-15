@@ -13,13 +13,16 @@ namespace CleanGuruApp.Models
         [Required(ErrorMessage = "Please enter a valid first name.")]
         public string FCustomerName { get; set; }
         public string MCustomerName { get; set; }
-        [Required(ErrorMessage = "Please enter a valid family name.")]
+        [Required(ErrorMessage = "Please enter a valid last name.")]
         public string LCustomerName { get; set; }
         [Required(ErrorMessage = "Please enter a valid phone.")]
         public string CtPhone1 { get; set; }
         public string CtPhone2 { get; set; }
-        [Required(ErrorMessage = "Can not be empty. Please enter your user name.")]
+        [Required(ErrorMessage = "Please enter your email.")]
         public string UserName { get; set; }
+
+        [Required(ErrorMessage = "Please enter your password.")]
+        public string Password { get; set; }
 
         public IEnumerable<Appointment> Appointments { get; set; }
         public IEnumerable<CustomerAddress> CustomerAddresss { get; set; }

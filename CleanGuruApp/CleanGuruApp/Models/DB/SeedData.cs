@@ -48,7 +48,8 @@ namespace CleanGuruApp.Models.DB
                         MCustomerName = "Brown",
                         LCustomerName = "Hank",
                         CtPhone1 = "666-222-1111",
-                        UserName = "Aaron"
+                        UserName = "Aaron",
+                        Password = "123123"
                     },
                     new Customer
                     {
@@ -56,14 +57,16 @@ namespace CleanGuruApp.Models.DB
                         MCustomerName = "Abdu",
                         LCustomerName = "Rash",
                         CtPhone1 = "666-222-2222",
-                        UserName = "Frank"
+                        UserName = "Frank",
+                        Password = "321321"
                     },
                     new Customer
                     {
                         FCustomerName = "Edward",
                         LCustomerName = "Tank",
                         CtPhone1 = "666-333-1111",
-                        UserName = "Edward"
+                        UserName = "Edward",
+                        Password = "554433"
                     }
                     );
                 context.SaveChanges();
@@ -116,7 +119,9 @@ namespace CleanGuruApp.Models.DB
                         ClPhone1 = "222-111-4444",
                         ClPhone2 = "111-111-4444",
                         ClSinNumber = "123456789",
-                        UserName = "Rubens"
+                        UserName = "Rubens",
+                        Password = "pass1"
+                        
                     },
                     new Cleaner
                     {
@@ -129,7 +134,8 @@ namespace CleanGuruApp.Models.DB
                         ClProvince = "ON",
                         ClPhone1 = "111-888-9999",
                         ClSinNumber = "000111222",
-                        UserName = "Rattan"
+                        UserName = "Rattan",
+                        Password = "pass2"
                     }
                     );
                 context.SaveChanges();
@@ -171,7 +177,7 @@ namespace CleanGuruApp.Models.DB
                         DayWeek = "Friday",
                         InitialTime = Convert.ToDateTime("07:00 AM"),
                         FinishTime = Convert.ToDateTime("18:00 PM"),
-                        IdCleaner = 1
+                        IdCleaner = 2
                     },
                     new ScheduleCleaner
                     {
