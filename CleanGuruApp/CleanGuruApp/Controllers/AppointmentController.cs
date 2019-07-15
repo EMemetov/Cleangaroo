@@ -39,6 +39,9 @@ namespace CleanGuruApp.Controllers
         public IActionResult Details(int id)
         {
             var appointment = appointmentRepository.GetAppointment(id);
+            ViewBag.CustList = getCustomersList(appointment.IdCustomer);
+            ViewBag.ServiceList = getServiceList(appointment.IdServicePrice);
+
 
             return View(appointment);
         }
@@ -71,15 +74,30 @@ namespace CleanGuruApp.Controllers
 
 
 
-        private List<SelectListItem> getCustomersList()
+        private List<SelectListItem> getCustomersList(int? idCust)
         {
             List<SelectListItem> selectList = new List<SelectListItem>();
             SelectListItem item = new SelectListItem("Please select the customer", "");
             selectList.Add(item);
 
-            foreach (var customer in customerRepository.Customers)
+            if (idCust == null)
             {
-                item = new SelectListItem(customer.FCustomerName + " " + customer.MCustomerName + " " + customer.LCustomerName, customer.IdCustomer.ToString());
+                foreach (var customer in customerRepository.Customers)
+                {
+                    item = new SelectListItem(customer.FCustomerName + " " + 
+                        customer.MCustomerName + " " + customer.LCustomerName, 
+                        customer.IdCustomer.ToString());
+                    selectList.Add(item);
+                }
+            }
+            else
+            {
+                var customer = customerRepository.Customers.
+                    FirstOrDefault(c=>c.IdCustomer==idCust);
+                item = new SelectListItem(customer.FCustomerName +
+                        " " + customer.MCustomerName + " " + 
+                        customer.LCustomerName, customer.IdCustomer.
+                        ToString());
                 selectList.Add(item);
             }
 
@@ -118,27 +136,38 @@ namespace CleanGuruApp.Controllers
         }
 
 
-        private List<SelectListItem> getServiceList()
+        private List<SelectListItem> getServiceList(int? idServ)
         {
             List<SelectListItem> selectList = new List<SelectListItem>();
             SelectListItem item = new SelectListItem("Please select the service", "");
             selectList.Add(item);
 
-            foreach (var servicePrice in servicePriceRepository.ServicePrices)
+            if (idServ == null)
             {
-                item = new SelectListItem(servicePrice.ServicePriceDescr, servicePrice.IdServicePrice.ToString());
+                foreach (var servicePrice in servicePriceRepository.ServicePrices)
+                {
+                    item = new SelectListItem(servicePrice.ServicePriceDescr, 
+                        servicePrice.IdServicePrice.ToString());
+                    selectList.Add(item);
+                }
+            }
+            else
+            {
+                var servicePrice = servicePriceRepository.ServicePrices.
+                    FirstOrDefault(s => s.IdServicePrice == idServ);
+                item = new SelectListItem(servicePrice.ServicePriceDescr,
+                    servicePrice.IdServicePrice.ToString());
                 selectList.Add(item);
             }
-
             return selectList;
         }
         public IActionResult FutureAppointment()
         {
             var appointment = appointmentRepository.Appointments;
-            ViewBag.CustList = getCustomersList();
+            ViewBag.CustList = getCustomersList(1);
             ViewBag.AddressList = getCustAddress();
             ViewBag.CLeanList = getCleanersList();
-            ViewBag.ServiceList = getServiceList();
+            ViewBag.ServiceList = getServiceList(null);
             return View(appointment);
         }
         public ViewResult CreateAppointment()
@@ -146,10 +175,10 @@ namespace CleanGuruApp.Controllers
             CustomerSubscription custSub = new CustomerSubscription();
             ViewBag.period = custSub.Periodicity;
             ViewBag.finDate = DateTime.Now.ToString("yyyy-MM-dd");
-            ViewBag.CustList = getCustomersList();
+            ViewBag.CustList = getCustomersList(null);
             ViewBag.AddressList = getCustAddress();
             ViewBag.CLeanList = getCleanersList();
-            ViewBag.ServiceList = getServiceList();
+            ViewBag.ServiceList = getServiceList(null);
             return View("../Appointment/CreateAppointment");
         }
 
@@ -161,10 +190,10 @@ namespace CleanGuruApp.Controllers
                 try
                 {
                     appointmentRepository.Add(appointment);
-                    ViewBag.CustList = getCustomersList();
+                    ViewBag.CustList = getCustomersList(null);
                     ViewBag.AddressList = getCustAddress();
                     ViewBag.CLeanList = getCleanersList();
-                    ViewBag.ServiceList = getServiceList();
+                    ViewBag.ServiceList = getServiceList(null);
                     return View("../Home/Index");
                 }
                 catch (Exception)
@@ -174,10 +203,10 @@ namespace CleanGuruApp.Controllers
             }
             else
             {
-                ViewBag.CustList = getCustomersList();
+                ViewBag.CustList = getCustomersList(null);
                 ViewBag.AddressList = getCustAddress();
                 ViewBag.CLeanList = getCleanersList();
-                ViewBag.ServiceList = getServiceList();
+                ViewBag.ServiceList = getServiceList(null);
                 TempData["message"] = "Appointment not created.";
                 return View("CreateAppointment");
             }
@@ -187,10 +216,10 @@ namespace CleanGuruApp.Controllers
         {
             var appointment = appointmentRepository.GetAppointment(id);
 
-            ViewBag.CustList = getCustomersList();
+            ViewBag.CustList = getCustomersList(null);
             ViewBag.AddressList = getCustAddress();
             ViewBag.CLeanList = getCleanersList();
-            ViewBag.ServiceList = getServiceList();
+            ViewBag.ServiceList = getServiceList(null);
             return View(appointment);
         }
 
@@ -221,10 +250,10 @@ namespace CleanGuruApp.Controllers
                 return RedirectToAction(nameof(FutureAppointment));
             }
 
-            ViewBag.CustList = getCustomersList();
+            ViewBag.CustList = getCustomersList(null);
             ViewBag.AddressList = getCustAddress();
             ViewBag.CLeanList = getCleanersList();
-            ViewBag.ServiceList = getServiceList();
+            ViewBag.ServiceList = getServiceList(null);
             return View(appointment);
         }
 
