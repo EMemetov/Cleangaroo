@@ -18,11 +18,16 @@ namespace CleanGuruApp.Models
         [Required(ErrorMessage = "Please enter a valid phone.")]
         public string CtPhone1 { get; set; }
         public string CtPhone2 { get; set; }
+
+        [RegularExpression(".+\\@.+\\..+",
+            ErrorMessage = "Please enter a valid email address.")]
         [Required(ErrorMessage = "Please enter your email.")]
         public string UserName { get; set; }
 
-        [Required(ErrorMessage = "Please enter your password.")]
-        public string Password { get; set; }
+        [DataType(DataType.Password)]
+        [UIHint("password")]
+        [Required(ErrorMessage = "Please enter your password.")] 
+       public string Password { get; set; }
 
         public IEnumerable<Appointment> Appointments { get; set; }
         public IEnumerable<CustomerAddress> CustomerAddresss { get; set; }
