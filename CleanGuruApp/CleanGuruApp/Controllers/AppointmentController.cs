@@ -41,7 +41,9 @@ namespace CleanGuruApp.Controllers
             var appointment = appointmentRepository.GetAppointment(id);
             ViewBag.CustList = getCustomersList(appointment.IdCustomer);
             ViewBag.ServiceList = getServiceList(appointment.IdServicePrice);
-            ViewBag.ServiceList = getServiceList(appointment.IdCleaner);
+            ViewBag.CleanList = getCleanersList(appointment.IdCleaner);
+            appointment.Total = appointment.CtHoursRequested *
+                appointment.ServicePrice.CtAmountHour;
 
 
             return View(appointment);
@@ -179,6 +181,11 @@ namespace CleanGuruApp.Controllers
             ViewBag.AddressList = getCustAddress();
             ViewBag.CLeanList = getCleanersList(null);
             ViewBag.ServiceList = getServiceList(null);
+            foreach (var totalItem in appointment)
+            {
+                totalItem.Total = totalItem.CtHoursRequested *
+                    totalItem.ServicePrice.CtAmountHour;
+            }
             return View(appointment);
         }
         public ViewResult CreateAppointment()

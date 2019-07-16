@@ -49,11 +49,18 @@
             (@Html.DisplayFor(model => model.ServicePrice.CtAmountHour) per hour)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.IdCleaner)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.IdCleaner)
+            @Html.DisplayFor(model => model.Cleaner.LCleanerName)
             @Html.DisplayFor(model => model.Cleaner.FCleanerName)
+            @Html.DisplayFor(model => model.Cleaner.MCleanerName)
         </dd>
     </dl>
     <br />

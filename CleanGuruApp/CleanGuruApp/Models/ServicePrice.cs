@@ -37,19 +37,7 @@ namespace CleanGuruApp.Models
         [Required(ErrorMessage = "Please identify if this is a new price to be updated.")]
         [Display(Name = "Status")]
         public char ServicePriceStatus { get; set; }
-        [NotMapped]
-        public double Total
-        {
-            get
-            {
-                return ClAmountHour * CtAmountHour;
-            }
-        }
 
-        private static object ReferenceEquals(double clAmountHour)
-        {
-            throw new NotImplementedException();
-        }
 
         public IEnumerable<Appointment> Appointments { get; set; }
     }

@@ -51,6 +51,9 @@ namespace CleanGuruApp.Models
             }
         }
         public CustomerSubscription CustSub { get; set; }
+        [NotMapped]
+        [DisplayFormat(DataFormatString = "{N2}", ApplyFormatInEditMode = true)]
+        public Double? Total;
 
         //[Required]
         public Customer Customer { get; set; }
