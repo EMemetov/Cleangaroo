@@ -16,7 +16,6 @@ namespace CleanGuruApp.Models
         [Display(Name = "Days")]
         public string DayWeek { get; set; }
         [Required(ErrorMessage = "The initial time should be not blank")]
-
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
         [Display(Name = "Begin")]
         public DateTime InitialTime { get; set; }
