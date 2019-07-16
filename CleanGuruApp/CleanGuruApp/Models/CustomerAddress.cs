@@ -23,5 +23,7 @@ namespace CleanGuruApp.Models
         public string City { get; set; }
         [Required(ErrorMessage = "Please enter a valid province.")]
         public string Province { get; set; }
+
+        public Customer Customer { get; set; }
     }
 }

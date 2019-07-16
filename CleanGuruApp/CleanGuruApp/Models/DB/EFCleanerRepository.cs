@@ -59,6 +59,7 @@ namespace CleanGuruApp.Models.DB
                     dbEntry.ClPhone2 = cleaner.ClPhone2;
                     dbEntry.ClSinNumber = cleaner.ClSinNumber;
                     dbEntry.UserName = cleaner.UserName;
+                    dbEntry.Password = cleaner.Password;
                 }
             }
             context.SaveChanges();

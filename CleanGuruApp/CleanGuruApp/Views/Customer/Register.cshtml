@@ -1,0 +1,49 @@
+﻿@model Customer
+  
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>  Registration  </h2>
+<div asp-validation-summary="All" class="validation-summary-errors"></div>
+<form class="form defaultForm" style="width:80%" asp-action="Register" asp-controller="Customer" method="post">
+
+    <div class="form-group">
+        <label asp-for="FCustomerName">First Name</label>
+        <input type="text" class="form-control" asp-for="FCustomerName" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MCustomerName">Middle Name (optional)</label>
+        <input type="text" class="form-control" asp-for="MCustomerName" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LCustomerName">Last Name</label>
+        <input type="text" class="form-control" asp-for="LCustomerName" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CtPhone1">Phone Number</label>
+        <input type="number" class="form-control" asp-for="CtPhone1" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CtPhone2">Additional Phone Number (optional)</label>
+        <input type="number" class="form-control" asp-for="CtPhone2" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UserName">Email</label>
+        <input type="email" class="form-control" asp-for="UserName" />
+    </div>
+
+    <div class="form-group">
+            <label asp-for="Password">Password</label>
+            <input type="password" class="form-control" asp-for="Password" />
+        </div>
+
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Register</button>
+    <button class="btn btn-danger" asp-controller="Home" asp-action="Index">Cancel</button>
+</form>
+

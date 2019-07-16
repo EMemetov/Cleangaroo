@@ -83,5 +83,26 @@ namespace CleanGuruApp.Controllers
         //    customerRepository.Remove(idcustomer);
         //    return RedirectToAction(nameof(Index));
         //}
+
+
+        [HttpGet]
+        public IActionResult Register(int idCustomer) => View(customerRepository.Customers.FirstOrDefault(c => c.IdCustomer == idCustomer));
+
+        [HttpPost]
+        public IActionResult Register(Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                customerRepository.SaveCustomer(customer); 
+                TempData["message"] = $"Customer {customer.UserName} has been successfully registered in the system";
+
+                return View("../Home/Index");
+            }
+            else
+            {
+                return View(customer);
+            }
+        }
+
     }
 }

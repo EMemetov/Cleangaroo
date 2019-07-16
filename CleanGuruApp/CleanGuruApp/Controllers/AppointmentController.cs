@@ -13,65 +13,135 @@ namespace CleanGuruApp.Controllers
 {
     public class AppointmentController : Controller
     {
-        private readonly IAppointmentRepository  appointmentRepository;
-        private readonly ICustomerRepository     customerRepository;
-        private readonly  ICleanerRepository      cleanerRepository;
-        private readonly  IServicePriceRepository servicePriceRepository;
+        private readonly IAppointmentRepository appointmentRepository;
+        private readonly ICustomerRepository customerRepository;
+        private readonly ICleanerRepository cleanerRepository;
+        private readonly IServicePriceRepository servicePriceRepository;
+        private readonly ICustomerSubscriptionRepository customerSubscriptionRepository;
+        private readonly ICustomerAddressRepository customerAddressRepository;
 
-        public AppointmentController(IAppointmentRepository  appointmentRepository, 
-                                     ICustomerRepository     customerRepository, 
-                                     ICleanerRepository      cleanerRepository,
-                                     IServicePriceRepository servicePriceRepository)
+        public AppointmentController(IAppointmentRepository appointmentRepository,
+                                     ICustomerRepository customerRepository,
+                                     ICleanerRepository cleanerRepository,
+                                     IServicePriceRepository servicePriceRepository,
+                                     ICustomerSubscriptionRepository customerSubscriptionRepository,
+                                     ICustomerAddressRepository customerAddressRepository)
         {
-            this.appointmentRepository  = appointmentRepository;
-            this.customerRepository     = customerRepository;
-            this.cleanerRepository      = cleanerRepository;
+            this.appointmentRepository = appointmentRepository;
+            this.customerRepository = customerRepository;
+            this.cleanerRepository = cleanerRepository;
             this.servicePriceRepository = servicePriceRepository;
+            this.customerSubscriptionRepository = customerSubscriptionRepository;
+            this.customerAddressRepository = customerAddressRepository;
         }
 
-        public IActionResult FutureAppointment()
+       
+        public IActionResult Details(int id)
         {
-            var appointment = appointmentRepository.Appointments;
+            var appointment = appointmentRepository.GetAppointment(id);
+            ViewBag.CustList = getCustomersList(appointment.IdCustomer);
+            ViewBag.ServiceList = getServiceList(appointment.IdServicePrice);
+            ViewBag.CleanList = getCleanersList(appointment.IdCleaner);
+            appointment.Total = appointment.CtHoursRequested *
+                appointment.ServicePrice.CtAmountHour;
+
 
             return View(appointment);
         }
-        public IActionResult Details(int id)
+
+        public IActionResult Delete(int id)
         {
             var appointment = appointmentRepository.GetAppointment(id);
 
             return View(appointment);
         }
-        public IActionResult List()
-        {
-            var appointment = appointmentRepository.Appointments;
 
-            return View(appointment);
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            customerSubscriptionRepository.DeleteCustomerSubscription(id);
+            appointmentRepository.Remove(id);
+            TempData["message"] = "[ID "+id+"] Appointment deleted.";
+            return RedirectToAction(nameof(FutureAppointment));
         }
 
-        private List<SelectListItem> getCustomersList()
+
+
+        //public IActionResult List()
+        //{
+        //    var appointment = appointmentRepository.Appointments;
+
+        //    return View(appointment);
+        //}
+
+
+
+        private List<SelectListItem> getCustomersList(int? idCust)
         {
             List<SelectListItem> selectList = new List<SelectListItem>();
             SelectListItem item = new SelectListItem("Please select the customer", "");
             selectList.Add(item);
 
-            foreach (var customer in customerRepository.Customers)
+            if (idCust == null)
             {
-                item = new SelectListItem(customer.FCustomerName+" "+customer.MCustomerName+" "+customer.LCustomerName, customer.IdCustomer.ToString());
+                foreach (var customer in customerRepository.Customers)
+                {
+                    item = new SelectListItem(customer.FCustomerName + " " + 
+                        customer.MCustomerName + " " + customer.LCustomerName, 
+                        customer.IdCustomer.ToString());
+                    selectList.Add(item);
+                }
+            }
+            else
+            {
+                var customer = customerRepository.Customers.
+                    FirstOrDefault(c=>c.IdCustomer==idCust);
+                item = new SelectListItem(customer.FCustomerName +
+                        " " + customer.MCustomerName + " " + 
+                        customer.LCustomerName, customer.IdCustomer.
+                        ToString());
                 selectList.Add(item);
             }
 
             return selectList;
         }
 
-        private List<SelectListItem> getCleanersList()
+        private List<SelectListItem> getCustAddress()
+        {
+            List<SelectListItem> selectList = new List<SelectListItem>();
+            SelectListItem item = new SelectListItem("Please select the address", "");
+            selectList.Add(item);
+
+            // foreach (var customerAddress in customerAddressRepository.CustomerAddresss.Where(c => c.IdCustomer == idCustomer))
+            foreach (var customerAddress in customerAddressRepository.CustomerAddresss)
+            {
+                item = new SelectListItem(customerAddress.Address + "," + customerAddress.AddressUnit + " - " + customerAddress.PostalCode + " - " + customerAddress.City + " / " + customerAddress.Province, customerAddress.IdCustomer.ToString());
+                selectList.Add(item);
+            }
+
+            return selectList;
+        }
+
+        private List<SelectListItem> getCleanersList(int? idClean)
         {
             List<SelectListItem> selectList = new List<SelectListItem>();
             SelectListItem item = new SelectListItem("Please select the cleaner", "");
             selectList.Add(item);
-
-            foreach (var cleaner in cleanerRepository.Cleaners)
+            if(idClean == null)
             {
-                item = new SelectListItem(cleaner.FCleanerName+" "+ cleaner.MCleanerName + " " + cleaner.LCleanerName, cleaner.IdCleaner.ToString());
+                foreach (var cleaner in cleanerRepository.Cleaners)
+                {
+                    item = new SelectListItem(cleaner.FCleanerName + " " + cleaner.MCleanerName + " " + cleaner.LCleanerName, cleaner.IdCleaner.ToString());
+                    selectList.Add(item);
+                }
+            }
+            else
+            {
+                var cleaner = cleanerRepository.Cleaners.
+                    FirstOrDefault(c => c.IdCleaner == idClean);
+                item = new SelectListItem(cleaner.LCleanerName,
+                    cleaner.FCleanerName.ToString());
                 selectList.Add(item);
             }
 
@@ -79,29 +149,54 @@ namespace CleanGuruApp.Controllers
         }
 
 
-        private List<SelectListItem> getServiceList()
+        private List<SelectListItem> getServiceList(int? idServ)
         {
             List<SelectListItem> selectList = new List<SelectListItem>();
             SelectListItem item = new SelectListItem("Please select the service", "");
             selectList.Add(item);
 
-            foreach (var servicePrice in servicePriceRepository.ServicePrices)
+            if (idServ == null)
             {
-                item = new SelectListItem(servicePrice.ServicePriceDescr, servicePrice.IdServicePrice.ToString());
+                foreach (var servicePrice in servicePriceRepository.ServicePrices)
+                {
+                    item = new SelectListItem(servicePrice.ServicePriceDescr, 
+                        servicePrice.IdServicePrice.ToString());
+                    selectList.Add(item);
+                }
+            }
+            else
+            {
+                var servicePrice = servicePriceRepository.ServicePrices.
+                    FirstOrDefault(s => s.IdServicePrice == idServ);
+                item = new SelectListItem(servicePrice.ServicePriceDescr,
+                    servicePrice.IdServicePrice.ToString());
                 selectList.Add(item);
             }
-
             return selectList;
         }
-
+        public IActionResult FutureAppointment()
+        {
+            var appointment = appointmentRepository.Appointments;
+            ViewBag.CustList = getCustomersList(1);
+            ViewBag.AddressList = getCustAddress();
+            ViewBag.CLeanList = getCleanersList(null);
+            ViewBag.ServiceList = getServiceList(null);
+            foreach (var totalItem in appointment)
+            {
+                totalItem.Total = totalItem.CtHoursRequested *
+                    totalItem.ServicePrice.CtAmountHour;
+            }
+            return View(appointment);
+        }
         public ViewResult CreateAppointment()
         {
             CustomerSubscription custSub = new CustomerSubscription();
-            ViewBag.period      = custSub.Periodicity;
-            ViewBag.finDate     = custSub.FinishDate;
-            ViewBag.CustList    = getCustomersList();
-            ViewBag.CLeanList   = getCleanersList();
-            ViewBag.ServiceList = getServiceList();
+            ViewBag.period = custSub.Periodicity;
+            ViewBag.finDate = DateTime.Now.ToString("yyyy-MM-dd");
+            ViewBag.CustList = getCustomersList(null);
+            ViewBag.AddressList = getCustAddress();
+            ViewBag.CLeanList = getCleanersList(null);
+            ViewBag.ServiceList = getServiceList(null);
             return View("../Appointment/CreateAppointment");
         }
 
@@ -113,10 +208,10 @@ namespace CleanGuruApp.Controllers
                 try
                 {
                     appointmentRepository.Add(appointment);
-                    ViewBag.CustList = getCustomersList();
-                    ViewBag.CLeanList = getCleanersList();
-                    ViewBag.ServiceList = getServiceList();
-                    TempData["message"] = "Appointment has been saved.";
+                    ViewBag.CustList = getCustomersList(null);
+                    ViewBag.AddressList = getCustAddress();
+                    ViewBag.CLeanList = getCleanersList(null);
+                    ViewBag.ServiceList = getServiceList(null);
                     return View("../Home/Index");
                 }
                 catch (Exception)
@@ -126,14 +221,67 @@ namespace CleanGuruApp.Controllers
             }
             else
             {
-                ViewBag.CustList = getCustomersList();
-                ViewBag.CLeanList = getCleanersList();
-                ViewBag.ServiceList = getServiceList();
-                return View("../Home/Index");
+                ViewBag.CustList = getCustomersList(null);
+                ViewBag.AddressList = getCustAddress();
+                ViewBag.CLeanList = getCleanersList(null);
+                ViewBag.ServiceList = getServiceList(null);
+                TempData["message"] = "Appointment not created.";
+                return View("CreateAppointment");
             }
         }
-    }
 
+        public IActionResult Edit(int id)
+        {
+            var appointment = appointmentRepository.GetAppointment(id);
+
+            ViewBag.CustList = getCustomersList(null);
+            ViewBag.AddressList = getCustAddress();
+            ViewBag.CLeanList = getCleanersList(null);
+            ViewBag.ServiceList = getServiceList(null);
+            return View(appointment);
+        }
+
+        [HttpPost]
+        public IActionResult Edit( int id, Appointment appointment)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    //  appointmentRepository.Update(appointment);
+                    customerSubscriptionRepository.DeleteCustomerSubscription(id);
+                    appointmentRepository.Add(appointment);
+                    appointmentRepository.Remove(id);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!AppointmentExists(appointment.IdAppointment))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                TempData["message"] = "[ID " + id + "] Appointment was deleted. / "+"[ID " + appointment.IdAppointment + "] A new appointment was created.";
+                return RedirectToAction(nameof(FutureAppointment));
+            }
+
+            ViewBag.CustList = getCustomersList(null);
+            ViewBag.AddressList = getCustAddress();
+            ViewBag.CLeanList = getCleanersList(null);
+            ViewBag.ServiceList = getServiceList(null);
+            return View(appointment);
+        }
+
+        private bool AppointmentExists(int idAppointment)
+        {
+            return appointmentRepository.GetAppointment(idAppointment) != null;
+        }
+
+    }
+}
 
 
     //    public class AppointmentController : Controller
@@ -249,4 +397,4 @@ namespace CleanGuruApp.Controllers
     //        //    }
     //        //}
     //    }
-}
+//}

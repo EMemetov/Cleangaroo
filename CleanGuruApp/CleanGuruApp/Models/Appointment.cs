@@ -19,6 +19,7 @@ namespace CleanGuruApp.Models
         [Display(Name = "Customert ID")]
         public int IdCustomer{ get; set ;}
         [Required(ErrorMessage = "Enter a valid date")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime CtDateRequestService{ get; set ;}
         [Required(ErrorMessage = "The requested hours should be between 1-8")]
         [Range(0, 8)]
@@ -27,6 +28,7 @@ namespace CleanGuruApp.Models
         public DateTime? ClockIn{ get; set ;}
         public DateTime? ClockOut{ get; set ;}
         public string CleanerRate{ get; set ;}
+        [DisplayFormat(DataFormatString = "{0:h:mm tt}")]
         public DateTime? StartTime { get; set; }           //Should not allow NULL - Adjust later
         public bool IsSubscription { get; set; }
         [NotMapped]
@@ -49,6 +51,9 @@ namespace CleanGuruApp.Models
             }
         }
         public CustomerSubscription CustSub { get; set; }
+        [NotMapped]
+        [DisplayFormat(DataFormatString = "{N2}", ApplyFormatInEditMode = true)]
+        public Double? Total;
 
         //[Required]
         public Customer Customer { get; set; }

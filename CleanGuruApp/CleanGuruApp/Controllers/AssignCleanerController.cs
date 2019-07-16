@@ -16,10 +16,7 @@ namespace CleanGuruApp.Controllers
         {
             return View();
         }
-
-
-
-        
+                             
         /// <summary>
         /// Calculates driving distance between Origin and destination address 
         /// </summary>
@@ -30,7 +27,7 @@ namespace CleanGuruApp.Controllers
         {
             System.Threading.Thread.Sleep(1000);
             int distance = 0;
-            string key = "key";
+            string key = "AIzaSyBLBKgz0zTcj5Fi5ISxzP3QAAv0i-Nsy30";
 
             string url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination + "&key=" + key;
             url = url.Replace(" ", "+");

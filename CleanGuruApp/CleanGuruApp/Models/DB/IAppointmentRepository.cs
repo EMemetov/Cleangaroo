@@ -13,6 +13,9 @@ namespace CleanGuruApp.Models.DB
         IEnumerable<Appointment> Appointments { get; }
         void Add(Appointment appointment);
         void Save(Appointment appointment);
+        void Remove(Appointment appointment);
+        void Remove(int idAppointment);
+        void Update(Appointment appointment);
         Appointment GetAppointment(int? idAppointment);
 
     }

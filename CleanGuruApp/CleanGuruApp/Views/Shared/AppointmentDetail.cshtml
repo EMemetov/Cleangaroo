@@ -1,0 +1,68 @@
+﻿@model Appointment
+
+<div>
+    <h4>Service Detail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdAppointment)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdAppointment)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCustomer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.LCustomerName),
+            @Html.DisplayFor(model => model.Customer.FCustomerName)
+            @Html.DisplayFor(model => model.Customer.MCustomerName)
+        <dt>
+            @Html.DisplayNameFor(model => model.CtDateRequestService)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CtDateRequestService)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CtHoursRequested)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CtHoursRequested)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSubscription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsSubscription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdServicePrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ServicePrice.ServicePriceDescr)
+            (@Html.DisplayFor(model => model.ServicePrice.CtAmountHour) per hour)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCleaner)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cleaner.LCleanerName)
+            @Html.DisplayFor(model => model.Cleaner.FCleanerName)
+            @Html.DisplayFor(model => model.Cleaner.MCleanerName)
+        </dd>
+    </dl>
+    <br />
+</div>
+

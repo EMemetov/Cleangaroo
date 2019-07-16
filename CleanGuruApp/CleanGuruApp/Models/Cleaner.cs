@@ -33,6 +33,9 @@ namespace CleanGuruApp.Models
         [Required(ErrorMessage = "Can not be empty. Please enter your user name.")]
         public string UserName{ get; set; }
 
+        [Required(ErrorMessage = "Can not be empty. Please enter your password.")]
+        public string Password { get; set; }
+
         public IEnumerable<Appointment> Appointments { get; set; }
     }
 }

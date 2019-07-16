@@ -5,12 +5,15 @@
     ViewData["Title"] = "FutureAppointment";
 }
 
-<h2>Future Services</h2>
+<h2>Future Appointments</h2>
 
 
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdAppointment)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.CtDateRequestService)
             </th>
@@ -25,7 +28,10 @@
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.IdServicePrice)
+                @Html.DisplayNameFor(model => model.ServicePrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Customer)
@@ -38,10 +44,14 @@
 {
         <tr>
             <td>
+                @Html.DisplayFor(model => item.IdAppointment)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.CtDateRequestService)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Cleaner.FCleanerName)
+                @Html.DisplayFor(modelItem => item.Cleaner.LCleanerName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StartTime)
@@ -50,15 +60,23 @@
                 @Html.DisplayFor(modelItem => item.CtHoursRequested)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdServicePrice)
+                @Html.DisplayFor(modelItem => item.ServicePrice.ServicePriceDescr)
+                (@Html.DisplayFor(modelItem => item.ServicePrice.CtAmountHour) per hour)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total) 
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Customer.FCustomerName)
+                @Html.DisplayFor(modelItem => item.Customer.LCustomerName)
+
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdAppointment">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdAppointment">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdAppointment">Cancel</a>
+                <a asp-action="Edit" asp-controller="Appointment" asp-route-id="@item.IdAppointment">Edit</a> |
+                <a asp-action="Details" asp-controller="Appointment" asp-route-id="@item.IdAppointment">Details</a> |
+                <a asp-action="Delete" asp-controller="Appointment" asp-route-id="@item.IdAppointment">Delete</a>
             </td>
         </tr>
 }
