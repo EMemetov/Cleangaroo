@@ -12,7 +12,7 @@ namespace CleanGuruApp.Models
      
         public int IdScheduleCleaner { get; set; }
 
-        [Required(ErrorMessage = "")]
+        [Required(ErrorMessage = " ")]
         [Display(Name = "Days")]
         public string DayWeek { get; set; }
         [Required(ErrorMessage = "The initial time should be not blank")]
