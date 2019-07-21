@@ -1,0 +1,60 @@
+﻿@model IEnumerable<CleanGuruApp.Models.Cleaner>
+
+@{
+    ViewData["Title"] = "Registerd Cleaner's List";
+}
+
+<h2>List of Registered Cleaners</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCleaner)
+            </th>
+            <th>
+                "Full Name"
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClSinNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointments)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td id="FullName">
+                    @Html.DisplayFor(modelItem => item.IdCleaner)
+                </td>
+                <td>
+                    <script>
+                        var FN = @Html.DisplayFor(modelItem => item.FCleanerName);
+                        var MN = @Html.DisplayFor(modelItem => item.MCleanerName);
+                        var LN = @Html.DisplayFor(modelItem => item.LCleanerName);
+                        var fullName = FN.concat(MN).concat(LN);
+
+                        document.getElementById("FullName").innerHTML = fullName;
+                    </script>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClSinNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Appointments)
+                </td>
+
+                <td>
+                    @*<a asp-action="Edit" asp-route-id="@item.IdScheduleCleaner">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdScheduleCleaner">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdScheduleCleaner">Delete</a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
