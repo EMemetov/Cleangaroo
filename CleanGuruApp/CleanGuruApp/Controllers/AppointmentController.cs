@@ -52,6 +52,13 @@ namespace CleanGuruApp.Controllers
         public IActionResult Delete(int id)
         {
             var appointment = appointmentRepository.GetAppointment(id);
+            ViewBag.CustList = getCustomersList(appointment.IdCustomer);
+            ViewBag.ServiceList = getServiceList(appointment.IdServicePrice);
+            ViewBag.CleanList = getCleanersList(appointment.IdCleaner);
+            appointment.Total = appointment.CtHoursRequested *
+                appointment.ServicePrice.CtAmountHour;
+
+
 
             return View(appointment);
         }
