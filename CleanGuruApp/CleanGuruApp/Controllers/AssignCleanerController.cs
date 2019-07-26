@@ -16,7 +16,31 @@ namespace CleanGuruApp.Controllers
         {
             return View();
         }
-                             
+
+
+        /// <summary>
+        /// Returns Closes Cleaner to the Customer
+        /// </summary>
+        /// <param name="aCustomer"></param>
+        /// <returns></returns>
+        public int ChooseClosestCleaner(Customer aCustomer, List<Cleaner> cleaners)
+        {
+            int distance = 0;
+            int shortestDistance = 50000000;
+            int closestCleanerID = 0;
+            foreach (Cleaner aCleaner in cleaners)
+            {
+                distance = getDistance(aCustomer.CustomerAddresss.ToString(), aCleaner.ClAddress);
+                if (distance <= shortestDistance)
+                {
+                    shortestDistance = distance;
+                    closestCleanerID = aCleaner.IdCleaner;
+                }
+            }
+
+            return closestCleanerID;
+        }
+
         /// <summary>
         /// Calculates driving distance between Origin and destination address 
         /// </summary>
@@ -27,7 +51,7 @@ namespace CleanGuruApp.Controllers
         {
             System.Threading.Thread.Sleep(1000);
             int distance = 0;
-            string key = "AIzaSyBLBKgz0zTcj5Fi5ISxzP3QAAv0i-Nsy30";
+            string key = "KEY";
 
             string url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination + "&key=" + key;
             url = url.Replace(" ", "+");
