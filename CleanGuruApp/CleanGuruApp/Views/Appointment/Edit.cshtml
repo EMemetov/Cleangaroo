@@ -21,10 +21,10 @@
         @Html.DropDownList("IdCustomer", ViewBag.CustList as List<SelectListItem>, new { @class = "form-control" })
     </div>
 
-    <div class="form-group">
-        <label asp-for="Customer" class="control-label">Address</label>
-        @Html.DropDownList("IdCustomer", ViewBag.AddressList as List<SelectListItem>, new { @class = "form-control" })
-    </div>
+    @*<div class="form-group">
+            <label asp-for="Customer" class="control-label">Address</label>
+            @Html.DropDownList("IdCustomer", ViewBag.AddressList as List<SelectListItem>, new { @class = "form-control" })
+        </div>*@
 
     <div class="form-group">
         <label asp-for="Cleaner" class="control-label"></label>
@@ -71,4 +71,6 @@
         Save
     </button>
 </form>
+<br />
+
 

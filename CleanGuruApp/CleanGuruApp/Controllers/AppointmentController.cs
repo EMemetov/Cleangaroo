@@ -34,55 +34,8 @@ namespace CleanGuruApp.Controllers
             this.customerSubscriptionRepository = customerSubscriptionRepository;
             this.customerAddressRepository = customerAddressRepository;
         }
-
+              
        
-        public IActionResult Details(int id)
-        {
-            var appointment = appointmentRepository.GetAppointment(id);
-            ViewBag.CustList = getCustomersList(appointment.IdCustomer);
-            ViewBag.ServiceList = getServiceList(appointment.IdServicePrice);
-            ViewBag.CleanList = getCleanersList(appointment.IdCleaner);
-            appointment.Total = appointment.CtHoursRequested *
-                appointment.ServicePrice.CtAmountHour;
-
-
-            return View(appointment);
-        }
-
-        public IActionResult Delete(int id)
-        {
-            var appointment = appointmentRepository.GetAppointment(id);
-            ViewBag.CustList = getCustomersList(appointment.IdCustomer);
-            ViewBag.ServiceList = getServiceList(appointment.IdServicePrice);
-            ViewBag.CleanList = getCleanersList(appointment.IdCleaner);
-            appointment.Total = appointment.CtHoursRequested *
-                appointment.ServicePrice.CtAmountHour;
-
-
-
-            return View(appointment);
-        }
-
-
-        [HttpPost, ActionName("Delete")]
-        public IActionResult DeleteConfirmed(int id)
-        {
-            customerSubscriptionRepository.DeleteCustomerSubscription(id);
-            appointmentRepository.Remove(id);
-            TempData["message"] = "[ID "+id+"] Appointment deleted.";
-            return RedirectToAction(nameof(FutureAppointment));
-        }
-
-
-
-        //public IActionResult List()
-        //{
-        //    var appointment = appointmentRepository.Appointments;
-
-        //    return View(appointment);
-        //}
-
-
 
         private List<SelectListItem> getCustomersList(int? idCust)
         {
@@ -94,36 +47,20 @@ namespace CleanGuruApp.Controllers
             {
                 foreach (var customer in customerRepository.Customers)
                 {
+                    foreach (var custAddress in customerAddressRepository.CustomerAddresss.Where(c => c.IdCustomer == customer.IdCustomer))
+                    {
+                        customer.CustAddress = custAddress.Address + "," + custAddress.AddressUnit + " - " + custAddress.PostalCode + " - " + custAddress.City + " / " + custAddress.Province;
+                    }
                     item = new SelectListItem(customer.FCustomerName + " " + 
-                        customer.MCustomerName + " " + customer.LCustomerName, 
+                        customer.MCustomerName + " " + customer.LCustomerName + " [ Address: " +customer.CustAddress + " ]" , 
                         customer.IdCustomer.ToString());
                     selectList.Add(item);
                 }
             }
             else
             {
-                var customer = customerRepository.Customers.
-                    FirstOrDefault(c=>c.IdCustomer==idCust);
-                item = new SelectListItem(customer.FCustomerName +
-                        " " + customer.MCustomerName + " " + 
-                        customer.LCustomerName, customer.IdCustomer.
-                        ToString());
-                selectList.Add(item);
-            }
-
-            return selectList;
-        }
-
-        private List<SelectListItem> getCustAddress()
-        {
-            List<SelectListItem> selectList = new List<SelectListItem>();
-            SelectListItem item = new SelectListItem("Please select the address", "");
-            selectList.Add(item);
-
-            // foreach (var customerAddress in customerAddressRepository.CustomerAddresss.Where(c => c.IdCustomer == idCustomer))
-            foreach (var customerAddress in customerAddressRepository.CustomerAddresss)
-            {
-                item = new SelectListItem(customerAddress.Address + "," + customerAddress.AddressUnit + " - " + customerAddress.PostalCode + " - " + customerAddress.City + " / " + customerAddress.Province, customerAddress.IdCustomer.ToString());
+                var customer = customerRepository.Customers.FirstOrDefault(c=>c.IdCustomer==idCust);
+                item = new SelectListItem(customer.FCustomerName + " " + customer.MCustomerName + " " + customer.LCustomerName, customer.IdCustomer.ToString());
                 selectList.Add(item);
             }
 
@@ -145,10 +82,8 @@ namespace CleanGuruApp.Controllers
             }
             else
             {
-                var cleaner = cleanerRepository.Cleaners.
-                    FirstOrDefault(c => c.IdCleaner == idClean);
-                item = new SelectListItem(cleaner.LCleanerName,
-                    cleaner.FCleanerName.ToString());
+                var cleaner = cleanerRepository.Cleaners.FirstOrDefault(c => c.IdCleaner == idClean);
+                item = new SelectListItem(cleaner.LCleanerName,cleaner.FCleanerName.ToString());
                 selectList.Add(item);
             }
 
@@ -166,45 +101,41 @@ namespace CleanGuruApp.Controllers
             {
                 foreach (var servicePrice in servicePriceRepository.ServicePrices)
                 {
-                    item = new SelectListItem(servicePrice.ServicePriceDescr, 
-                        servicePrice.IdServicePrice.ToString());
+                    item = new SelectListItem(servicePrice.ServicePriceDescr, servicePrice.IdServicePrice.ToString());
                     selectList.Add(item);
                 }
             }
             else
             {
-                var servicePrice = servicePriceRepository.ServicePrices.
-                    FirstOrDefault(s => s.IdServicePrice == idServ);
-                item = new SelectListItem(servicePrice.ServicePriceDescr,
-                    servicePrice.IdServicePrice.ToString());
+                var servicePrice = servicePriceRepository.ServicePrices.FirstOrDefault(s => s.IdServicePrice == idServ);
+                item = new SelectListItem(servicePrice.ServicePriceDescr, servicePrice.IdServicePrice.ToString());
                 selectList.Add(item);
             }
             return selectList;
         }
-        public IActionResult FutureAppointment()
-        {
-            var appointment = appointmentRepository.Appointments;
-            ViewBag.CustList = getCustomersList(1);
-            ViewBag.AddressList = getCustAddress();
-            ViewBag.CLeanList = getCleanersList(null);
-            ViewBag.ServiceList = getServiceList(null);
-            foreach (var totalItem in appointment)
-            {
-                totalItem.Total = totalItem.CtHoursRequested *
-                    totalItem.ServicePrice.CtAmountHour;
-            }
-            return View(appointment);
-        }
+
         public ViewResult CreateAppointment()
         {
             CustomerSubscription custSub = new CustomerSubscription();
             ViewBag.period = custSub.Periodicity;
             ViewBag.finDate = DateTime.Now.ToString("yyyy-MM-dd");
             ViewBag.CustList = getCustomersList(null);
-            ViewBag.AddressList = getCustAddress();
             ViewBag.CLeanList = getCleanersList(null);
             ViewBag.ServiceList = getServiceList(null);
             return View("../Appointment/CreateAppointment");
+        }
+
+        public IActionResult FutureAppointment()
+        {
+            var appointment = appointmentRepository.Appointments;
+            ViewBag.CustList = getCustomersList(1);
+            ViewBag.CLeanList = getCleanersList(null);
+            ViewBag.ServiceList = getServiceList(null);
+            foreach (var totalItem in appointment)
+            {
+                totalItem.Total = totalItem.CtHoursRequested * totalItem.ServicePrice.CtAmountHour;
+            }
+            return View(appointment);
         }
 
         [HttpPost]
@@ -216,7 +147,6 @@ namespace CleanGuruApp.Controllers
                 {
                     appointmentRepository.Add(appointment);
                     ViewBag.CustList = getCustomersList(null);
-                    ViewBag.AddressList = getCustAddress();
                     ViewBag.CLeanList = getCleanersList(null);
                     ViewBag.ServiceList = getServiceList(null);
                     return View("../Home/Index");
@@ -229,7 +159,6 @@ namespace CleanGuruApp.Controllers
             else
             {
                 ViewBag.CustList = getCustomersList(null);
-                ViewBag.AddressList = getCustAddress();
                 ViewBag.CLeanList = getCleanersList(null);
                 ViewBag.ServiceList = getServiceList(null);
                 TempData["message"] = "Appointment not created.";
@@ -237,12 +166,41 @@ namespace CleanGuruApp.Controllers
             }
         }
 
+        public IActionResult Details(int id)
+        {
+            var appointment = appointmentRepository.GetAppointment(id);
+            ViewBag.CustList = getCustomersList(appointment.IdCustomer);
+            ViewBag.ServiceList = getServiceList(appointment.IdServicePrice);
+            ViewBag.CleanList = getCleanersList(appointment.IdCleaner);
+            appointment.Total = appointment.CtHoursRequested * appointment.ServicePrice.CtAmountHour;
+            return View(appointment);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var appointment = appointmentRepository.GetAppointment(id);
+            ViewBag.CustList = getCustomersList(appointment.IdCustomer);
+            ViewBag.ServiceList = getServiceList(appointment.IdServicePrice);
+            ViewBag.CleanList = getCleanersList(appointment.IdCleaner);
+            appointment.Total = appointment.CtHoursRequested * appointment.ServicePrice.CtAmountHour;
+            return View(appointment);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            customerSubscriptionRepository.DeleteCustomerSubscription(id);
+            appointmentRepository.Remove(id);
+            TempData["message"] = "[ID " + id + "] Appointment deleted.";
+            return RedirectToAction(nameof(FutureAppointment));
+        }    
+
+
         public IActionResult Edit(int id)
         {
             var appointment = appointmentRepository.GetAppointment(id);
 
             ViewBag.CustList = getCustomersList(null);
-            ViewBag.AddressList = getCustAddress();
             ViewBag.CLeanList = getCleanersList(null);
             ViewBag.ServiceList = getServiceList(null);
             return View(appointment);
@@ -255,7 +213,6 @@ namespace CleanGuruApp.Controllers
             {
                 try
                 {
-                    //  appointmentRepository.Update(appointment);
                     customerSubscriptionRepository.DeleteCustomerSubscription(id);
                     appointmentRepository.Add(appointment);
                     appointmentRepository.Remove(id);
@@ -276,7 +233,6 @@ namespace CleanGuruApp.Controllers
             }
 
             ViewBag.CustList = getCustomersList(null);
-            ViewBag.AddressList = getCustAddress();
             ViewBag.CLeanList = getCleanersList(null);
             ViewBag.ServiceList = getServiceList(null);
             return View(appointment);
@@ -289,119 +245,3 @@ namespace CleanGuruApp.Controllers
 
     }
 }
-
-
-    //    public class AppointmentController : Controller
-    //    {
-    //        private IAppointmentRepository repository;
-
-    //        public AppointmentController(IAppointmentRepository repo)
-    //        {
-    //            repository = repo;
-    //        }
-
-    //        // GET: MemberInfoes
-    //        public async Task<IActionResult> Index()
-    //        {
-    //            return View(await repository.Appointments.ToListAsync());
-    //        }
-
-    //        //Show list of Appointments
-    //        public IActionResult List()
-    //        {
-    //            return View(repository.Appointments);
-    //        }
-
-    //        public IActionResult Add() => View("CreateAppointment", new Appointment());     //Change view's name to Appointment, this way can be to create or edit
-
-    //        [HttpGet]
-    //        public IActionResult Edit(int idAppointment) => View(repository.Appointments.FirstOrDefault(c => c.IdAppointment == idAppointment));
-    //        //public IActionResult CreateAppointment(int idAppointment) => View(repository.Appointments.FirstOrDefault(c => c.IdAppointment == idAppointment));
-
-    //        [HttpPost]
-    //        public IActionResult Edit(Appointment appointment, CustomerSubscription custmSubs)
-    //        {
-    //            Console.WriteLine("IdAppointment: " + appointment.IdAppointment);
-    //            Console.WriteLine("IdCustomer: " + appointment.IdCustomer);
-    //            Console.WriteLine("IdCleaner: " + appointment.IdCleaner);
-    //            Console.WriteLine("IdServicePrice: " + appointment.IdServicePrice);
-    //            Console.WriteLine("CtHoursRequested: " + appointment.CtHoursRequested);
-    //            Console.WriteLine("CtDateRequestService: " + appointment.CtDateRequestService);
-    //            Console.WriteLine("CleanerRate: " + appointment.CleanerRate);
-    //            Console.WriteLine("IsSubscription: " + appointment.IsSubscription);
-    //            Console.WriteLine("IsSubscriptionCheck: " + appointment.IsSubscriptionCheck);
-    //            Console.WriteLine("Period: " + appointment.CustSub.Periodicity);
-    //            Console.WriteLine("Fin Date: " + appointment.CustSub.FinishDate);
-    //            Console.WriteLine("IdAppointment: " + appointment.CustSub.IdAppointment);
-    ////            repository.SaveAppointment(appointment);
-    //            if (ModelState.IsValid)
-    //            {
-    //                try
-    //                {
-    //                    Console.WriteLine("Entrou");
-    //                    repository.SaveAppointment(appointment);
-    //                    Console.WriteLine("Saiu");
-    //                }
-    //                catch (Exception)
-    //                {
-    //                    throw;
-    //                }
-
-    //                TempData["message"] = "Appointment has been saved.";
-    //                //return RedirectToAction("List");
-    //                return View("../Home/Index");
-    //            }
-    //            else
-    //            {
-    //                return View("../Home/Index");
-    //            }
-    //        }
-
-
-
-
-    //        ////WORKING
-    //        //public String Edit(Appointment appointment)                // = Edit in C229_GS2G3
-    //        //{
-    //        //    Console.WriteLine("Usuario: " + appointment.CleanerRate);
-    //        //        Console.WriteLine("Usuario: " + appointment.CtHoursRequested);
-    //        //        Console.WriteLine("Usuario: " + appointment.CtDateRequestService);
-    //        //    if (ModelState.IsValid)
-    //        //    {
-    //        //        return "Valid Model";               //ALWAYS ????????
-    //        //    }
-    //        //    else
-    //        //    {
-    //        //        return "Invalid Model";
-    //        //    }
-    //        //}
-
-    //        //public ViewResult EditAppointment()                // = Edit in C229_GS2G3
-    //        //{
-    //        //    if (ModelState.IsValid)
-    //        //    {
-    //        //        return View("CreateUser");
-    //        //    }
-    //        //    else
-    //        //    {
-    //        //        return View();
-    //        //    }
-    //        //}
-
-    //        ////[HttpPost]
-    //        //public IActionResult EditAppointment(Appointment appointment)
-    //        //{
-    //        //    if (ModelState.IsValid)
-    //        //    {
-    //        //        //repository.SaveAppointment(appointment);
-    //        //        TempData["message"] = "Appointment has been saved.";
-    //        //        //return RedirectToAction("Index");
-    //        //        return View("../Home/Index");
-    //        //    }
-    //        //    else
-    //        //    {
-    //        //        return View("CreateAppointment");           //Change view's name to Appointment, this way can be to create or edit
-    //        //    }
-    //        //}
-    //    }
-//}

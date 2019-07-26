@@ -43,19 +43,7 @@ namespace CleanGuruApp.Controllers
         {
             return View();
         }
-
-
-
-        //SERVICES
-
-        //public ViewResult CreateAppointment()
-        //{
-        //    CustomerSubscription custSub = new CustomerSubscription();
-        //    ViewBag.period = custSub.Periodicity;
-        //    ViewBag.finDate = custSub.FinishDate;
-        //    return View("../Appointment/CreateAppointment");
-        //}
-
+        
         public ViewResult CreateAppointment()
         {
             return View();

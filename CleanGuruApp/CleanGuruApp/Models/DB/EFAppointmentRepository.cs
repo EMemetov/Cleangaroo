@@ -45,6 +45,14 @@ namespace CleanGuruApp.Models.DB
             Remove(GetAppointment(id));
         }
 
+        //public void Update(int id, int idCleaner)
+        //{
+
+        //    Appointment dbEntry = context.Appointment.FirstOrDefault(u => u.IdAppointment == id);
+        //    dbEntry.IdCleaner = idCleaner;
+        //    context.SaveChanges();
+        //}
+
         public void Update(Appointment appointment)
         {
             context.Appointment.Update(appointment);

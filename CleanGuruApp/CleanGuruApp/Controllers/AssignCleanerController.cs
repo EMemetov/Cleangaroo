@@ -5,12 +5,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using CleanGuruApp.Models;
+using CleanGuruApp.Models.DB;
 
 namespace CleanGuruApp.Controllers
 {
     public class AssignCleanerController : Controller
     {
-     
+        private readonly IAppointmentRepository appointmentRepository;
+        public AssignCleanerController(IAppointmentRepository appointmentRepository)
+        {
+            this.appointmentRepository = appointmentRepository;
+        }
+
 
         public IActionResult Index()
         {
@@ -91,6 +97,22 @@ namespace CleanGuruApp.Controllers
             }
             catch { sContents = "unable to connect to server "; }
             return sContents;
+        }
+
+
+        //method to decline a service
+        [HttpGet("{id}")]
+        public IActionResult Decline(int id)
+        {
+            var appointment = appointmentRepository.GetAppointment(id);
+
+            List<Cleaner> cleanerList = new List<Cleaner>();
+
+            appointment.IdCleaner = ChooseClosestCleaner(appointment.Customer, cleanerList);
+
+            appointmentRepository.Update(appointment);
+            TempData["message"] = "[ID " + id + "] Appointment was declined.";
+            return View();
         }
     }
 }

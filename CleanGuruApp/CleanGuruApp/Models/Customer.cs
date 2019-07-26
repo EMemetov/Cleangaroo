@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,5 +32,8 @@ namespace CleanGuruApp.Models
 
         public IEnumerable<Appointment> Appointments { get; set; }
         public IEnumerable<CustomerAddress> CustomerAddresss { get; set; }
+               
+        [NotMapped]
+        public string CustAddress { get; set; }
     }
 }
