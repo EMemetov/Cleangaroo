@@ -243,5 +243,19 @@ namespace CleanGuruApp.Controllers
             return appointmentRepository.GetAppointment(idAppointment) != null;
         }
 
+        public ViewResult CleanerAppointment()
+        {
+
+            var appointment = appointmentRepository.Appointments;
+            ViewBag.CustList = getCustomersList(1);
+            ViewBag.CLeanList = getCleanersList(null);
+            ViewBag.ServiceList = getServiceList(null);
+            foreach (var totalItem in appointment)
+            {
+                totalItem.Total = totalItem.CtHoursRequested * totalItem.ServicePrice.CtAmountHour;
+            }
+            return View(appointment);
+        }
+
     }
 }

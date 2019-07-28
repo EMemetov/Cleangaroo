@@ -100,7 +100,8 @@ namespace CleanGuruApp.Controllers
         }
 
 
-        ////method to decline a service
+        //method to decline a service
+
         //[HttpGet("{id}")]
         //public IActionResult Decline(int id)
         //{
