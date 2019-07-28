@@ -36,10 +36,12 @@ namespace CleanGuruApp.Controllers
             }
         }
 
-        public async Task<IActionResult> List()
+        public async Task<IActionResult> ListOfCleaners()
         {
-            //return View(await cleanerRepository.Cleaner.ToListAsync());
-            return View();
+            //return View(await cleanerRepository.Cleaners.ToListAsync());
+            var cleanerList = cleanerRepository.Cleaners;
+            return View(cleanerList);
+            //return View();
         }
     }
 }
