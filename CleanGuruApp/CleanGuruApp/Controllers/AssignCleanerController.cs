@@ -101,18 +101,18 @@ namespace CleanGuruApp.Controllers
 
 
         //method to decline a service
-        [HttpGet("{id}")]
-        public IActionResult Decline(int id)
-        {
-            var appointment = appointmentRepository.GetAppointment(id);
+        //[HttpGet("{id}")]
+        //public IActionResult Decline(int id)
+        //{
+        //    var appointment = appointmentRepository.GetAppointment(id);
 
-            List<Cleaner> cleanerList = new List<Cleaner>();
+        //    List<Cleaner> cleanerList = new List<Cleaner>();
 
-            appointment.IdCleaner = ChooseClosestCleaner(appointment.Customer, cleanerList);
+        //    appointment.IdCleaner = ChooseClosestCleaner(appointment.Customer, cleanerList);
 
-            appointmentRepository.Update(appointment);
-            TempData["message"] = "[ID " + id + "] Appointment was declined.";
-            return View();
-        }
+        //    appointmentRepository.Update(appointment);
+        //    TempData["message"] = "[ID " + id + "] Appointment was declined.";
+        //    return View();
+        //}
     }
 }

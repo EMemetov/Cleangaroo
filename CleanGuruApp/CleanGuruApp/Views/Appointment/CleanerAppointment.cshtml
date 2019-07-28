@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Appointment>
+
+
+@{
+    ViewData["Title"] = "Cleaner Appontment";
+}
+
+
+<h2>Cleaner Appointment</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cleaner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdAppointment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CtDateRequestService)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CtHoursRequested)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ServicePrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cleaner.FCleanerName)
+                    @Html.DisplayFor(modelItem => item.Cleaner.LCleanerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.IdAppointment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CtDateRequestService)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CtHoursRequested)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServicePrice.ServicePriceDescr)
+                    (@Html.DisplayFor(modelItem => item.ServicePrice.CtAmountHour) per hour)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.FCustomerName)
+                    @Html.DisplayFor(modelItem => item.Customer.LCustomerName)
+
+                </td>
+                <td>
+                    @*<a href="#" class="button" onClick="stopwatch.start();">Start</a> |
+                        <a href="#" class="button" onClick="stopwatch.stop();">Stop</a> |*@
+                    <a asp-action="Details" asp-controller="Appointment" asp-route-id="@item.IdAppointment">Details</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div style="text-align: center; margin:auto;">
+    <h1><time>00:00:00</time></h1>
+    <button id="start">start</button>
+    <button id="stop">stop</button>
+    <button id="clear">clear</button>
+    <script src="~/javascript/SopWatch.js"></script>
+</div>
+

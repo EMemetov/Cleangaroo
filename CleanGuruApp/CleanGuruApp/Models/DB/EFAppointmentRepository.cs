@@ -31,6 +31,7 @@ namespace CleanGuruApp.Models.DB
             var appointment = context.Appointment.Include(p => p.Customer).Where(p => p.IdAppointment == idAppointment).FirstOrDefault();
 
             return appointment;
+
         }
 
         public void Remove(Appointment appointment)
