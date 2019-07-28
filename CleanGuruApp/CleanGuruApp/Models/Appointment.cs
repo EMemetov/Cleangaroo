@@ -54,6 +54,24 @@ namespace CleanGuruApp.Models
         [NotMapped]
         [DisplayFormat(DataFormatString = "{N2}", ApplyFormatInEditMode = true)]
         public Double? Total;
+        [NotMapped]
+        [DisplayFormat(DataFormatString = "{N2}", ApplyFormatInEditMode = true)]
+        public int TotalHoursWorked
+        {
+            get
+            {
+                if (ClockIn==null || ClockOut ==null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    TimeSpan hoursDif = Convert.ToDateTime(ClockOut) - Convert.ToDateTime(ClockIn);
+                    int totalDif = hoursDif.Hours;
+                    return totalDif;
+                }
+            }
+        }
 
         //[Required]
         public Customer Customer { get; set; }
