@@ -103,6 +103,12 @@ namespace CleanGuruApp.Controllers
                 return View(customer);
             }
         }
-
+        public async Task<IActionResult> ListOfCustomers()
+        {
+            //return View(await cleanerRepository.Cleaners.ToListAsync());
+            var customerList = customerRepository.Customers;
+            return View(customerList);
+            //return View();
+        }
     }
 }
