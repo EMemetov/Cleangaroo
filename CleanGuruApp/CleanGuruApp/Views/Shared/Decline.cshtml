@@ -2,7 +2,7 @@
 @model Appointment
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Decline";
 }
 
 @if (Model == null)
@@ -12,7 +12,8 @@
 else
 {
     <div align="right">
-        <a asp-action="FutureAppointment" asp-controller="Appointment" class="warning" a>Back to List</a>
+        <a asp-action="CleanerAppointment" asp-controller="Appointment" class="warning" a>Back to List</a>
     </div>
     <partial name="AppointmentDetail" />
+    <br /> 
 }

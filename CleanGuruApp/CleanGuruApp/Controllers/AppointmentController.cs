@@ -258,5 +258,14 @@ namespace CleanGuruApp.Controllers
             return View(appointment);
         }
 
+        public ViewResult Decline(int id)
+        {
+            var appointment = appointmentRepository.GetAppointment(id);
+            ViewBag.CustList = getCustomersList(1);
+            ViewBag.CLeanList = getCleanersList(null);
+            ViewBag.ServiceList = getServiceList(null);
+            return View(appointment);
+        }
+
     }
 }
