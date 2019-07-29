@@ -125,7 +125,7 @@ namespace CleanGuruApp.Controllers
             return View("../Appointment/CreateAppointment");
         }
 
-        public IActionResult FutureAppointment()
+        public IActionResult FutureAppointment(string typeUser)
         {
             var appointment = appointmentRepository.Appointments;
             ViewBag.CustList = getCustomersList(1);
@@ -135,6 +135,7 @@ namespace CleanGuruApp.Controllers
             {
                 totalItem.Total = totalItem.CtHoursRequested * totalItem.ServicePrice.CtAmountHour;
             }
+            ViewBag.typeUser = typeUser;
             return View(appointment);
         }
 

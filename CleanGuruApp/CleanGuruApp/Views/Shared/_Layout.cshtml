@@ -35,7 +35,24 @@
                         <a class="nav-link " asp-controller="Appointment" asp-action="CreateAppointment" tabindex="-1">Service</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link " asp-controller="Appointment" asp-action="FutureAppointment" tabindex="-1">Future Appointments</a>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                Future Appointments
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item active">
+                                    <a class="nav-link " style="color: black" asp-controller="Appointment" asp-action="FutureAppointment" 
+                                            asp-route-typeUser="Cu" tabindex="-1">Customer </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link " style="color: black;" asp-controller="Appointment" asp-action="FutureAppointment"
+                                            asp-route--typeUser="Cl" tabindex="-1">Cleaner </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        @*<a class="nav-link " asp-controller="Appointment" asp-action="FutureAppointment" tabindex="-1">Future Appointments</a>*@
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link " asp-controller="Home" asp-action="Contact" tabindex="-1">Contact</a>
