@@ -18,9 +18,11 @@ namespace CleanGuruApp.Models
 
         [Display(Name = "Customert ID")]
         public int IdCustomer{ get; set ;}
+        [Display(Name = "Date Requested")]
         [Required(ErrorMessage = "Enter a valid date")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime CtDateRequestService{ get; set ;}
+        [Display(Name = "Hours Requested")]
         [Required(ErrorMessage = "The requested hours should be between 1-8")]
         [Range(0, 8)]
         public int? CtHoursRequested{ get; set ;}
