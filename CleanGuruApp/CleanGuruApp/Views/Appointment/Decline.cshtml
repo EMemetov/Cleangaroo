@@ -18,6 +18,8 @@ else
     </div>
     <partial name="AppointmentDetail" />
     <br />
+    <a asp-action="Accept" asp-controller="AssignCleaner" asp-route-id="@Model.IdAppointment"
+       class="btn btn-outline-success my-2 my-sm-0">Accept</a>
     <a asp-action="Decline" asp-controller="AssignCleaner" asp-route-id="@Model.IdAppointment"
        class="btn btn-outline-success my-2 my-sm-0">Decline</a>
 }
