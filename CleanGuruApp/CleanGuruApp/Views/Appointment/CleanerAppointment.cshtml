@@ -78,9 +78,9 @@
                 </td>
                 <td>
                     @*<a href="#" class="button" onClick="stopwatch.start();">Start</a> |
-                        <a href="#" class="button" onClick="stopwatch.stop();">Stop</a> |*@
-                    <a asp-action="Details" asp-controller="Appointment" asp-route-id="@item.IdAppointment">Details</a>
-
+        <a href="#" class="button" onClick="stopwatch.stop();">Stop</a> |*@
+                    <a asp-action="Details" asp-controller="Appointment" asp-route-id="@item.IdAppointment">Details</a> |
+                    <a asp-action="Decline" asp-controller="Appointment" asp-route-id="@item.IdAppointment">Decline</a>
                 </td>
             </tr>
         }

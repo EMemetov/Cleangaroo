@@ -12,9 +12,16 @@ namespace CleanGuruApp.Controllers
     public class AssignCleanerController : Controller
     {
         private readonly IAppointmentRepository appointmentRepository;
-        public AssignCleanerController(IAppointmentRepository appointmentRepository)
+        private readonly ICleanerRepository     cleanerRepository;
+        private readonly ICustomerRepository    customerRepository;
+
+        public AssignCleanerController(IAppointmentRepository appointmentRepository,
+                                       ICleanerRepository     cleanerRepository,
+                                       ICustomerRepository    customerRepository)
         {
             this.appointmentRepository = appointmentRepository;
+            this.cleanerRepository     = cleanerRepository;
+            this.customerRepository    = customerRepository;
         }
 
 
@@ -22,7 +29,7 @@ namespace CleanGuruApp.Controllers
         {
             return View();
         }
-
+ 
 
         /// <summary>
         /// Returns Closes Cleaner to the Customer
@@ -58,6 +65,7 @@ namespace CleanGuruApp.Controllers
             System.Threading.Thread.Sleep(1000);
             int distance = 0;
             string key = "KEY";
+            //string key = "AIzaSyBLBKgz0zTcj5Fi5ISxzP3QAAv0i-Nsy30";
 
             string url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination + "&key=" + key;
             url = url.Replace(" ", "+");
@@ -98,22 +106,33 @@ namespace CleanGuruApp.Controllers
             catch { sContents = "unable to connect to server "; }
             return sContents;
         }
-
-
         //method to decline a service
+        public IActionResult Decline(int id)
+        {
+            var appointment = appointmentRepository.GetAppointment(id);
+            int idcustomer = appointment.IdCustomer;
+            var customer = customerRepository.GetCustomer(idcustomer);
 
-        //[HttpGet("{id}")]
-        //public IActionResult Decline(int id)
-        //{
-        //    var appointment = appointmentRepository.GetAppointment(id);
+            List<Cleaner> cleanerList = new List<Cleaner>();
+            cleanerList = getCleanersList();
 
-        //    List<Cleaner> cleanerList = new List<Cleaner>();
+            //appointment.IdCleaner = ChooseClosestCleaner(customer, cleanerList);
+            appointment.IdCleaner = 1;
 
-        //    appointment.IdCleaner = ChooseClosestCleaner(appointment.Customer, cleanerList);
+            appointmentRepository.Update(appointment);
+            TempData["message"] = "[ID " + id + "] Appointment was reassigned to: "+appointment.Cleaner.FCleanerName +" "+ appointment.Cleaner.LCleanerName;
+            return View(appointment);
+        }
 
-        //    appointmentRepository.Update(appointment);
-        //    TempData["message"] = "[ID " + id + "] Appointment was declined.";
-        //    return View();
-        //}
+        private List<Cleaner> getCleanersList()
+        {
+            List<Cleaner> selectList = new List<Cleaner>();
+
+            foreach (var cleaner in cleanerRepository.Cleaners)
+            {
+                selectList.Add(cleaner);
+            }
+            return selectList;
+        }
     }
 }
