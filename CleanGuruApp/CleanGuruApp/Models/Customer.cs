@@ -19,6 +19,13 @@ namespace CleanGuruApp.Models
         [Required(ErrorMessage = "Please enter a valid phone.")]
         public string CtPhone1 { get; set; }
         public string CtPhone2 { get; set; }
+        public string CtEmail
+        {
+            get
+            {
+                return UserName;
+            }
+        }
 
         [RegularExpression(".+\\@.+\\..+",
             ErrorMessage = "Please enter a valid email address.")]

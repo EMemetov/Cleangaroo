@@ -21,25 +21,31 @@
             <th>
                 Phone
             </th>
+            <th>
+                Email
+            </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td id="FullName">
-                    @Html.DisplayFor(modelItem => item.IdCustomer)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FCustomerName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LCustomerName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CtPhone1)
-                </td>
-            </tr>
+        <tr>
+            <td id="FullName">
+                @Html.DisplayFor(modelItem => item.IdCustomer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FCustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LCustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CtPhone1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CtEmail)
+            </td>
+        </tr>
         }
     </tbody>
 

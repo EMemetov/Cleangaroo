@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using CleanGuruApp.Models;
 using CleanGuruApp.Models.DB;
+using System.Net.Mail;
+using System.Net.Mime;
+using System.Net;
 
 namespace CleanGuruApp.Controllers
 {
@@ -120,7 +123,90 @@ namespace CleanGuruApp.Controllers
             appointment.IdCleaner = 1;
 
             appointmentRepository.Update(appointment);
-            TempData["message"] = "[ID " + id + "] Appointment was reassigned to: "+appointment.Cleaner.FCleanerName +" "+ appointment.Cleaner.LCleanerName;
+            TempData["message"] = "[ID " + id + "] Appointment was declined to: "+appointment.Cleaner.FCleanerName +" "+ appointment.Cleaner.LCleanerName;
+            //You may need to use this link to give account access
+            //https://accounts.google.com/DisplayUnlockCaptcha
+
+            var fromAddress = new MailAddress("cleanguru2019@gmail.com");
+            var fromPassword = "12zx09mn";
+            var toAddress = new MailAddress(appointment.Customer.CtEmail);
+
+            string subject = "CleanGuru - Service declined";
+            string body = "This is an automatic email. Please do not answer.\n" +
+                               "Service was declined by cleaner "+
+                               appointment.Cleaner.LCleanerName+", "+
+                               appointment.Cleaner.FCleanerName;
+
+
+            System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+
+                smtp.Send(message);
+
+            return View(appointment);
+        }
+
+
+        //method to decline a service
+        public IActionResult Accept(int id)
+        {
+            var appointment = appointmentRepository.GetAppointment(id);
+            int idcustomer = appointment.IdCustomer;
+            var customer = customerRepository.GetCustomer(idcustomer);
+
+            List<Cleaner> cleanerList = new List<Cleaner>();
+            cleanerList = getCleanersList();
+
+            //appointment.IdCleaner = ChooseClosestCleaner(customer, cleanerList);
+            appointment.IdCleaner = 1;
+
+            appointmentRepository.Update(appointment);
+            TempData["message"] = "[ID " + id + "] Appointment was reassigned to: " + appointment.Cleaner.FCleanerName + " " + appointment.Cleaner.LCleanerName;
+            //You may need to use this link to give account access
+            //https://accounts.google.com/DisplayUnlockCaptcha
+
+            var fromAddress = new MailAddress("cleanguru2019@gmail.com");
+            var fromPassword = "12zx09mn";
+            var toAddress = new MailAddress(appointment.Customer.CtEmail);
+
+            string subject = "CleanGuru - Service declined";
+            string body = "This is an automatic email. Please do not answer.\n" +
+                               "Service was declined by cleaner " +
+                               appointment.Cleaner.LCleanerName + ", " +
+                               appointment.Cleaner.FCleanerName;
+
+
+            System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+
+                smtp.Send(message);
+
             return View(appointment);
         }
 
