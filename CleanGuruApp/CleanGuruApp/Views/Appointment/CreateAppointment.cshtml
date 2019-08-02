@@ -12,9 +12,7 @@
     <a asp-action="Index" asp-controller="Home" class="warning" a>Cancel</a>
 </div>
 
-<div asp-validation-summary="All" class="validation-summary-errors"></div>
 <form asp-controller="Appointment" asp-action="Edit" method="post">
-
     <div class="form-group">
         <label asp-for="Customer" class="control-label"></label>
         @Html.DropDownList("IdCustomer", ViewBag.CustList as List<SelectListItem>, new { @class = "form-control" })

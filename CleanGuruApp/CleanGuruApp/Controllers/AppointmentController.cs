@@ -162,7 +162,8 @@ namespace CleanGuruApp.Controllers
                 ViewBag.CustList = getCustomersList(null);
                 ViewBag.CLeanList = getCleanersList(null);
                 ViewBag.ServiceList = getServiceList(null);
-                TempData["message"] = "Appointment not created.";
+                ViewBag.finDate = DateTime.Now.ToString("yyyy-MM-dd");
+                TempData["message"] = "Appointment was not created! Please fill all the information required!";
                 return View("CreateAppointment");
             }
         }
@@ -236,6 +237,7 @@ namespace CleanGuruApp.Controllers
             ViewBag.CustList = getCustomersList(null);
             ViewBag.CLeanList = getCleanersList(null);
             ViewBag.ServiceList = getServiceList(null);
+            TempData["message"] = "Appointment was not created! Please fill all the information required!";
             return View(appointment);
         }
 

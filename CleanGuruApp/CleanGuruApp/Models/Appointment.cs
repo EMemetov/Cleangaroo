@@ -31,6 +31,7 @@ namespace CleanGuruApp.Models
         public DateTime? ClockOut{ get; set ;}
         public string CleanerRate{ get; set ;}
         [DisplayFormat(DataFormatString = "{0:h:mm tt}")]
+            [Required(ErrorMessage = "Enter a valid Start Time")]
         public DateTime? StartTime { get; set; }           //Should not allow NULL - Adjust later
         public bool IsSubscription { get; set; }
         [NotMapped]
