@@ -150,11 +150,18 @@ namespace CleanGuruApp.Controllers
                     ViewBag.CustList = getCustomersList(null);
                     ViewBag.CLeanList = getCleanersList(null);
                     ViewBag.ServiceList = getServiceList(null);
+                    ViewBag.finDate = DateTime.Now.ToString("yyyy-MM-dd");
                     return View("../Home/Index");
                 }
                 catch (Exception)
                 {
-                    throw;
+
+                    ViewBag.CustList = getCustomersList(null);
+                    ViewBag.CLeanList = getCleanersList(null);
+                    ViewBag.ServiceList = getServiceList(null);
+                    ViewBag.finDate = DateTime.Now.ToString("yyyy-MM-dd");
+                    TempData["message"] = "Date of Service and Start Time must be greater than today's datetime !";
+                    return View("CreateAppointment");
                 }
             }
             else
@@ -215,9 +222,22 @@ namespace CleanGuruApp.Controllers
             {
                 try
                 {
-                    customerSubscriptionRepository.DeleteCustomerSubscription(id);
-                    appointmentRepository.Add(appointment);
-                    appointmentRepository.Remove(id);
+                    try
+                    {
+                        appointmentRepository.Add(appointment);
+                        customerSubscriptionRepository.DeleteCustomerSubscription(id);
+                        appointmentRepository.Remove(id);
+                        TempData["message"] = "[ID " + id + "] Appointment was deleted. / " + "[ID " + appointment.IdAppointment + "] A new appointment was created.";
+                        return RedirectToAction(nameof(FutureAppointment));
+                    }
+                    catch (Exception)
+                    {
+                        ViewBag.CustList = getCustomersList(null);
+                        ViewBag.CLeanList = getCleanersList(null);
+                        ViewBag.ServiceList = getServiceList(null);
+                        TempData["message"] = "Date of Service and Start Time must be greater than today's datetime !";
+                        return View("Edit");
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -227,11 +247,9 @@ namespace CleanGuruApp.Controllers
                     }
                     else
                     {
-                        throw;
+                      throw;
                     }
                 }
-                TempData["message"] = "[ID " + id + "] Appointment was deleted. / "+"[ID " + appointment.IdAppointment + "] A new appointment was created.";
-                return RedirectToAction(nameof(FutureAppointment));
             }
 
             ViewBag.CustList = getCustomersList(null);
