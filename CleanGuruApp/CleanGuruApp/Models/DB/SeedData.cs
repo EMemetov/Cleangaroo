@@ -19,12 +19,12 @@ namespace CleanGuruApp.Models.DB
             if (!context.UserLogin.Any())
             {
                 context.UserLogin.AddRange(
-                    new UserLogin { UserName = "Aaron", Pin = "1234", Role = "CUSTOMER" },
-                    new UserLogin { UserName = "Frank", Pin = "1111", Role = "CUSTOMER" },
-                    new UserLogin { UserName = "Edward", Pin = "2222", Role = "CUSTOMER" },
-                    new UserLogin { UserName = "Rubens", Pin = "1234", Role = "CLEANER" },
-                    new UserLogin { UserName = "Fred", Pin = "1020", Role = "MANAGER" },
-                    new UserLogin { UserName = "Rattan", Pin = "1245", Role = "CLEANER" }
+                    new UserLogin { UserName = "Aaron@gmail.com", Pin = "1234", Role = "CUSTOMER" },
+                    new UserLogin { UserName = "Frank@gmail.com", Pin = "1111", Role = "CUSTOMER" },
+                    new UserLogin { UserName = "Edward@gmail.com", Pin = "2222", Role = "CUSTOMER" },
+                    new UserLogin { UserName = "Rubens@gmail.com", Pin = "1234", Role = "CLEANER" },
+                    new UserLogin { UserName = "Fred@gmail.com", Pin = "1020", Role = "MANAGER" },
+                    new UserLogin { UserName = "Rattan@gmail.com", Pin = "1245", Role = "CLEANER" }
                     );
                 context.SaveChanges();
             }
@@ -48,7 +48,7 @@ namespace CleanGuruApp.Models.DB
                         MCustomerName = "Brown",
                         LCustomerName = "Hank",
                         CtPhone1 = "666-222-1111",
-                        UserName = "Aaron",
+                        UserName = "Aaron@gmail.com",
                         Password = "123123"
                     },
                     new Customer
@@ -57,7 +57,7 @@ namespace CleanGuruApp.Models.DB
                         MCustomerName = "Abdu",
                         LCustomerName = "Rash",
                         CtPhone1 = "666-222-2222",
-                        UserName = "Frank",
+                        UserName = "Frank@gmail.com",
                         Password = "321321"
                     },
                     new Customer
@@ -65,7 +65,7 @@ namespace CleanGuruApp.Models.DB
                         FCustomerName = "Edward",
                         LCustomerName = "Tank",
                         CtPhone1 = "666-333-1111",
-                        UserName = "Edward",
+                        UserName = "Edward@gmail.com",
                         Password = "554433"
                     }
                     );
