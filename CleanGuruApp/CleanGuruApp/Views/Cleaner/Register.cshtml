@@ -1,10 +1,15 @@
 ﻿@model Cleaner
 
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Register as Cleaner";
 }
 
-<h2>  Registration  </h2>
+
+<h2 style="margin-bottom:30px;">  Registration for Cleaner </h2>
+<h5 style="margin-bottom:30px;">
+    <a asp-controller="Customer" asp-action="Register" tabindex="-1">Register as Customer? Clicke here </a>
+
+</h5>
 <div asp-validation-summary="All" class="validation-summary-errors"></div>
 <form class="form defaultForm" style="width:80%" asp-action="Register" asp-controller="Cleaner" method="post">
 
