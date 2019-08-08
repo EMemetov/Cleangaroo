@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//*********************************************************************************************************************
+// Author: Theo Mitchel - Last Modified Date: August, 7th 2019.
+// The CleanerController receives the cleaners data, validates the information and passes it to the data model.
+// 
+//*********************************************************************************************************************
 using System.Linq;
-using System.Threading.Tasks;
 using CleanGuruApp.Models;
 using CleanGuruApp.Models.DB;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +12,7 @@ namespace CleanGuruApp.Controllers
 {
     public class CleanerController : Controller
     {
+        //declaring the repository variable to be used in the controller
         private readonly ICleanerRepository cleanerRepository;
 
         public CleanerController(ICleanerRepository repository)
@@ -17,6 +20,7 @@ namespace CleanGuruApp.Controllers
             cleanerRepository = repository;
         }
 
+        //method to get and post the information about the cleaner
         [HttpGet]
         public IActionResult Register(int idCleaner) => View(cleanerRepository.Cleaners.FirstOrDefault(c => c.IdCleaner == idCleaner));
 
@@ -36,6 +40,7 @@ namespace CleanGuruApp.Controllers
             }
         }
 
+        //method to get the cleaners list
         public IActionResult ListOfCleaners()
         {
             var cleanerList = cleanerRepository.Cleaners;

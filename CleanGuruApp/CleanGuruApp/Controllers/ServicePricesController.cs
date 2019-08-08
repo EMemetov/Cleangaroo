@@ -1,4 +1,9 @@
-﻿using System;
+﻿//*********************************************************************************************************************
+// Author: Satbyul Park - Last Modified Date: August, 7th 2019.
+// The ServicePricesController receives the service price data, validates the information and passes it to the data model.
+// 
+//*********************************************************************************************************************
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +17,7 @@ namespace CleanGuruApp.Controllers
 {
     public class ServicePricesController : Controller
     {
+        //declaring the repositories variables to be used in the assignCleanerController
         private readonly ApplicationDBContext _context;
 
         public ServicePricesController(ApplicationDBContext context)

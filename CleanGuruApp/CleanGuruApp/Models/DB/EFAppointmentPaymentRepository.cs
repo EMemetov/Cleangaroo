@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace CleanGuruApp.Models.DB
 {
+   
     public class EFAppointmentPaymentRepository : IAppointmentPaymentRepository
     {
-
         private ApplicationDBContext context;
 
         public EFAppointmentPaymentRepository(ApplicationDBContext context)
@@ -17,6 +14,7 @@ namespace CleanGuruApp.Models.DB
 
         public IQueryable<AppointmentPayment> AppointmentPayments => context.AppointmentPayment;
 
+        //method used to save the appointments payment
         public void SaveAppointmentPayment(AppointmentPayment appointmentPayment)
         {
             if (appointmentPayment.IdAppointmentPayment == 0)

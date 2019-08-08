@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models
 {
+    //class to define the fields and validate the data
     public class ScheduleCleaner
     {
         [Key]

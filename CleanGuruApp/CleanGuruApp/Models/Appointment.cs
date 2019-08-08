@@ -30,11 +30,6 @@ namespace CleanGuruApp.Models
         [Range(0, 8)]
         public int? CtHoursRequested{ get; set ;}
 
-        public int IdCleaner{ get; set ;}
-        public DateTime? ClockIn{ get; set ;}
-        public DateTime? ClockOut{ get; set ;}
-        public string CleanerRate{ get; set ;}
-
         [DisplayFormat(DataFormatString = "{0:h:mm tt}")]
         [Required(ErrorMessage = "Enter a valid Start Time")]
         public DateTime? StartTime { get; set; }  
@@ -66,6 +61,7 @@ namespace CleanGuruApp.Models
         [NotMapped]
         [DisplayFormat(DataFormatString = "{N2}", ApplyFormatInEditMode = true)]
         public Double? Total;
+
         [NotMapped]
         [DisplayFormat(DataFormatString = "{N2}", ApplyFormatInEditMode = true)]
         public int TotalHoursWorked
@@ -91,6 +87,12 @@ namespace CleanGuruApp.Models
         public Cleaner Cleaner { get; set; }
 
         public ServicePrice ServicePrice { get; set; }
+
+        //functionality not implemented for this fields
+        public int IdCleaner { get; set; }
+        public DateTime? ClockIn { get; set; }
+        public DateTime? ClockOut { get; set; }
+        public string CleanerRate { get; set; }
 
     }
 }

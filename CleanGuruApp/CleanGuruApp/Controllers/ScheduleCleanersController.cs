@@ -1,9 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//*********************************************************************************************************************
+// Author: Satbyul Park - Last Modified Date: August, 7th 2019.
+// The ScheduleCleanersController receives the schedule cleaners data, validates the information and passes it to the data model.
+// 
+//*********************************************************************************************************************
+
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CleanGuruApp.Models;
 using CleanGuruApp.Models.DB;
@@ -12,6 +15,7 @@ namespace CleanGuruApp.Controllers
 {
     public class ScheduleCleanersController : Controller
     {
+        //declaring the repositories variables to be used in the assignCleanerController
         private readonly ApplicationDBContext _context;
 
         public ScheduleCleanersController(ApplicationDBContext context)

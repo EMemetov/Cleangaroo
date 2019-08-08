@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models.DB
 {
@@ -19,6 +17,7 @@ namespace CleanGuruApp.Models.DB
 
         public IEnumerable<Appointment> Appointments => context.Appointment.Include(p => p.Customer).ToList();
 
+        //method used to save the appointments
         public void Add(Appointment appointment)
         {
             DateTime todayDate = DateTime.Now;
@@ -39,6 +38,7 @@ namespace CleanGuruApp.Models.DB
             throw new NotImplementedException("DateRequestService and StartTime must be greater than today's date !");
         }
 
+        //method used to get the appointments data
         public Appointment GetAppointment(int? idAppointment)
         {
             if (idAppointment == null) return null;
@@ -49,25 +49,26 @@ namespace CleanGuruApp.Models.DB
 
         }
 
+        //method used to remove the appointments data
         public void Remove(Appointment appointment)
         {
             context.Appointment.Remove(appointment);
             context.SaveChanges();
 
         }
-
         public void Remove(int id)
         {
             Remove(GetAppointment(id));
         }
 
+        //method used to update the appointments data
         public void Update(Appointment appointment)
         {
             context.Appointment.Update(appointment);
             context.SaveChanges();
         }
 
-
+        //method used to save the appointments data
         public void Save(Appointment appointment)
         {
             Appointment dbEntry = context.Appointment.FirstOrDefault(u => u.IdAppointment == appointment.IdAppointment);

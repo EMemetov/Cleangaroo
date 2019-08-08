@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//*********************************************************************************************************************
+// Author: Mariia Staforkina - Last Modified Date: August, 7th 2019.
+// The UserLoginController receives the user login data, validates the information and passes it to the data model.
+// 
+//*********************************************************************************************************************
 using System.Linq;
-using System.Threading.Tasks;
 using CleanGuruApp.Models;
 using CleanGuruApp.Models.DB;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +12,7 @@ namespace CleanGuruApp.Controllers
 {
     public class UserLoginController : Controller
     {
+        //declaring the repositories variables to be used in the assignCleanerController
         private IUserLoginRepository repository;
 
         public UserLoginController(IUserLoginRepository repo)

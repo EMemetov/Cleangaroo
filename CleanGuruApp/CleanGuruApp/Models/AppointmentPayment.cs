@@ -22,14 +22,14 @@ namespace CleanGuruApp.Models
         [Range(0, 8)]
         public int ClHoursWorked { get; set; }
     
-        public bool PaidByCustomer{ get; set ;}
-
-        public bool PaidToCleaner { get; set; }
-
         [DataType(DataType.Currency)]
         public double AmountPaidByCustomer{ get; set ;}
 
         [DataType(DataType.Currency)]
         public double AmountPaidToCleaner { get; set; }
+
+        //functionality not implemented for this fields
+        public bool PaidByCustomer { get; set; }
+        public bool PaidToCleaner { get; set; }
     }
 }

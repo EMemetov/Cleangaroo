@@ -1,9 +1,13 @@
-﻿using System;
+﻿//*********************************************************************************************************************
+// Author: Andrea Cavalheiro - Last Modified Date: August, 7th 2019.
+// The AppointmentController receives the appointment data, validates the information and then passes it to the data model.
+// 
+//*********************************************************************************************************************
+
+using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Threading.Tasks;
 using CleanGuruApp.Models;
 using CleanGuruApp.Models.DB;
 using Microsoft.AspNetCore.Mvc;
@@ -13,12 +17,13 @@ namespace CleanGuruApp.Controllers
 {
     public class AppointmentController : Controller
     {
-        private readonly IAppointmentRepository appointmentRepository;
-        private readonly ICustomerRepository customerRepository;
-        private readonly ICleanerRepository cleanerRepository;
-        private readonly IServicePriceRepository servicePriceRepository;
-        private readonly ICustomerSubscriptionRepository customerSubscriptionRepository;
-        private readonly ICustomerAddressRepository customerAddressRepository;
+        //declaring the repositories variables to be used in the appointment controller
+        private  IAppointmentRepository  appointmentRepository;
+        private  ICustomerRepository     customerRepository;
+        private  ICleanerRepository      cleanerRepository;
+        private  IServicePriceRepository servicePriceRepository;
+        private  ICustomerSubscriptionRepository customerSubscriptionRepository;
+        private  ICustomerAddressRepository customerAddressRepository;
 
         public AppointmentController(IAppointmentRepository appointmentRepository,
                                      ICustomerRepository customerRepository,
@@ -37,6 +42,7 @@ namespace CleanGuruApp.Controllers
               
        
 
+        //creating a method to get the customer list or just one customer with the corresponding address
         private List<SelectListItem> getCustomersList(int? idCust)
         {
             List<SelectListItem> selectList = new List<SelectListItem>();
@@ -67,6 +73,7 @@ namespace CleanGuruApp.Controllers
             return selectList;
         }
 
+        //creating a method to get the cleaners list or just one cleaner
         private List<SelectListItem> getCleanersList(int? idClean)
         {
             List<SelectListItem> selectList = new List<SelectListItem>();
@@ -90,7 +97,7 @@ namespace CleanGuruApp.Controllers
             return selectList;
         }
 
-
+        //creating a method to get the service list or just one service
         private List<SelectListItem> getServiceList(int? idServ)
         {
             List<SelectListItem> selectList = new List<SelectListItem>();
@@ -114,6 +121,24 @@ namespace CleanGuruApp.Controllers
             return selectList;
         }
 
+        //method to show the future appointments that corresponds to one type of user
+        public IActionResult FutureAppointment(string typeUser)
+        {
+            var appointment = appointmentRepository.Appointments;
+            ViewBag.CustList = getCustomersList(1);
+            ViewBag.CLeanList = getCleanersList(null);
+            ViewBag.ServiceList = getServiceList(null);
+
+            //foreach to calculate the total service price to be charged to the customer
+            foreach (var totalItem in appointment)
+            {
+                totalItem.Total = totalItem.CtHoursRequested * totalItem.ServicePrice.CtAmountHour;
+            }
+            ViewBag.typeUser = typeUser;
+            return View(appointment);
+        }
+
+        //method to create the appointment
         public ViewResult CreateAppointment()
         {
             CustomerSubscription custSub = new CustomerSubscription();
@@ -123,22 +148,7 @@ namespace CleanGuruApp.Controllers
             ViewBag.CLeanList = getCleanersList(null);
             ViewBag.ServiceList = getServiceList(null);
             return View("../Appointment/CreateAppointment");
-        }
-
-        public IActionResult FutureAppointment(string typeUser)
-        {
-            var appointment = appointmentRepository.Appointments;
-            ViewBag.CustList = getCustomersList(1);
-            ViewBag.CLeanList = getCleanersList(null);
-            ViewBag.ServiceList = getServiceList(null);
-            foreach (var totalItem in appointment)
-            {
-                totalItem.Total = totalItem.CtHoursRequested * totalItem.ServicePrice.CtAmountHour;
-            }
-            ViewBag.typeUser = typeUser;
-            return View(appointment);
-        }
-
+        }       
         [HttpPost]
         public IActionResult CreateAppointment(Appointment appointment)
         {
@@ -175,6 +185,7 @@ namespace CleanGuruApp.Controllers
             }
         }
 
+        //method to show the details about an appointment previous selected
         public IActionResult Details(int id)
         {
             var appointment = appointmentRepository.GetAppointment(id);
@@ -185,6 +196,7 @@ namespace CleanGuruApp.Controllers
             return View(appointment);
         }
 
+        //method to delete an appointment previous selected
         public IActionResult Delete(int id)
         {
             var appointment = appointmentRepository.GetAppointment(id);
@@ -194,7 +206,6 @@ namespace CleanGuruApp.Controllers
             appointment.Total = appointment.CtHoursRequested * appointment.ServicePrice.CtAmountHour;
             return View(appointment);
         }
-
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
@@ -202,9 +213,9 @@ namespace CleanGuruApp.Controllers
             appointmentRepository.Remove(id);
             TempData["message"] = "[ID " + id + "] Appointment deleted.";
             return RedirectToAction(nameof(FutureAppointment));
-        }    
+        }
 
-
+        //method to edit an appointment previous selected
         public IActionResult Edit(int id)
         {
             var appointment = appointmentRepository.GetAppointment(id);
@@ -214,7 +225,6 @@ namespace CleanGuruApp.Controllers
             ViewBag.ServiceList = getServiceList(null);
             return View(appointment);
         }
-
         [HttpPost]
         public IActionResult Edit( int id, Appointment appointment)
         {
@@ -251,7 +261,6 @@ namespace CleanGuruApp.Controllers
                     }
                 }
             }
-
             ViewBag.CustList = getCustomersList(null);
             ViewBag.CLeanList = getCleanersList(null);
             ViewBag.ServiceList = getServiceList(null);
@@ -259,14 +268,15 @@ namespace CleanGuruApp.Controllers
             return View(appointment);
         }
 
+        //method to validate if the aapointment exists
         private bool AppointmentExists(int idAppointment)
         {
             return appointmentRepository.GetAppointment(idAppointment) != null;
         }
 
+        //method to show the appointments that belongs to the cleaners
         public ViewResult CleanerAppointment()
         {
-
             var appointment = appointmentRepository.Appointments;
             ViewBag.CustList = getCustomersList(1);
             ViewBag.CLeanList = getCleanersList(null);
@@ -278,6 +288,7 @@ namespace CleanGuruApp.Controllers
             return View(appointment);
         }
 
+        //method to decline an appointment by the cleaner
         public ViewResult Decline(int id)
         {
             var appointment = appointmentRepository.GetAppointment(id);

@@ -1,19 +1,25 @@
-﻿using System;
+﻿//*********************************************************************************************************************
+// Author: Eskender Memetov, Andrea Cavalheiro and Fernando Martins - Last Modified Date: August, 7th 2019.
+// The AssignCleanerController is used to:
+// - Assign the closest cleaner to the customer;  
+// - Calculates driving distance between Origin and destination address 
+// - When the cleaner decline or accept the service
+// - To send an email to the customer
+//*********************************************************************************************************************
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using CleanGuruApp.Models;
 using CleanGuruApp.Models.DB;
 using System.Net.Mail;
-using System.Net.Mime;
 using System.Net;
 
 namespace CleanGuruApp.Controllers
 {
     public class AssignCleanerController : Controller
     {
+        //declaring the repositories variables to be used in the Controller
         private readonly IAppointmentRepository appointmentRepository;
         private readonly ICleanerRepository     cleanerRepository;
         private readonly ICustomerRepository    customerRepository;
@@ -109,6 +115,7 @@ namespace CleanGuruApp.Controllers
             catch { sContents = "unable to connect to server "; }
             return sContents;
         }
+
         //method to decline a service
         public IActionResult Decline(int id)
         {
@@ -122,12 +129,14 @@ namespace CleanGuruApp.Controllers
             //appointment.IdCleaner = ChooseClosestCleaner(customer, cleanerList);
             appointment.IdCleaner = 1;
 
+
             appointmentRepository.Update(appointment);
-            TempData["message"] = "[ID " + id + "] Appointment was declined to: "+appointment.Cleaner.FCleanerName +" "+ appointment.Cleaner.LCleanerName;
-           
+            TempData["message"] = "[ID " + id + "] Appointment was declined and changed to: "+appointment.Cleaner.FCleanerName +" "+ appointment.Cleaner.LCleanerName;
+
+
             //You may need to use this link to give account access
             //https://accounts.google.com/DisplayUnlockCaptcha
-
+            //used to send an email to the customer
             var fromAddress = new MailAddress("cleanguru2019@gmail.com");
             var fromPassword = "12zx09mn";
             var toAddress = new MailAddress(appointment.Customer.CtEmail);
@@ -161,7 +170,7 @@ namespace CleanGuruApp.Controllers
         }
 
 
-        //method to decline a service
+        //method to accept a service
         public IActionResult Accept(int id)
         {
             var appointment = appointmentRepository.GetAppointment(id);
@@ -171,11 +180,8 @@ namespace CleanGuruApp.Controllers
             List<Cleaner> cleanerList = new List<Cleaner>();
             cleanerList = getCleanersList();
 
-            //appointment.IdCleaner = ChooseClosestCleaner(customer, cleanerList);
-            appointment.IdCleaner = 1;
-
             appointmentRepository.Update(appointment);
-            TempData["message"] = "[ID " + id + "] Appointment was reassigned to: " + appointment.Cleaner.FCleanerName + " " + appointment.Cleaner.LCleanerName;
+            TempData["message"] = "[ID " + id + "] Appointment was accepted: " + appointment.Cleaner.FCleanerName + " " + appointment.Cleaner.LCleanerName;
             //You may need to use this link to give account access
             //https://accounts.google.com/DisplayUnlockCaptcha
 
@@ -211,6 +217,7 @@ namespace CleanGuruApp.Controllers
             return View(appointment);
         }
 
+        //method to get the cleaners list
         private List<Cleaner> getCleanersList()
         {
             List<Cleaner> selectList = new List<Cleaner>();

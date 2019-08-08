@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//*********************************************************************************************************************
+// Author: Satbyul Park and Mariia Staforkina - Last Modified Date: August, 7th 2019.
+// The HomeController manage the views.
+// 
+//*********************************************************************************************************************
 using Microsoft.AspNetCore.Mvc;
-using CleanGuruApp.Models;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace CleanGuruApp.Controllers
 {
