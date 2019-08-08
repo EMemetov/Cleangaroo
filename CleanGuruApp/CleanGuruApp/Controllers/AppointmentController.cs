@@ -39,10 +39,9 @@ namespace CleanGuruApp.Controllers
             this.customerSubscriptionRepository = customerSubscriptionRepository;
             this.customerAddressRepository = customerAddressRepository;
         }
-              
-       
-
-        //creating a method to get the customer list or just one customer with the corresponding address
+                     
+        // Method to get the customer list or just one customer with the corresponding address
+        // parameter "idCust", when passed to the method it will get the information about an specific customer
         private List<SelectListItem> getCustomersList(int? idCust)
         {
             List<SelectListItem> selectList = new List<SelectListItem>();
@@ -74,6 +73,7 @@ namespace CleanGuruApp.Controllers
         }
 
         //creating a method to get the cleaners list or just one cleaner
+        // parameter "idClean", when passed to the method it will get the information about an specific cleaner
         private List<SelectListItem> getCleanersList(int? idClean)
         {
             List<SelectListItem> selectList = new List<SelectListItem>();
@@ -98,6 +98,7 @@ namespace CleanGuruApp.Controllers
         }
 
         //creating a method to get the service list or just one service
+        // parameter "idServ", when passed to the method it will get the information about an specific service
         private List<SelectListItem> getServiceList(int? idServ)
         {
             List<SelectListItem> selectList = new List<SelectListItem>();
@@ -122,6 +123,7 @@ namespace CleanGuruApp.Controllers
         }
 
         //method to show the future appointments that corresponds to one type of user
+        //parameter "typeUser", when passed to the method it will bring the appointments from that user
         public IActionResult FutureAppointment(string typeUser)
         {
             var appointment = appointmentRepository.Appointments;
@@ -186,6 +188,7 @@ namespace CleanGuruApp.Controllers
         }
 
         //method to show the details about an appointment previous selected
+        //parameter "id", when passed to the method it will bring all the data from that appointments
         public IActionResult Details(int id)
         {
             var appointment = appointmentRepository.GetAppointment(id);
@@ -197,6 +200,7 @@ namespace CleanGuruApp.Controllers
         }
 
         //method to delete an appointment previous selected
+        //parameter "id" to delete an specific appointment
         public IActionResult Delete(int id)
         {
             var appointment = appointmentRepository.GetAppointment(id);
@@ -216,6 +220,7 @@ namespace CleanGuruApp.Controllers
         }
 
         //method to edit an appointment previous selected
+        //parameter "id" to edit an specific appointment
         public IActionResult Edit(int id)
         {
             var appointment = appointmentRepository.GetAppointment(id);
@@ -269,6 +274,7 @@ namespace CleanGuruApp.Controllers
         }
 
         //method to validate if the aapointment exists
+        //parameter "idAppointment" used to validate if the appointment exists
         private bool AppointmentExists(int idAppointment)
         {
             return appointmentRepository.GetAppointment(idAppointment) != null;
@@ -289,6 +295,7 @@ namespace CleanGuruApp.Controllers
         }
 
         //method to decline an appointment by the cleaner
+        //parameter "id" used to decline an specific appointment
         public ViewResult Decline(int id)
         {
             var appointment = appointmentRepository.GetAppointment(id);

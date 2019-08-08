@@ -1,7 +1,9 @@
-﻿using System;
+﻿//*********************************************************************************************************************
+// Author: Satbyul Park - Last Modified Date: August, 7th 2019.  
+// Declaring the methods to be used for the EFServicePriceRepository
+//*********************************************************************************************************************
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace CleanGuruApp.Models.DB
 {

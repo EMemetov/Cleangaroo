@@ -24,6 +24,7 @@ namespace CleanGuruApp.Controllers
         public IActionResult List() => View(repository.UserLogins);
 
         [HttpGet]
+        //parameter userName used to get the information about the user
         public IActionResult Edit(string userName) => View(repository.UserLogins.FirstOrDefault(c => c.UserName == userName));
 
         [HttpPost]

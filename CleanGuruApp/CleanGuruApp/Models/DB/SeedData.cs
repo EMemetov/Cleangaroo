@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿//*********************************************************************************************************************
+// Author: Fernando Martin - Last Modified Date: August, 7th 2019.  
+// SeedData to insert temporary information into the databases
+//*********************************************************************************************************************
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models.DB
 {

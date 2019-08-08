@@ -1,11 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//*********************************************************************************************************************
+// Team 5 - First version created in July, 1st 2019. 
+//
+// Developers:
+//  Andrea de Fatima Cavalheiro - 301054219
+//  Eskender Memetov - 300805013
+//  Fernando Martins - 300964760
+//  Kishore Jothinarayanan - 300977076
+//  Mariia Staforkina - 301052981
+//  Melanie March - 300903524
+//  Satbyul Park -  300940276
+//  Theo Dias Mitchell - 300984894
+//
+//*********************************************************************************************************************
 using CleanGuruApp.Models.DB;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

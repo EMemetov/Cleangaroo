@@ -1,8 +1,11 @@
-﻿using System;
+﻿//*********************************************************************************************************************
+// Author: Theo Mitchel - Last Modified Date: August, 7th 2019.  
+// Entity Framework - EFCleanerRepository
+//*********************************************************************************************************************
+
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models.DB
 {
@@ -26,6 +29,7 @@ namespace CleanGuruApp.Models.DB
             }
         }
 
+        //method used to get the cleaners information
         public Cleaner GetCleaner(int? idCleaner)
         {
             if (idCleaner == null) return null;

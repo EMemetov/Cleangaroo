@@ -1,4 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿//*********************************************************************************************************************
+// Author: Theo Mitchel - Last Modified Date: August, 7th 2019.  
+// Database connections
+//*********************************************************************************************************************
+
+using Microsoft.EntityFrameworkCore;
 
 namespace CleanGuruApp.Models.DB
 {

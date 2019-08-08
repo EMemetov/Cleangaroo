@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//*********************************************************************************************************************
+// Author: Theo Mitchel - Last Modified Date: August, 7th 2019.  
+// Declaring the methods to be used for the EFAppointmentPaymentRepository
+//*********************************************************************************************************************
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models.DB
 {

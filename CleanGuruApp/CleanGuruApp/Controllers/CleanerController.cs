@@ -21,6 +21,7 @@ namespace CleanGuruApp.Controllers
         }
 
         //method to get and post the information about the cleaner
+        //parameter "idCleaner" used to get the information about the cleaner
         [HttpGet]
         public IActionResult Register(int idCleaner) => View(cleanerRepository.Cleaners.FirstOrDefault(c => c.IdCleaner == idCleaner));
 

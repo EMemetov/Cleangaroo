@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿//*********************************************************************************************************************
+// Author: Andrea Cavalheiro - Last Modified Date: August, 7th 2019.  
+// Entity Framework - EFCustomerAddressRepository
+//*********************************************************************************************************************
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models.DB
 {
@@ -15,10 +17,9 @@ namespace CleanGuruApp.Models.DB
             this.context = context;
         }
 
-       //public IQueryable<CustomerAddress> CustomerAddresss => context.CustomerAddress;
-
         public IEnumerable<CustomerAddress> CustomerAddresss => context.CustomerAddress.Include(p => p.Customer).ToList();
 
+        //method used to save the addres of the customer
         public void SaveCustomerAddress(CustomerAddress customerAddress)
         {
             if (customerAddress.idCustAddress == 0)

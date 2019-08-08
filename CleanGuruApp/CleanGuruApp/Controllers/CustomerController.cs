@@ -22,6 +22,7 @@ namespace CleanGuruApp.Controllers
         }
 
         //method to get and post the information about the customer
+        //parameter "idCustomer" used to get the information about the customer
         [HttpGet]
         public IActionResult Register(int idCustomer) => View(customerRepository.Customers.FirstOrDefault(c => c.IdCustomer == idCustomer));
                 [HttpPost]

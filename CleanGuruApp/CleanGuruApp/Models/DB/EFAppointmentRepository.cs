@@ -1,4 +1,8 @@
-﻿using System;
+﻿//*********************************************************************************************************************
+// Author: Andrea Cavalheiro - Last Modified Date: August, 7th 2019.  
+// Entity Framework - EFAppointmentRepository
+//*********************************************************************************************************************
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;

@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//*********************************************************************************************************************
+// Author: Mariia Staforkina - Last Modified Date: August, 7th 2019.  
+// Entity Framework - EFUserLoginRepository
+//*********************************************************************************************************************
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models.DB
 {
@@ -16,7 +17,7 @@ namespace CleanGuruApp.Models.DB
 
         public IQueryable<UserLogin> UserLogins => context.UserLogin;
 
-       
+       // method use to save the information about the user
         public void SaveUserLogin(UserLogin userLogin)
         {
             UserLogin dbEntry = context.UserLogin.FirstOrDefault(u => u.UserName == userLogin.UserName);

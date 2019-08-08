@@ -1,8 +1,10 @@
-﻿using System;
+﻿//*********************************************************************************************************************
+// Author: Satbyul Park - Last Modified Date: August, 7th 2019.  
+// Entity Framework - EFServicePriceRepository
+//*********************************************************************************************************************
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models.DB
 {
@@ -19,11 +21,12 @@ namespace CleanGuruApp.Models.DB
             get
             {
                 var servicePrices = context.ServicePrice.Include(c => c.Appointments).ToList();
-
                 return servicePrices;
             }
         }
 
+
+        //method used to get the service price
         public ServicePrice GetServicePrice(int? idServicePrice)
         {
             if (idServicePrice == null) return null;
@@ -33,7 +36,7 @@ namespace CleanGuruApp.Models.DB
             return servicePrice;
         }
 
-
+        //method used to save the service price
         public void SaveServicePrice(ServicePrice servicePrice)
         {
             if (servicePrice.IdServicePrice == 0)

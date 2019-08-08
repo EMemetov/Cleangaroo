@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//*********************************************************************************************************************
+// Author: Fernando Martin - Last Modified Date: August, 7th 2019.  
+// Declaring the methods to be used for the EFCustomerSubscriptionRepository
+//*********************************************************************************************************************
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models.DB
 {

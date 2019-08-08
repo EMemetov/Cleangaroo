@@ -1,6 +1,6 @@
 ﻿//*********************************************************************************************************************
 // Author: Satbyul Park and Mariia Staforkina - Last Modified Date: August, 7th 2019.
-// The HomeController manage the views.
+// The HomeController are been used to manage the views.
 // 
 //*********************************************************************************************************************
 using Microsoft.AspNetCore.Mvc;

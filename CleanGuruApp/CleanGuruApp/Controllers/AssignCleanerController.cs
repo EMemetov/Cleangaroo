@@ -117,6 +117,7 @@ namespace CleanGuruApp.Controllers
         }
 
         //method to decline a service
+        //parameter "id" used to decline an specific appointment
         public IActionResult Decline(int id)
         {
             var appointment = appointmentRepository.GetAppointment(id);
@@ -171,6 +172,7 @@ namespace CleanGuruApp.Controllers
 
 
         //method to accept a service
+        //parameter "id" used to accept an specific appointment
         public IActionResult Accept(int id)
         {
             var appointment = appointmentRepository.GetAppointment(id);

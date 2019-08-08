@@ -32,6 +32,7 @@ namespace CleanGuruApp.Controllers
         }
 
         // GET: ServicePrices/Details/5
+        //parameter "id" used to get the information details about the service price
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -72,6 +73,7 @@ namespace CleanGuruApp.Controllers
         }
 
         // GET: ServicePrices/Edit/5
+        //parameter "id" used to get the information about the service price to be edited
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -123,6 +125,7 @@ namespace CleanGuruApp.Controllers
         }
 
         // GET: ServicePrices/Delete/5
+        //parameter "id" used to get the information about the service price to be deleted
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -141,6 +144,7 @@ namespace CleanGuruApp.Controllers
         }
 
         // POST: ServicePrices/Delete/5
+        //parameter "id" used to get the information about the service price to be deleted
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -151,6 +155,8 @@ namespace CleanGuruApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //method to verify if the service price exists
+        //parameter "id" used to verify if the service price exists
         private bool ServicePriceExists(int id)
         {
             return _context.ServicePrice.Any(e => e.IdServicePrice == id);

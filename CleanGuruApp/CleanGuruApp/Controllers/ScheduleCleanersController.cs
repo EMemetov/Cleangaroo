@@ -30,6 +30,7 @@ namespace CleanGuruApp.Controllers
         }
 
         // GET: ScheduleCleaners/Details/5
+        //parameter "id" used to get the information about the cleaner schedule
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -70,6 +71,7 @@ namespace CleanGuruApp.Controllers
         }
 
         // GET: ScheduleCleaners/Edit/5
+        //parameter "id" used to edit the information about the cleaner schedule
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -121,6 +123,7 @@ namespace CleanGuruApp.Controllers
         }
 
         // GET: ScheduleCleaners/Delete/5
+        //parameter "id" used to delete the information about the cleaner schedule
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -139,6 +142,7 @@ namespace CleanGuruApp.Controllers
         }
 
         // POST: ScheduleCleaners/Delete/5
+        //parameter "id" used to delete the information about the cleaner schedule
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -148,7 +152,8 @@ namespace CleanGuruApp.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        //method to verify if the schedule exists
+        //parameter "id" used to verify if the schedule of the cleanear exists
         private bool ScheduleCleanerExists(int id)
         {
             return _context.ScheduleCleaner.Any(e => e.IdScheduleCleaner == id);

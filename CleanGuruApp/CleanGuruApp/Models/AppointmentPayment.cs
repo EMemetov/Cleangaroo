@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//*********************************************************************************************************************
+// Author: Andrea Cavalheiro - Last Modified Date: August, 7th 2019.  
+// Defining the fields to be used in this class
+//*********************************************************************************************************************
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models
 {

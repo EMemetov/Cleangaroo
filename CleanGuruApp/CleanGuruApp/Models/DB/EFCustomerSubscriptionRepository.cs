@@ -1,7 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//*********************************************************************************************************************
+// Author: Fernando Martin - Last Modified Date: August, 7th 2019.  
+// Entity Framework - EFCustomerSubscriptionRepository
+//*********************************************************************************************************************
+
 using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace CleanGuruApp.Models.DB
 {
@@ -14,8 +17,9 @@ namespace CleanGuruApp.Models.DB
             this.context = context;
         }
 
-        public IQueryable<CustomerSubscription> CustomerSubscriptions => context.CustomerSubscription; 
+        public IQueryable<CustomerSubscription> CustomerSubscriptions => context.CustomerSubscription;
 
+        //method used to save the subscription
         public void SaveCustomerSubscription(CustomerSubscription customerSubscription)
         {
             if(customerSubscription.IdSubscription == 0)
@@ -35,6 +39,7 @@ namespace CleanGuruApp.Models.DB
             }
             context.SaveChanges();
         }
+        //method used to delete the subscription from a specific appointment
         public void DeleteCustomerSubscription(int idAppointment)
         {
             CustomerSubscription dbEntry = context.CustomerSubscription.

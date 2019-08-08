@@ -1,8 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿//*********************************************************************************************************************
+// Author: Mariia Staforkina - Last Modified Date: August, 7th 2019.  
+// Entity Framework - EFScheduleCleanerRepository
+//*********************************************************************************************************************
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models.DB
 {
@@ -18,7 +21,7 @@ namespace CleanGuruApp.Models.DB
         public IQueryable<ScheduleCleaner> ScheduleCleaners => context.ScheduleCleaner;
 
 
-
+        //method used to save the schedule of the cleaner
         public void SaveScheduleCleaner(ScheduleCleaner scheduleCleaner)
         {
             if (scheduleCleaner.IdCleaner == 0)
@@ -41,6 +44,7 @@ namespace CleanGuruApp.Models.DB
         }
 
 
+        //method used to delete the schedule of the cleaner
         public void DeleteScheduleCleaner(int idScheduleCleaner)
         {
             ScheduleCleaner dbEntry = context.ScheduleCleaner.
@@ -52,6 +56,7 @@ namespace CleanGuruApp.Models.DB
             }
         }
 
+        //method used to list the schedule of the cleaner
         public List<ScheduleCleaner> ListCleaners(String dayWeek, string initTime, string finTime)
         {
             List<ScheduleCleaner> list = new List<ScheduleCleaner>();

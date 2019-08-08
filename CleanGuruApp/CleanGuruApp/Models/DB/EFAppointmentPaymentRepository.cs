@@ -1,4 +1,8 @@
-﻿using System.Linq;
+﻿//*********************************************************************************************************************
+// Author: Theo Mitchel - Last Modified Date: August, 7th 2019.  
+// Entity Framework - EFAppointmentPaymentRepository
+//*********************************************************************************************************************
+using System.Linq;
 
 namespace CleanGuruApp.Models.DB
 {

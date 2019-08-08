@@ -1,8 +1,11 @@
-﻿using System;
+﻿//*********************************************************************************************************************
+// Author: Theo Mitchel - Last Modified Date: August, 7th 2019.  
+// Entity Framework - EFCustomerRepository
+//*********************************************************************************************************************
+
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models.DB
 {
@@ -15,8 +18,7 @@ namespace CleanGuruApp.Models.DB
         {
             context = ctx;
         }
-
-
+        
 
         public IEnumerable<Customer> Customers
         {
@@ -28,6 +30,7 @@ namespace CleanGuruApp.Models.DB
             }
         }
 
+        //method used to get the information about the customer
         public Customer GetCustomer(int? idCustomer)
         {
             if (idCustomer == null) return null;
@@ -37,6 +40,7 @@ namespace CleanGuruApp.Models.DB
             return customer;
         }
 
+        //method used to save the information about the customer
         public void SaveCustomer(Customer customer)
         {
             if (customer.IdCustomer == 0)

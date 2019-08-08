@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//*********************************************************************************************************************
+// Author: Fernando Martin - Last Modified Date: August, 7th 2019.  
+// Defining the fields to be used in this class
+//*********************************************************************************************************************
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CleanGuruApp.Models
 {
     //class to define the fields and validate the data
     public class CustomerSubscription
     {
-        //There is a trigger AFTER INSERT in this table, linked to
-        //Appointment table
         [Key]
         public int IdSubscription{ get; set ;}
 
