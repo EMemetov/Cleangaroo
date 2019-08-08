@@ -11,11 +11,14 @@ namespace CleanGuruApp.Models
     {
         [Key]
         public int IdCustomer { get; set; }
+
         [Required(ErrorMessage = "Please enter a valid first name.")]
         public string FCustomerName { get; set; }
         public string MCustomerName { get; set; }
+
         [Required(ErrorMessage = "Please enter a valid last name.")]
         public string LCustomerName { get; set; }
+
         [Required(ErrorMessage = "Please enter a valid phone.")]
         public string CtPhone1 { get; set; }
         public string CtPhone2 { get; set; }
@@ -35,12 +38,13 @@ namespace CleanGuruApp.Models
         [DataType(DataType.Password)]
         [UIHint("password")]
         [Required(ErrorMessage = "Please enter your password.")] 
-       public string Password { get; set; }
+        public string Password { get; set; }
 
-        public IEnumerable<Appointment> Appointments { get; set; }
-        public IEnumerable<CustomerAddress> CustomerAddresss { get; set; }
-               
         [NotMapped]
         public string CustAddress { get; set; }
+
+        public IEnumerable<Appointment> Appointments { get; set; }
+        public IEnumerable<CustomerAddress> CustomerAddresss { get; set; }              
+
     }
 }

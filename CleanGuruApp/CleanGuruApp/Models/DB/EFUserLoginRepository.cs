@@ -16,36 +16,11 @@ namespace CleanGuruApp.Models.DB
 
         public IQueryable<UserLogin> UserLogins => context.UserLogin;
 
-        ////NOT WORKING
-        //public void SaveUserLogin(UserLogin userLogin)
-        //{
-        //    //I'm not sure if we can use null or ""
-        //    if (userLogin == null)
-        //    //if (userLogin.UserName.Equals(""))
-        //    {
-        //        context.UserLogin.Add(userLogin);
-        //    }
-        //    else
-        //    {
-        //        UserLogin dbEntry = context.UserLogin
-        //          .FirstOrDefault(u => u.UserName == userLogin.UserName);
-        //        if (dbEntry != null)
-        //        {
-        //            dbEntry.Pin = userLogin.Pin;
-        //            dbEntry.Role = userLogin.Role;
-        //        }
-        //    }
-        //    context.SaveChanges();
-        //}
-
-        
+       
         public void SaveUserLogin(UserLogin userLogin)
         {
-            UserLogin dbEntry = context.UserLogin
-              .FirstOrDefault(u => u.UserName == userLogin.UserName);
-            //I'm not sure if we can use null or ""
+            UserLogin dbEntry = context.UserLogin.FirstOrDefault(u => u.UserName == userLogin.UserName);
             if (dbEntry == null)
-            //if (userLogin.UserName.Equals(""))
             {
                 context.UserLogin.Add(userLogin);
             }
@@ -57,21 +32,5 @@ namespace CleanGuruApp.Models.DB
             }
             context.SaveChanges();
         }
-
-
-
-
-
-
-        //        public void DeleteUserLogin(string userName)
-        //        {
-        //            UserLogin dbEntry = context.UserLogin
-        //           .FirstOrDefault(u => u.UserName == userName);
-        //            if (dbEntry != null)
-        //            {
-        //                context.UserLogin.Remove(dbEntry);
-        //                context.SaveChanges();
-        //            }
-        //        }
     }
 }

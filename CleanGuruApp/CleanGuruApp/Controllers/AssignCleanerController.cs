@@ -124,6 +124,7 @@ namespace CleanGuruApp.Controllers
 
             appointmentRepository.Update(appointment);
             TempData["message"] = "[ID " + id + "] Appointment was declined to: "+appointment.Cleaner.FCleanerName +" "+ appointment.Cleaner.LCleanerName;
+           
             //You may need to use this link to give account access
             //https://accounts.google.com/DisplayUnlockCaptcha
 

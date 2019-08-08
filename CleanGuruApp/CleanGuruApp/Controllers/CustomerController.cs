@@ -18,73 +18,7 @@ namespace CleanGuruApp.Controllers
         {
             customerRepository = repository;
         }
-        //public class ErrorController : Controller
-        //{
-        //    public ViewResult Error() => View();
-        //}
-        //public IActionResult Index()
-        //{
-        //    return View(customerRepository.Customers);
-        //}
-
-        //[HttpGet("details/{idcustomer}")]
-        //public IActionResult Details(int idcustomer)
-        //{
-        //    var customer = customerRepository.GetCustomer(idcustomer);
-        //    return View(customer);
-        //}
-
-
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public IActionResult Create(Customer customer)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        customerRepository.Add(customer);
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(customer);
-        //}
-
-        //public IActionResult Edit(int idcustomer)
-        //{
-        //    var customer = customerRepository.GetCustomer(idcustomer);
-
-        //    return View(customer);
-        //}
-
-        //[HttpPost]
-        //public IActionResult Edit(int idcustomer, Customer customer)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        customerRepository.Update(customer);
-
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(customer);
-        //}
-
-        //public IActionResult Delete(int idcustomer)
-        //{
-        //    var customer = customerRepository.GetCustomer(idcustomer);
-
-        //    return View(customer);
-        //}
-
-        //[HttpPost, ActionName("Delete")]
-        //public IActionResult DeleteConfirmed(int idcustomer)
-        //{
-        //    customerRepository.Remove(idcustomer);
-        //    return RedirectToAction(nameof(Index));
-        //}
-
-
+      
         [HttpGet]
         public IActionResult Register(int idCustomer) => View(customerRepository.Customers.FirstOrDefault(c => c.IdCustomer == idCustomer));
 
@@ -103,12 +37,10 @@ namespace CleanGuruApp.Controllers
                 return View(customer);
             }
         }
-        public async Task<IActionResult> ListOfCustomers()
+        public IActionResult ListOfCustomers()
         {
-            //return View(await cleanerRepository.Cleaners.ToListAsync());
             var customerList = customerRepository.Customers;
             return View(customerList);
-            //return View();
         }
     }
 }

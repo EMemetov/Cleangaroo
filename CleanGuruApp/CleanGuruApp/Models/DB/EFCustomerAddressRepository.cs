@@ -41,16 +41,5 @@ namespace CleanGuruApp.Models.DB
             }
             context.SaveChanges();
         }
-
-        //public void DeleteCustomerAddress(int idCustAddress)
-        //{
-        //    CustomerAddress dbEntry = context.CustomerAddress
-        //               .FirstOrDefault(c => c.IdCustAddress == idCustAddress);
-        //    if (dbEntry != null)
-        //    {
-        //        context.CustomerAddress.Remove(dbEntry);
-        //        context.SaveChanges();
-        //    }
-        //}
     }
 }

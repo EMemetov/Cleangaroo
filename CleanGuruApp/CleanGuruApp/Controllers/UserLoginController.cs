@@ -20,17 +20,12 @@ namespace CleanGuruApp.Controllers
         //Show list of UserLogin
         public IActionResult List() => View(repository.UserLogins);
 
-        //public IActionResult Add() => View("Edit", new UserLogin());
-
         [HttpGet]
         public IActionResult Edit(string userName) => View(repository.UserLogins.FirstOrDefault(c => c.UserName == userName));
 
         [HttpPost]
         public IActionResult Edit(UserLogin userLogin)
         {
-            //Console.WriteLine("Usuario: " + userLogin.UserName);      //Solved   - DELETE!!!!!!!!!!!!!!!!
-            //Console.WriteLine("Usuario: " + userLogin.Role);
-            //Console.WriteLine("Usuario: " + userLogin.Pin);
             if (ModelState.IsValid)
             {
                 repository.SaveUserLogin(userLogin);

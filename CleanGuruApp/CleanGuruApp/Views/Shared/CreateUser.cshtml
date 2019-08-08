@@ -19,19 +19,8 @@
         <input type="text" class="form-control" asp-for="Pin"/>
     </div>
 
-    @*<div>
-        <select asp-for="Role">          
-            <option value="CUSTOMER" asp-for="Role">Customer</option>
-            <option value="CLEANER" asp-for="Role">Cleaner</option>
-        </select>
-    </div>*@
-
-    @*<div>
-        <a asp-controller="UserLogin" asp-action="List">List of User in SeedData</a>
-    </div>*@
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign In</button>
 
-    @*<button class="btn btn-outline-success my-2 my-sm-0" type="submit" asp-controller="Appointment" asp-action="SaveAppontment">Create Appointment</button>*@
     <button class="btn btn-danger" asp-controller="Home" asp-action="Index">Cancel</button>
     <div>
         <a asp-controller="Customer" asp-action="Register">Don't have an account? Click here for customer registration!</a>

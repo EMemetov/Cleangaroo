@@ -9,7 +9,5 @@ namespace CleanGuruApp.Models.DB
     {
         IQueryable<UserLogin> UserLogins { get; }
         void SaveUserLogin(UserLogin userLogin);
-
-        //void DeleteUserLogin(string userName);
     }
 }

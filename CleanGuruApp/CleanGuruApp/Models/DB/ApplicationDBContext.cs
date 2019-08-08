@@ -19,12 +19,5 @@ namespace CleanGuruApp.Models.DB
         public DbSet<UserLogin> UserLogin { get; set; }
         public DbSet<ScheduleCleaner> ScheduleCleaner { get; set; }
 
-
-        ////Should we have???
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Club>().HasMany<Player>(c => c.Players);
-        //}
-
     }
 }

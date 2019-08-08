@@ -209,7 +209,6 @@ namespace CleanGuruApp.Models.DB
                         CtHoursRequested = 6,
                         IdCleaner = 1,
                         StartTime = Convert.ToDateTime("09:00AM"),
-                        //IsSubscription = Convert.ToBoolean(0)
                         IsSubscription = false
 
                     },
@@ -221,7 +220,6 @@ namespace CleanGuruApp.Models.DB
                         CtHoursRequested = 5,
                         IdCleaner = 2,
                         StartTime = Convert.ToDateTime("10:00AM"),
-                        //IsSubscription = Convert.ToBoolean(1)
                         IsSubscription = true
                     }
                     );

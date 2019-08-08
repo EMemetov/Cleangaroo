@@ -14,8 +14,6 @@ namespace CleanGuruApp.Models.DB
             this.context = context;
         }
 
-        // public IQueryable<ServicePrice> ServicePrices => context.ServicePrice;
-
         public IEnumerable<ServicePrice> ServicePrices
         {
             get
@@ -56,18 +54,5 @@ namespace CleanGuruApp.Models.DB
             }
             context.SaveChanges();
         }
-
-
-        //public void DeleteServicePrice(int idServicePrice)
-        //{
-        //    ServicePrice dbEntry = context.ServicePrice.
-        //        FirstOrDefault(s => s.IdServicePrice == idServicePrice);
-        //    if(dbEntry != null)
-        //    {
-        //        context.ServicePrice.Remove(dbEntry);
-        //        context.SaveChanges();
-        //    }
-        //}
-
     }
 }

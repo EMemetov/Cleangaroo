@@ -40,15 +40,5 @@ namespace CleanGuruApp.Models.DB
             }
             context.SaveChanges();
         }
-        //public void DeleteAppointmentPayment(int idAppointmentPayment)
-        //{
-        //    AppointmentPayment dbEntry = context.AppointmentPayment.
-        //        FirstOrDefault(a => a.IdAppointmentPayment == idAppointmentPayment);
-        //    if (dbEntry != null)
-        //    {
-        //        context.AppointmentPayment.Remove(dbEntry);
-        //        context.SaveChanges();
-        //    }
-        //}
     }
 }
