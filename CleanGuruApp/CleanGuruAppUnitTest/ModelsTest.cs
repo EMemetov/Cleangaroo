@@ -108,5 +108,61 @@ namespace CleanGuruAppUnitTest
         }
 
 
+
+
+        //---
+        [Fact]
+        public void VerifyCustomerAddressidCustAddress()
+        {
+            var customerAddress  = new CustomerAddress();
+            
+
+            int result = 22;
+
+            customerAddress.idCustAddress = 22;
+
+            Assert.Equal(customerAddress.idCustAddress, result);
+
+        }
+
+
+        [Fact]
+        public void VerifyCustomerAddressidCustAddressType()
+        {
+            var customerAddress = new CustomerAddress();
+
+            Assert.IsType<int>(customerAddress.idCustAddress);
+        }      
+
+        [Fact]
+        public void VerifyCustomerAddressIdCustomerAddressType()
+        {
+            var customerAddress = new CustomerAddress();
+
+            Assert.IsType<int>(customerAddress.idCustAddress);
+        }
+        [Fact]
+        public void VerifyCustomerAddressAddressType()
+        {
+            var customerAddress = new CustomerAddress();
+            customerAddress.Address = "address";
+
+            Assert.IsType<string>(customerAddress.Address);
+        }
+
+        [Fact]
+        public void VerifyCustomerAddressAddress()
+        {
+            var customerAddress = new CustomerAddress();
+
+
+            string result = "110 bay st";
+
+            customerAddress.Address = result;
+
+            Assert.Equal(customerAddress.Address, result);
+
+        }
+
     }
 }
